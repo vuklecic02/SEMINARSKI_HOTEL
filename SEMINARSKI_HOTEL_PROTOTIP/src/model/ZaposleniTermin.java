@@ -57,7 +57,7 @@ public class ZaposleniTermin implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "zaposlenitermin";
     }
 
     @Override

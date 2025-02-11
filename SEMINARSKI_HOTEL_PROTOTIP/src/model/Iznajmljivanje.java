@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,32 +73,34 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return idIznajmljivanje + " " + ukupnaCena + " " + recepcioner + " " + osoba;
+        return ukupnaCena + " " + recepcioner + " " + osoba;
     }
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "iznajmljivanje";
     }
 
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<OpstiDomenskiObjekat> lista=new ArrayList<>();
+        
+        return lista;
     }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ukupnaCena,recepcioner,osoba";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return ukupnaCena+","+recepcioner.getIdRecepcioner()+","+osoba.getIdOsoba();
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "iznajmljivanje.idIznajmljivanje"+idIznajmljivanje;
     }
 
     @Override
@@ -107,7 +110,7 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ukupnaCena="+ukupnaCena+", recepcioner="+recepcioner.getIdRecepcioner()+", osoba="+osoba.getIdOsoba();
     }
     
     

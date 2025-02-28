@@ -2,3 +2,6 @@ build/
 nbproject/private/
 *.class
 *.jar
+/SEMINARSKI_HOTEL_SERVER/nbproject/private/
+/SEMINARSKI_HOTEL_ZAJEDNICKI/nbproject/private/
+/SEMINARSKI_HOTEL_ZAJEDNICKI/dist/

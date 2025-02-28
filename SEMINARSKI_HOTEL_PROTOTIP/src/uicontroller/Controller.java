@@ -43,9 +43,19 @@ public class Controller {
         return instance;
     }    
 
-    public Recepcioner login(String username, String sifra) throws Exception{
-        Recepcioner recepcioner=new Recepcioner(username, sifra);        
+    public Recepcioner login(String username, String password) throws Exception{
+        Recepcioner recepcioner=new Recepcioner(username, password);        
         Zahtev zahtev=new Zahtev(Operacija.LOGIN, recepcioner);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            return (Recepcioner) odgovor.getRezultat();
+        }
+        throw odgovor.getException();        
+    }
+
+    public Recepcioner registruj(Recepcioner recepcioner) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.REGISTRUJ, recepcioner);
         posiljalac.salje(zahtev);
         Odgovor odgovor=(Odgovor) primalac.prima();
         if (odgovor.getException() == null) {

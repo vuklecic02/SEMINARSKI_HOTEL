@@ -18,7 +18,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
     private String ime;
     private String prezime;
     private String username;
-    private String sifra;
+    private String password;
     private String email;
 
     public Recepcioner() {
@@ -26,17 +26,25 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
     
     public Recepcioner(String username,String sifra) {
         this.username=username;
-        this.sifra=sifra;
+        this.password=sifra;
     }
 
-    public Recepcioner(int idRecepcioner, String ime, String prezime, String username, String sifra, String email) {
+    public Recepcioner(int idRecepcioner, String ime, String prezime, String username, String password, String email) {
         this.idRecepcioner = idRecepcioner;
         this.ime = ime;
         this.prezime = prezime;
         this.username = username;
-        this.sifra = sifra;
+        this.password = password;
         this.email=email;
     }
+    
+    public Recepcioner(String ime, String prezime, String username, String password, String email) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.username = username;
+        this.password = password;
+        this.email=email;
+    }    
 
     public String getEmail() {
         return email;
@@ -79,12 +87,12 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
         this.username = username;
     }
 
-    public String getSifra() {
-        return sifra;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSifra(String sifra) {
-        this.sifra = sifra;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -106,9 +114,9 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
             String ime=rs.getString("recepcioner.ime");
             String prezime=rs.getString("recepcioner.prezime");
             String username=rs.getString("recepcioner.username");
-            String sifra=rs.getString("recepcioner.sifra");
+            String password=rs.getString("recepcioner.password");
             String email=rs.getString("recepcioner.email");
-            Recepcioner r=new Recepcioner(idRecepcioner, ime, prezime, username, sifra, email);
+            Recepcioner r=new Recepcioner(idRecepcioner, ime, prezime, username, password, email);
             lista.add(r);
         }
         return lista;    
@@ -121,7 +129,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return "'"+ime+"','"+prezime+"','"+username+"','"+sifra+"','"+email+"'";
+        return "'"+ime+"','"+prezime+"','"+username+"','"+password+"','"+email+"'";
     }
 
     @Override
@@ -136,7 +144,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        return "ime='"+ime+"', prezime='"+prezime+"', username='"+username+"', password='"+sifra+"', email='"+email+"'";
+        return "ime='"+ime+"', prezime='"+prezime+"', username='"+username+"', password='"+password+"', email='"+email+"'";
     }
     
     

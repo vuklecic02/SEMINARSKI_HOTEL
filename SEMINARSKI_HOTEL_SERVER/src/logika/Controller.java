@@ -37,10 +37,21 @@ public class Controller {
       }
       
       for(Recepcioner r : listaRecepcionera){
-          if(r.getUsername().equals(recepcioner.getUsername()) && r.getSifra().equals(recepcioner.getSifra())){
+          if(r.getUsername().equals(recepcioner.getUsername()) && r.getPassword().equals(recepcioner.getPassword())){
               return r;
           }
       }
       throw new Exception("Instruktor sa unetim kredencijalima ne postoji.");
     }    
+
+    public Recepcioner registruj(Recepcioner r) throws Exception {
+        if(dbbr.kreiraj(r)){
+            return r;
+        }
+        else
+        {
+            throw new Exception("Korisnik nije dobro unetio podatke.");
+        }
+        
+    }
 }

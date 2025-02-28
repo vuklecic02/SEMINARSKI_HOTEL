@@ -9,5 +9,6 @@ package komunikacija;
  * @author vuk
  */
 public enum Operacija {
-    LOGIN
+    LOGIN,
+    REGISTRUJ
 }

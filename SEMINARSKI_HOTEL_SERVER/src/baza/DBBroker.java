@@ -36,6 +36,23 @@ public class DBBroker {
         System.out.println("Vracanje liste.");
         return list;
     }
+    
+    public boolean kreiraj(OpstiDomenskiObjekat odo) throws Exception
+    {
+        try
+        {   
+            String query = "INSERT INTO "+odo.vratiNazivTabele()+"("+odo.vratiKoloneZaUbacivanje()+")"+" VALUES"+"("+odo.vratiVrednostiZaUbacivanje()+")";
+            PreparedStatement ps = DBKonekcija.getInstance().getConnection().prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+            int affectedRows = ps.executeUpdate();
+            
+            return affectedRows==1;
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("Neuspesno izvrsavanja upita!");
+            throw ex;
+        }  
+    }    
 
 
 //    public Recepcioner getRecepcioner(Recepcioner recepcioner) throws SQLException {

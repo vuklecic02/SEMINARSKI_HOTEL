@@ -34,18 +34,19 @@ public class ObradaKlijentskihZahteva extends Thread{
         try {
             Zahtev zahtev = (Zahtev) primalac.prima();
             Odgovor odgovor = new Odgovor();
+            Recepcioner r;
             try{
             switch(zahtev.getOperacija()){
                 case LOGIN: 
                     System.out.println("Operacija login");
-                    Recepcioner r = (Recepcioner) zahtev.getArgument();
+                    r = (Recepcioner) zahtev.getArgument();
                     odgovor.setRezultat(Controller.getInstance().login(r));
                     break;
-//                case Operation.REGISTER:
-//                    System.out.println("Operacija register");
-//                    Instruktor in = (Instruktor) request.getArgument();
-//                    response.setResult(Controller.getInstance().register(in));
-//                    break;
+                case REGISTRUJ:
+                    System.out.println("Operacija registruj");
+                    r = (Recepcioner) zahtev.getArgument();
+                    odgovor.setRezultat(Controller.getInstance().registruj(r));
+                    break;
 //                case Operation.EDIT_INSTRUKTOR:
 //                    System.out.println("Operacija izmeni instruktor");
 //                    Instruktor ins = (Instruktor) request.getArgument();

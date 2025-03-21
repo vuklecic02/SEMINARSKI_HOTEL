@@ -7,6 +7,8 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import komunikacija.Odgovor;
 import komunikacija.Posiljalac;
 import komunikacija.Primalac;
@@ -20,14 +22,22 @@ import java.util.logging.Logger;
  *
  * @author vuk
  */
-public class Server {
-    
-    public void startServer() {
+public class Server extends Thread{
+    boolean kraj =false;
+    ServerSocket serverSocket;
+    List<ObradaKlijentskihZahteva> klijenti;
+
+    public Server() {
+        klijenti=new ArrayList<>();
+    }
+
+    @Override
+    public void run() {
         try 
         {
-            ServerSocket serverSocket = new ServerSocket(9000);
+            serverSocket = new ServerSocket(9000);
             System.out.println("Server ceka klijente...");
-            while(true){
+            while(!kraj){
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Klijent: "+clientSocket + " se konektovao.");
                 ObradaKlijentskihZahteva okz = new ObradaKlijentskihZahteva(clientSocket);
@@ -36,6 +46,22 @@ public class Server {
         } catch (IOException ex) 
         {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
+    
+    public void stopServer()
+    {
+        kraj=true;
+        try {
+            for(ObradaKlijentskihZahteva k:klijenti)
+            {
+                k.prekiniNit();
+            }
+            serverSocket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
+
+    
 }

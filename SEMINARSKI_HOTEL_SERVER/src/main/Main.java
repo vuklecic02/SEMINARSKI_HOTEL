@@ -5,6 +5,7 @@
 package main;
 
 import server.Server;
+import view.ServerForma;
 
 /**
  *
@@ -12,7 +13,7 @@ import server.Server;
  */
 public class Main {
     public static void main(String[] args) {
-        Server server = new Server();
-        server.startServer();
+        ServerForma sf=new ServerForma();
+        sf.setVisible(true);
     }    
 }

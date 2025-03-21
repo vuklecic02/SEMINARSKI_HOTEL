@@ -123,7 +123,7 @@ public class LoginForma extends javax.swing.JFrame {
 
     private void jButtonRegistrujSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrujSeActionPerformed
 
-          RegisterForma rf= new RegisterForma();
+          RegistracijaForma rf= new RegistracijaForma();
           this.dispose();
           rf.setVisible(true);
       

@@ -52,7 +52,48 @@ public class DBBroker {
             System.out.println("Neuspesno izvrsavanja upita!");
             throw ex;
         }  
-    }    
+    }
+    
+    public boolean izmeni(OpstiDomenskiObjekat odo) throws Exception
+    { 
+        try
+        {
+            String query = "UPDATE "+odo.vratiNazivTabele()+ " SET "+odo.vratiVrednostiZaIzmenu()+ " WHERE "+odo.vratiPrimarniKljuc();
+            System.out.println(query);
+            Statement st = DBKonekcija.getInstance().getConnection().createStatement();
+            int affRows = st.executeUpdate(query);
+            if(affRows>0)
+                return true;
+            else
+                throw new Exception("Problem sa podacima, nije nista izmenjeno.");
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("Neuspesno izvrsavanje upita prilikom azuriranja podataka.");
+            throw ex;
+        }
+    }
+    
+    public boolean obrisi(OpstiDomenskiObjekat odo) throws Exception{
+        try
+        {
+            String query = "DELETE FROM "+odo.vratiNazivTabele()+" WHERE "+odo.vratiPrimarniKljuc();
+            System.out.println(query);
+            PreparedStatement ps = DBKonekcija.getInstance().getConnection().prepareStatement(query);
+            int affRows = ps.executeUpdate();
+            if(affRows==1)
+                return true;
+            else
+                throw new Exception("Problem sa podacima, recepcioner nije obrisan.");
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("Neuspesno izvrsavanje upita prilikom brisanja iz baze.");
+            throw ex;
+        }
+    }
+
+    
 
 
 //    public Recepcioner getRecepcioner(Recepcioner recepcioner) throws SQLException {

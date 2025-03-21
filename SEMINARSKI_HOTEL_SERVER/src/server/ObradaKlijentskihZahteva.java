@@ -4,6 +4,7 @@
  */
 package server;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ public class ObradaKlijentskihZahteva extends Thread{
     private Socket clientSocket;
     private Posiljalac posiljalac;
     private Primalac primalac;
+    boolean kraj=false;
     
     public ObradaKlijentskihZahteva(Socket clientSocket) {
         this.clientSocket=clientSocket;
@@ -30,7 +32,7 @@ public class ObradaKlijentskihZahteva extends Thread{
 
     @Override
     public void run() {
-        while(true){
+        while(!kraj){
         try {
             Zahtev zahtev = (Zahtev) primalac.prima();
             Odgovor odgovor = new Odgovor();
@@ -65,7 +67,19 @@ public class ObradaKlijentskihZahteva extends Thread{
         } catch (Exception ex) {
             Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
         }
+      }
+        
+    }  
+    
+    public void prekiniNit()
+    {
+        kraj=true;
+        try {
+            clientSocket.close();
+            interrupt();
+        } catch (IOException ex) {
+            Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }    
+    }
 }

@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import komunikacija.Posiljalac;
-import komunikacija.Primalac;
-import komunikacija.Zahtev;
-import komunikacija.Odgovor;
+import komunikacijaZajednicki.Posiljalac;
+import komunikacijaZajednicki.Primalac;
+import komunikacijaZajednicki.Zahtev;
+import komunikacijaZajednicki.Odgovor;
 import logika.Controller;
 import model.Recepcioner;
 /**
@@ -44,11 +44,11 @@ public class ObradaKlijentskihZahteva extends Thread{
                     r = (Recepcioner) zahtev.getArgument();
                     odgovor.setRezultat(Controller.getInstance().login(r));
                     break;
-                case REGISTRUJ:
-                    System.out.println("Operacija registruj");
-                    r = (Recepcioner) zahtev.getArgument();
-                    odgovor.setRezultat(Controller.getInstance().registruj(r));
-                    break;
+//                case REGISTRUJ:
+//                    System.out.println("Operacija registruj");
+//                    r = (Recepcioner) zahtev.getArgument();
+//                    odgovor.setRezultat(Controller.getInstance().registruj(r));
+//                    break;
 //                case Operation.EDIT_INSTRUKTOR:
 //                    System.out.println("Operacija izmeni instruktor");
 //                    Instruktor ins = (Instruktor) request.getArgument();

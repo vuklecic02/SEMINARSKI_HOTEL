@@ -4,9 +4,13 @@
  */
 package view;
 
+import glavniKontroler.GlavniKontroler;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import model.Recepcioner;
-import uicontroller.Controller;
 
 /**
  *
@@ -23,6 +27,47 @@ public class LoginForma extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    public JButton getjButtonOdustani() {
+        return jButtonOdustani;
+    }
+
+    public void setjButtonOdustani(JButton jButtonOdustani) {
+        this.jButtonOdustani = jButtonOdustani;
+    }
+
+    public JButton getjButtonRegistrujSe() {
+        return jButtonRegistrujSe;
+    }
+
+    public void setjButtonRegistrujSe(JButton jButtonRegistrujSe) {
+        this.jButtonRegistrujSe = jButtonRegistrujSe;
+    }
+
+    public JButton getjButtonUlogujSe1() {
+        return jButtonUlogujSe1;
+    }
+
+    public void setjButtonUlogujSe1(JButton jButtonUlogujSe1) {
+        this.jButtonUlogujSe1 = jButtonUlogujSe1;
+    }
+
+    public JPasswordField getjPasswordFieldSifra() {
+        return jPasswordFieldSifra;
+    }
+
+    public void setjPasswordFieldSifra(JPasswordField jPasswordFieldSifra) {
+        this.jPasswordFieldSifra = jPasswordFieldSifra;
+    }
+
+    public JTextField getjTextFieldUsername() {
+        return jTextFieldUsername;
+    }
+
+    public void setjTextFieldUsername(JTextField jTextFieldUsername) {
+        this.jTextFieldUsername = jTextFieldUsername;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,12 +167,9 @@ public class LoginForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrujSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrujSeActionPerformed
-
-          RegistracijaForma rf= new RegistracijaForma();
-          this.dispose();
-          rf.setVisible(true);
-      
-
+        this.dispose();
+        GlavniKontroler.getInstance().otvoriFormuZaRegistraciju();
+         
     }//GEN-LAST:event_jButtonRegistrujSeActionPerformed
 
     private void jButtonOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOdustaniActionPerformed
@@ -136,8 +178,9 @@ public class LoginForma extends javax.swing.JFrame {
             this.dispose();
     }//GEN-LAST:event_jButtonOdustaniActionPerformed
 
+    
     private void jButtonUlogujSe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUlogujSe1ActionPerformed
-        try
+        /*try
         {
             String username=jTextFieldUsername.getText();
             String sifra=String.valueOf(jPasswordFieldSifra.getText());
@@ -147,43 +190,13 @@ public class LoginForma extends javax.swing.JFrame {
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Login unsucessful!\n" + ex.getMessage(), "Login", JOptionPane.ERROR_MESSAGE);
-        }                  
+        }*/                  
     }//GEN-LAST:event_jButtonUlogujSe1ActionPerformed
-
+    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginForma().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonOdustani;
@@ -195,4 +208,8 @@ public class LoginForma extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordFieldSifra;
     private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
+
+    public void loginAddActionListener(ActionListener actionListener) {
+        jButtonUlogujSe1.addActionListener(actionListener);
+    }
 }

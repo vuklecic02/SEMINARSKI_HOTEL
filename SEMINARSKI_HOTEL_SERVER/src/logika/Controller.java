@@ -4,11 +4,11 @@
  */
 package logika;
 
-import baza.DBBroker;
 import java.util.ArrayList;
 import java.util.List;
 import model.OpstiDomenskiObjekat;
 import model.Recepcioner;
+import operacija.recepcioner.LoginOperacija;
 
 /**
  *
@@ -17,10 +17,9 @@ import model.Recepcioner;
 public class Controller {
     
     private static Controller instance;
-    private DBBroker dbbr;
+    private Recepcioner ulogovaniRecepcioner;
     
     private Controller(){
-        dbbr = new DBBroker();
     }
 
     public static Controller getInstance() {
@@ -30,28 +29,21 @@ public class Controller {
     }
 
     public Recepcioner login(Recepcioner recepcioner) throws Exception {
-      List<OpstiDomenskiObjekat> listaOdo = dbbr.citaj(recepcioner);
-      List<Recepcioner> listaRecepcionera = new ArrayList<>();
-      for(OpstiDomenskiObjekat odo: listaOdo){
-          listaRecepcionera.add((Recepcioner) odo);
-      }
-      
-      for(Recepcioner r : listaRecepcionera){
-          if(r.getUsername().equals(recepcioner.getUsername()) && r.getPassword().equals(recepcioner.getPassword())){
-              return r;
-          }
-      }
-      throw new Exception("Instruktor sa unetim kredencijalima ne postoji.");
+        LoginOperacija operacija=new LoginOperacija();
+        operacija.izvrsi(recepcioner, null);
+        ulogovaniRecepcioner=operacija.getRecepcioner();
+        return ulogovaniRecepcioner;
+
     }    
 
-    public Recepcioner registruj(Recepcioner r) throws Exception {
-        if(dbbr.kreiraj(r)){
-            return r;
-        }
-        else
-        {
-            throw new Exception("Korisnik nije dobro unetio podatke.");
-        }
-        
-    }
+//    public Recepcioner registruj(Recepcioner r) throws Exception {
+//        if(dbbr.kreiraj(r)){
+//            return r;
+//        }
+//        else
+//        {
+//            throw new Exception("Korisnik nije dobro unetio podatke.");
+//        }
+//        
+//    }
 }

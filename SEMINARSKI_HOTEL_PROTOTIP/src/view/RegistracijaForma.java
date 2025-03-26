@@ -6,7 +6,6 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.Recepcioner;
-import uicontroller.Controller;
 
 /**
  *
@@ -142,63 +141,63 @@ public class RegistracijaForma extends javax.swing.JFrame {
 
     private void jButtonRegistrujSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrujSeActionPerformed
        
-        try
-        {        
-            String ime=jTextFieldIme.getText();
-            String prezime=jTextFieldPrezime.getText();
-            String username=jTextFieldUsername.getText();
-            String email=jTextFieldEmail.getText();
-            String password=String.valueOf(jPasswordField.getText());
-            String ponPassword=String.valueOf(jPasswordFieldRepeat.getText());
-
-            if(ime.isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Niste uneli ime!","Register",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(prezime.isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Niste uneli prezime!","Register",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(username.isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Niste uneli username!","Register",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(email.isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Niste uneli email!","Register",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(password.isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Niste uneli sifru!","Register",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(ponPassword.isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Niste ponovili sifru!","Register",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(!password.equals(ponPassword))
-            {
-                JOptionPane.showMessageDialog(this, "Sifre se ne poklapaju!","Register",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            Recepcioner recepcioner=new Recepcioner(ime, prezime, username, password, email);
-            recepcioner=Controller.getInstance().registruj(recepcioner);
-            JOptionPane.showMessageDialog(this, recepcioner.getUsername()+" se registrovao/la!", "Register", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-            LoginForma lf = new LoginForma();
-            lf.setVisible(true);
-            
-        }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(this, "Greska pri registraciji: "+ex.getMessage(),"Register",JOptionPane.ERROR_MESSAGE);
-        }
+//        try
+//        {        
+//            String ime=jTextFieldIme.getText();
+//            String prezime=jTextFieldPrezime.getText();
+//            String username=jTextFieldUsername.getText();
+//            String email=jTextFieldEmail.getText();
+//            String password=String.valueOf(jPasswordField.getText());
+//            String ponPassword=String.valueOf(jPasswordFieldRepeat.getText());
+//
+//            if(ime.isEmpty())
+//            {
+//                JOptionPane.showMessageDialog(this, "Niste uneli ime!","Register",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            if(prezime.isEmpty())
+//            {
+//                JOptionPane.showMessageDialog(this, "Niste uneli prezime!","Register",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            if(username.isEmpty())
+//            {
+//                JOptionPane.showMessageDialog(this, "Niste uneli username!","Register",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            if(email.isEmpty())
+//            {
+//                JOptionPane.showMessageDialog(this, "Niste uneli email!","Register",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            if(password.isEmpty())
+//            {
+//                JOptionPane.showMessageDialog(this, "Niste uneli sifru!","Register",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            if(ponPassword.isEmpty())
+//            {
+//                JOptionPane.showMessageDialog(this, "Niste ponovili sifru!","Register",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            if(!password.equals(ponPassword))
+//            {
+//                JOptionPane.showMessageDialog(this, "Sifre se ne poklapaju!","Register",JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//            
+//            Recepcioner recepcioner=new Recepcioner(ime, prezime, username, password, email);
+//            recepcioner=Controller.getInstance().registruj(recepcioner);
+//            JOptionPane.showMessageDialog(this, recepcioner.getUsername()+" se registrovao/la!", "Register", JOptionPane.INFORMATION_MESSAGE);
+//            this.dispose();
+//            LoginForma lf = new LoginForma();
+//            lf.setVisible(true);
+//            
+//        }
+//        catch(Exception ex)
+//        {
+//            JOptionPane.showMessageDialog(this, "Greska pri registraciji: "+ex.getMessage(),"Register",JOptionPane.ERROR_MESSAGE);
+//        }
 
         
     }//GEN-LAST:event_jButtonRegistrujSeActionPerformed
@@ -206,37 +205,6 @@ public class RegistracijaForma extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistracijaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistracijaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistracijaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistracijaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistracijaForma().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegistrujSe;

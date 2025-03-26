@@ -17,6 +17,7 @@ public class DBKonekcija {
         String url = "jdbc:mysql://localhost:3306/seminarski_hotel_prototip";
         try {
             connection = DriverManager.getConnection(url,"root","");
+            connection.setAutoCommit(false);
         } catch (SQLException ex) {
             Logger.getLogger(DBKonekcija.class.getName()).log(Level.SEVERE, null, ex);
         }

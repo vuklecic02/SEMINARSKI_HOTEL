@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -145,6 +146,30 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
     @Override
     public String vratiVrednostiZaIzmenu() {
         return "ime='"+ime+"', prezime='"+prezime+"', username='"+username+"', password='"+password+"', email='"+email+"'";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Recepcioner other = (Recepcioner) obj;
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        return Objects.equals(this.password, other.password);
     }
     
     

@@ -20,7 +20,7 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
     @Override
     public List<OpstiDomenskiObjekat> vratiSve(OpstiDomenskiObjekat param,String uslov) throws Exception {
        List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-       String upit="SELECT FROM "+param.vratiNazivTabele();
+       String upit="SELECT * FROM "+param.vratiNazivTabele();
        if(uslov!=null)
        {
            upit+=" ";

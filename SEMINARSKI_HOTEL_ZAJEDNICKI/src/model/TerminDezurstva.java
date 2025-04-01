@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class TerminDezurstva implements OpstiDomenskiObjekat{
     private int idTerminDezurstva;
-    private String komentar;
+    private String smena;
 
     public TerminDezurstva() {
     }
 
-    public TerminDezurstva(int idTerminDezurstva, String komentar) {
+    public TerminDezurstva(int idTerminDezurstva, String smena) {
         this.idTerminDezurstva = idTerminDezurstva;
-        this.komentar = komentar;
+        this.smena = smena;
     }
 
     public int getIdTerminDezurstva() {
@@ -32,12 +32,12 @@ public class TerminDezurstva implements OpstiDomenskiObjekat{
         this.idTerminDezurstva = idTerminDezurstva;
     }
 
-    public String getKomentar() {
-        return komentar;
+    public String getSmena() {
+        return smena;
     }
 
-    public void setKomentar(String komentar) {
-        this.komentar = komentar;
+    public void setSmena(String smena) {
+        this.smena = smena;
     }
 
     @Override
@@ -48,17 +48,24 @@ public class TerminDezurstva implements OpstiDomenskiObjekat{
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-        
-        return lista;    }
+        while(rs.next())
+        {
+            int idTerminDezurstva=rs.getInt("termindezurstva.idTerminDezurstva");
+            String smena=rs.getString("termindezurstva.smena");
+            TerminDezurstva td=new TerminDezurstva(idTerminDezurstva, smena);
+            lista.add(td);
+        }
+        return lista;   
+    }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "komentar";
+        return "smena";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return "'"+komentar+"'";
+        return "'"+smena+"'";
     }
 
     @Override
@@ -73,7 +80,12 @@ public class TerminDezurstva implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        return "komentar='"+komentar+"'";
+        return "smena='"+smena+"'";
+    }
+
+    @Override
+    public String vratiUslovPostoji() {
+        return "smena='"+smena+"'";
     }
     
     

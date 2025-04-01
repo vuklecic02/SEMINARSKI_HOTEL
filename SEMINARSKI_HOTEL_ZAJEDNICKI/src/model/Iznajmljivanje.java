@@ -112,6 +112,11 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
     public String vratiVrednostiZaIzmenu() {
         return "ukupnaCena="+ukupnaCena+", recepcioner="+recepcioner.getIdRecepcioner()+", osoba="+osoba.getIdOsoba();
     }
+
+    @Override
+    public String vratiUslovPostoji() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

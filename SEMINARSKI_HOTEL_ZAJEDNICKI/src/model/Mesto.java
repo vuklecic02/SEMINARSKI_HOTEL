@@ -15,13 +15,15 @@ import java.util.List;
 public class Mesto implements OpstiDomenskiObjekat{
     private int idMesta;
     private String naziv;
+    private Drzava drzava;
 
     public Mesto() {
     }
 
-    public Mesto(int idMesta, String naziv) {
+    public Mesto(int idMesta, String naziv, Drzava drzava) {
         this.idMesta = idMesta;
         this.naziv = naziv;
+        this.drzava=drzava;
     }
 
     public int getIdMesta() {
@@ -40,9 +42,18 @@ public class Mesto implements OpstiDomenskiObjekat{
         this.naziv = naziv;
     }
 
+    public Drzava getDrzava() {
+        return drzava;
+    }
+
+    public void setDrzava(Drzava drzava) {
+        this.drzava = drzava;
+    }
+   
+
     @Override
     public String toString() {
-        return naziv;
+        return naziv+", "+String.valueOf(drzava).replace("_", " ");
     }
 
     @Override
@@ -58,12 +69,12 @@ public class Mesto implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "naziv";
+        return "naziv,drzava";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return "'"+naziv+"'";
+        return "'"+naziv+"', '"+String.valueOf(drzava).replace("_", " ")+"'";
     }
 
     @Override
@@ -78,7 +89,12 @@ public class Mesto implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        return "naziv='"+naziv+"'";
+        return "naziv='"+naziv+"', drzava='"+String.valueOf(drzava)+"'";
+    }
+
+    @Override
+    public String vratiUslovPostoji() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

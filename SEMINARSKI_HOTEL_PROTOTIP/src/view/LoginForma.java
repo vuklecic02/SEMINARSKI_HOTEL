@@ -92,6 +92,8 @@ public class LoginForma extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
+        jTextFieldUsername.setText("vuklecic");
+
         jButtonOdustani.setText("Odustani");
         jButtonOdustani.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +116,8 @@ public class LoginForma extends javax.swing.JFrame {
                 jButtonUlogujSe1ActionPerformed(evt);
             }
         });
+
+        jPasswordFieldSifra.setText("vuk1234");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,15 +171,15 @@ public class LoginForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrujSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrujSeActionPerformed
-        this.dispose();
-        GlavniKontroler.getInstance().otvoriFormuZaRegistraciju();
+//        this.dispose();
+//        GlavniKontroler.getInstance().otvoriFormuZaRegistraciju();
          
     }//GEN-LAST:event_jButtonRegistrujSeActionPerformed
 
     private void jButtonOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOdustaniActionPerformed
-        int rezultat=JOptionPane.showConfirmDialog(null, "Da li odustajete?","Potvrda",JOptionPane.YES_NO_OPTION);
-        if(rezultat==JOptionPane.YES_OPTION)
-            this.dispose();
+//        int rezultat=JOptionPane.showConfirmDialog(null, "Da li odustajete?","Potvrda",JOptionPane.YES_NO_OPTION);
+//        if(rezultat==JOptionPane.YES_OPTION)
+//            this.dispose();
     }//GEN-LAST:event_jButtonOdustaniActionPerformed
 
     
@@ -211,5 +215,13 @@ public class LoginForma extends javax.swing.JFrame {
 
     public void loginAddActionListener(ActionListener actionListener) {
         jButtonUlogujSe1.addActionListener(actionListener);
+    }
+
+    public void odustaniAddActionListener(ActionListener actionListener) {
+        jButtonOdustani.addActionListener(actionListener);
+    }
+
+    public void registrujSeAddActionListener(ActionListener actionListener) {
+        jButtonRegistrujSe.addActionListener(actionListener);
     }
 }

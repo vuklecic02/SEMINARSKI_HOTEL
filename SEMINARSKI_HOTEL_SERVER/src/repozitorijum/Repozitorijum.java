@@ -17,5 +17,8 @@ public interface Repozitorijum<T> {
     void kreiraj(T param) throws Exception;
     void izmeni(T param ) throws Exception;
     void obrisi(T param) throws Exception;
+    boolean daLiPostoji(T param);
+    T vratiJednog(T param,String uslov,Object... vrednosti) throws Exception;
+    
     
 }

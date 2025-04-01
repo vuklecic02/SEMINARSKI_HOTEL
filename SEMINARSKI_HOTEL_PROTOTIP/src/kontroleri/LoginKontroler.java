@@ -5,6 +5,7 @@
 package kontroleri;
 
 import com.sun.java.accessibility.util.AWTEventMonitor;
+import glavniKontroler.GlavniKontroler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -38,6 +39,11 @@ public class LoginKontroler {
                 try {
                     String username=lf.getjTextFieldUsername().getText().trim();
                     String sifra=String.valueOf(lf.getjPasswordFieldSifra().getPassword());
+                    if(username.isEmpty() || sifra.isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(lf, "Niste popunili polje/a!","Login", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     System.out.println(username+" "+sifra);
                     Recepcioner recepcioner=Komunikacija.getInstance().login(username,sifra);
                     
@@ -47,13 +53,33 @@ public class LoginKontroler {
                     }
                     else
                     {
+                        GlavniKontroler.getInstance().setUlogovaniRecepcioner(recepcioner);
                         JOptionPane.showMessageDialog(lf, recepcioner.getIme()+" je prijavljen!","Login", JOptionPane.INFORMATION_MESSAGE);
+                        GlavniKontroler.getInstance().otvoriGlavnuFormu();
                         lf.dispose();
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(LoginKontroler.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
+            }
+        });
+        
+        lf.odustaniAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int rezultat = JOptionPane.showConfirmDialog(null, "Da li odustajete?", "Potvrda", JOptionPane.YES_NO_OPTION);
+                if (rezultat == JOptionPane.YES_OPTION) {
+                    lf.dispose(); 
+                }
+            }
+        });
+        
+        lf.registrujSeAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lf.dispose();
+                GlavniKontroler.getInstance().otvoriFormuZaRegistraciju();
             }
         });
     }

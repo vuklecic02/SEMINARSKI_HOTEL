@@ -17,6 +17,7 @@ public class ServerForma extends javax.swing.JFrame {
      */
     public ServerForma() {
         initComponents();
+        this.setLocationRelativeTo(null);
         s=new Server();
         jLabel3.setText("");
         jButtonZaustavi.setEnabled(false);

@@ -171,7 +171,10 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
         }
         return Objects.equals(this.password, other.password);
     }
-    
-    
+
+    @Override
+    public String vratiUslovPostoji() {
+        return "username='"+username+"' OR email='"+email+"'";
+    }
     
 }

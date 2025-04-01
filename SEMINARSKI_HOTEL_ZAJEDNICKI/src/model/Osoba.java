@@ -120,6 +120,11 @@ public class Osoba implements OpstiDomenskiObjekat{
     public String vratiVrednostiZaIzmenu() {
         return "ime='"+ime+"', prezime='"+prezime+"', telefon='"+telefon+"', brLicneIsprave='"+brLicneIsprave+"', mesto="+mesto.getIdMesta();
     }
+
+    @Override
+    public String vratiUslovPostoji() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

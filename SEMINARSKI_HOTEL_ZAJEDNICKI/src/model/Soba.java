@@ -90,6 +90,11 @@ public class Soba implements OpstiDomenskiObjekat{
     public String vratiVrednostiZaIzmenu() {
       return "cenaDan="+cenaDan+",tipSobe='"+String.valueOf(tipSobe)+"'";
     }
+
+    @Override
+    public String vratiUslovPostoji() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

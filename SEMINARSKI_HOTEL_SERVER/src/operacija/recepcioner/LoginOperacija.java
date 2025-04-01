@@ -6,13 +6,13 @@ package operacija.recepcioner;
 
 import java.util.List;
 import model.Recepcioner;
-import operacija.ApstraktnaGenerickaOperacija;
+import operacija.OpstaSistemskaOperacija;
 
 /**
  *
  * @author vuk
  */
-public class LoginOperacija extends ApstraktnaGenerickaOperacija {
+public class LoginOperacija extends OpstaSistemskaOperacija {
 
     private Recepcioner recepcioner;
 
@@ -25,19 +25,24 @@ public class LoginOperacija extends ApstraktnaGenerickaOperacija {
     }
 
     @Override
-    protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        List<Recepcioner> sviRecepcioneri=dbbroker.vratiSve((Recepcioner) param, null);
-        System.out.println(sviRecepcioneri);
-        
-        for(Recepcioner r:sviRecepcioneri)
-        {
-            if(r.equals((Recepcioner)param))
-            {
-                recepcioner=r;
-                return;
-            }
-        }
-        recepcioner=null;
+    protected void izvrsiOperaciju(Object param) throws Exception {
+//        List<Recepcioner> sviRecepcioneri=dbbroker.vratiSve((Recepcioner) param, null);
+//        System.out.println(sviRecepcioneri);
+//        
+//        for(Recepcioner r:sviRecepcioneri)
+//        {
+//            if(r.equals((Recepcioner)param))
+//            {
+//                recepcioner=r;
+//                return;
+//            }
+//        }
+//        recepcioner=null;
+
+         String uslov="username=? AND password=?";
+         String username=((Recepcioner)param).getUsername();
+         String password=((Recepcioner)param).getPassword();
+         recepcioner=(Recepcioner) dbbroker.vratiJednog((Recepcioner)param, uslov, username,password);
     }
     
 }

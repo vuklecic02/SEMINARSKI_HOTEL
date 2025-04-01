@@ -127,6 +127,11 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
         return "iznajmljivanje="+iznajmljivanje.getIdIznajmljivanje()+
                 ", datumOd='"+datumOd+"', datumDo='"+datumDo+"', iznos="+iznos+", brojDana="+brojDana+", soba="+soba.getIdSoba();
     }
+
+    @Override
+    public String vratiUslovPostoji() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

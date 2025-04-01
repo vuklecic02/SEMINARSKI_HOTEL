@@ -23,10 +23,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel4" min="-2" pref="37" max="-2" attributes="0"/>
@@ -49,9 +49,10 @@
                           <Component id="jPasswordFieldRepeat" min="-2" pref="158" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
-                      <Component id="jButtonRegistrujSe" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jButtonRegistrujSe" min="-2" pref="119" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jButtonOdustani" min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="86" max="32767" attributes="0"/>
@@ -91,9 +92,12 @@
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jPasswordFieldRepeat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="jButtonRegistrujSe" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonOdustani" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonRegistrujSe" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -151,6 +155,11 @@
     <Component class="javax.swing.JPasswordField" name="jPasswordFieldRepeat">
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordField">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonOdustani">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Odustani"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

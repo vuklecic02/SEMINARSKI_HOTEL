@@ -13,15 +13,15 @@ import repozitorijum.db.impl.DBRepozitorijumGenericki;
  *
  * @author vuk
  */
-public abstract class ApstraktnaGenerickaOperacija {
+public abstract class OpstaSistemskaOperacija {
     protected final Repozitorijum dbbroker;
 
-    public ApstraktnaGenerickaOperacija() {
+    public OpstaSistemskaOperacija() {
         this.dbbroker = new DBRepozitorijumGenericki();
     }
     
     protected abstract void preduslovi(Object param) throws Exception;
-    protected abstract void izvrsiOperaciju(Object param,String kljuc) throws Exception;
+    protected abstract void izvrsiOperaciju(Object param) throws Exception;
     
     private void zapocniTrans() throws Exception
     {
@@ -43,13 +43,13 @@ public abstract class ApstraktnaGenerickaOperacija {
         ((DBRepozitorijum)dbbroker).disconnect();
     }
     
-    public final void izvrsi(Object param,String kljuc) throws Exception
+    public final void izvrsi(Object param) throws Exception
     {
         try
         {
             preduslovi(param);
             zapocniTrans();
-            izvrsiOperaciju(param, kljuc);
+            izvrsiOperaciju(param);
             izvrsiTrans();    
         }
         catch(Exception e)

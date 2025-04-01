@@ -4,6 +4,9 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+
 /**
  *
  * @author vuk
@@ -15,6 +18,11 @@ public class GlavnaForma extends javax.swing.JFrame {
      */
     public GlavnaForma() {
         initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    public JLabel getjLabelIme() {
+        return jLabelIme;
     }
 
     /**
@@ -41,12 +49,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenuItemOdjaviSe = new javax.swing.JMenuItem();
         jMenuMesto = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemSmena = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Zdravo");
+        jLabel1.setText("Zdravo,");
 
-        jLabelIme.setText("jLabel2");
+        jLabelIme.setText("ime");
 
         jLabel2.setText("Pregled recepcionera");
 
@@ -87,6 +96,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel3.setText("Pregled gostiju");
 
         jButtonGosti.setText("Gosti");
+        jButtonGosti.setPreferredSize(new java.awt.Dimension(99, 23));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,17 +105,17 @@ public class GlavnaForma extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(220, 220, 220)
-                .addComponent(jButtonGosti, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                .addGap(59, 59, 59))
+                .addGap(219, 219, 219)
+                .addComponent(jButtonGosti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(60, 60, 60))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButtonGosti))
+                    .addComponent(jButtonGosti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -115,6 +125,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu1.add(jMenuItemMojNalog);
 
         jMenuItemOdjaviSe.setText("Odjavi se");
+        jMenuItemOdjaviSe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemOdjaviSeActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemOdjaviSe);
 
         jMenuBar1.add(jMenu1);
@@ -123,6 +138,9 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenuItem1.setText("Mesto");
         jMenuMesto.add(jMenuItem1);
+
+        jMenuItemSmena.setText("Smena");
+        jMenuMesto.add(jMenuItemSmena);
 
         jMenuBar1.add(jMenuMesto);
 
@@ -157,11 +175,15 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemOdjaviSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOdjaviSeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemOdjaviSeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,9 +201,26 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemMojNalog;
     private javax.swing.JMenuItem jMenuItemOdjaviSe;
+    private javax.swing.JMenuItem jMenuItemSmena;
     private javax.swing.JMenu jMenuMesto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    public void odjaviSeAddActionListener(ActionListener actionListener) {
+        jMenuItemOdjaviSe.addActionListener(actionListener);
+    }
+
+    public void recepcioneriAddActionListener(ActionListener actionListener) {
+        jButtonRecepcioneri.addActionListener(actionListener);
+    }
+
+    public void smeneAddActionListener(ActionListener actionListener) {
+        jMenuItemSmena.addActionListener(actionListener);
+    }
+    
+    
+    
+    
 }

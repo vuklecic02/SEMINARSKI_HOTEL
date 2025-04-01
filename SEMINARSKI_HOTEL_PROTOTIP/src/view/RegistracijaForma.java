@@ -4,7 +4,10 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import model.Recepcioner;
 
 /**
@@ -18,6 +21,8 @@ public class RegistracijaForma extends javax.swing.JFrame {
      */
     public RegistracijaForma() {
         initComponents();
+        setResizable(false);
+        this.setLocationRelativeTo(null);        
     }
 
     /**
@@ -42,6 +47,7 @@ public class RegistracijaForma extends javax.swing.JFrame {
         jButtonRegistrujSe = new javax.swing.JButton();
         jPasswordFieldRepeat = new javax.swing.JPasswordField();
         jPasswordField = new javax.swing.JPasswordField();
+        jButtonOdustani = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,14 +76,16 @@ public class RegistracijaForma extends javax.swing.JFrame {
             }
         });
 
+        jButtonOdustani.setText("Odustani");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,8 +104,9 @@ public class RegistracijaForma extends javax.swing.JFrame {
                                 .addComponent(jPasswordField, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(jPasswordFieldRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(jButtonRegistrujSe)))
+                        .addComponent(jButtonRegistrujSe, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButtonOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,9 +136,11 @@ public class RegistracijaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jPasswordFieldRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jButtonRegistrujSe)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonOdustani)
+                    .addComponent(jButtonRegistrujSe))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,16 +208,40 @@ public class RegistracijaForma extends javax.swing.JFrame {
 //        catch(Exception ex)
 //        {
 //            JOptionPane.showMessageDialog(this, "Greska pri registraciji: "+ex.getMessage(),"Register",JOptionPane.ERROR_MESSAGE);
-//        }
-
-        
+//        }      
     }//GEN-LAST:event_jButtonRegistrujSeActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
 
+    public JPasswordField getjPasswordField() {
+        return jPasswordField;
+    }
+
+    public JPasswordField getjPasswordFieldRepeat() {
+        return jPasswordFieldRepeat;
+    }
+
+    public JTextField getjTextFieldEmail() {
+        return jTextFieldEmail;
+    }
+
+    public JTextField getjTextFieldIme() {
+        return jTextFieldIme;
+    }
+
+    public JTextField getjTextFieldPrezime() {
+        return jTextFieldPrezime;
+    }
+
+    public JTextField getjTextFieldUsername() {
+        return jTextFieldUsername;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonOdustani;
     private javax.swing.JButton jButtonRegistrujSe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -221,4 +256,14 @@ public class RegistracijaForma extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPrezime;
     private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
+
+    public void odustaniAddActionListener(ActionListener actionListener) {
+        jButtonOdustani.addActionListener(actionListener);
+    }
+
+    public void registrujSeAddActionListener(ActionListener actionListener) {
+        jButtonRegistrujSe.addActionListener(actionListener);
+    }
+
+
 }

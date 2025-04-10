@@ -108,7 +108,7 @@ public class Osoba implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "osoba.idOsoba"+idOsoba;
+        return "osoba.idOsoba="+idOsoba;
     }
 
     @Override
@@ -124,6 +124,11 @@ public class Osoba implements OpstiDomenskiObjekat{
     @Override
     public String vratiUslovPostoji() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "osoba.idOsoba<>"+idOsoba;
     }
     
     

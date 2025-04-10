@@ -5,8 +5,11 @@
 package view;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 import kontroleri.TerminDezurstvaKontroler;
+import model.FormaMod;
+import model.TerminDezurstva;
 
 /**
  *
@@ -14,14 +17,18 @@ import kontroleri.TerminDezurstvaKontroler;
  */
 public class TerminDezurstvaKreirajForma extends javax.swing.JDialog {
     private TerminDezurstvaKontroler roditelj;
+    private FormaMod mod;
+    private TerminDezurstva selektovani;
     /**
      * Creates new form TerminDezurstvaKreirajForma
      */
-    public TerminDezurstvaKreirajForma(java.awt.Frame parent, boolean modal,TerminDezurstvaKontroler roditelj ) {
+    public TerminDezurstvaKreirajForma(java.awt.Frame parent, boolean modal,TerminDezurstvaKontroler roditelj,TerminDezurstva selektovani,FormaMod mod ) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.roditelj=roditelj;
+        this.mod=mod;
+        this.selektovani=selektovani;
 
     }
 
@@ -31,6 +38,26 @@ public class TerminDezurstvaKreirajForma extends javax.swing.JDialog {
 
     public TerminDezurstvaKontroler getRoditelj() {
         return roditelj;
+    }
+
+    public FormaMod getMod() {
+        return mod;
+    }
+
+    public JButton getjButtonIzmeni() {
+        return jButtonIzmeni;
+    }
+
+    public JButton getjButtonSacuvajIzmene() {
+        return jButtonSacuvajIzmene;
+    }
+
+    public JButton getjButtonUnesi() {
+        return jButtonUnesi;
+    }
+
+    public TerminDezurstva getSelektovani() {
+        return selektovani;
     }
     
     
@@ -48,6 +75,8 @@ public class TerminDezurstvaKreirajForma extends javax.swing.JDialog {
         jTextFieldSmena = new javax.swing.JTextField();
         jButtonUnesi = new javax.swing.JButton();
         jButtonOdustani = new javax.swing.JButton();
+        jButtonSacuvajIzmene = new javax.swing.JButton();
+        jButtonIzmeni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,22 +86,30 @@ public class TerminDezurstvaKreirajForma extends javax.swing.JDialog {
 
         jButtonOdustani.setText("Odustani");
 
+        jButtonSacuvajIzmene.setText("Sačuvaj");
+
+        jButtonIzmeni.setText("Izmeni");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldSmena, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonUnesi)
+                        .addComponent(jTextFieldSmena, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonUnesi)
+                            .addComponent(jButtonIzmeni))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonOdustani)))
-                .addContainerGap(168, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOdustani, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +122,11 @@ public class TerminDezurstvaKreirajForma extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonUnesi)
                     .addComponent(jButtonOdustani))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSacuvajIzmene)
+                    .addComponent(jButtonIzmeni))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,7 +138,9 @@ public class TerminDezurstvaKreirajForma extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JButton jButtonOdustani;
+    private javax.swing.JButton jButtonSacuvajIzmene;
     private javax.swing.JButton jButtonUnesi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextFieldSmena;
@@ -109,6 +152,14 @@ public class TerminDezurstvaKreirajForma extends javax.swing.JDialog {
 
     public void unesiAddActionListener(ActionListener actionListener) {
         jButtonUnesi.addActionListener(actionListener);
+    }
+
+    public void izmeniAddActionListener(ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
+    }
+
+    public void sacuvajAddActionListener(ActionListener actionListener) {
+        jButtonSacuvajIzmene.addActionListener(actionListener);
     }
     
 }

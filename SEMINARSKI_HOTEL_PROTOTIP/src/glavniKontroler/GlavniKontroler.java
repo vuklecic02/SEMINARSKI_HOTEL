@@ -6,17 +6,29 @@ package glavniKontroler;
 
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.LoginKontroler;
+import kontroleri.MestoKontroler;
+import kontroleri.MestoKreirajKontroler;
 import kontroleri.RecepcionerKontroler;
 import kontroleri.RecepcionerNalogKontroler;
 import kontroleri.RegistracijaKontroler;
+import kontroleri.SobaKontroler;
+import kontroleri.SobaKreirajKontroler;
 import kontroleri.TerminDezurstvaKontroler;
 import kontroleri.TerminDezurstvaKreirajKontroler;
+import model.FormaMod;
+import model.Mesto;
 import model.Recepcioner;
+import model.Soba;
+import model.TerminDezurstva;
 import view.GlavnaForma;
 import view.LoginForma;
+import view.MestoForma;
+import view.MestoKreirajForma;
 import view.RecepcionerForma;
 import view.RecepcionerNalogForma;
 import view.RegistracijaForma;
+import view.SobaForma;
+import view.SobaKreirajForma;
 import view.TerminDezurstvaForma;
 import view.TerminDezurstvaKreirajForma;
 
@@ -34,6 +46,10 @@ public class GlavniKontroler {
     private RecepcionerNalogKontroler rnk;
     private TerminDezurstvaKontroler tdk;
     private TerminDezurstvaKreirajKontroler tdkk;
+    private MestoKontroler mk;
+    private MestoKreirajKontroler mkk;
+    private SobaKontroler sk;
+    private SobaKreirajKontroler skk;
 
     public void setUlogovaniRecepcioner(Recepcioner ulogovaniRecepcioner) {
         this.ulogovaniRecepcioner = ulogovaniRecepcioner;
@@ -73,7 +89,7 @@ public class GlavniKontroler {
     }
 
     public void otvoriRecepcionerNalogFormu(Recepcioner recepcionerSelektovani, Recepcioner recepcionerUlogovani) {
-        rnk=new RecepcionerNalogKontroler(new RecepcionerNalogForma(reck.getRf(),true,recepcionerSelektovani,recepcionerUlogovani));
+        rnk=new RecepcionerNalogKontroler(new RecepcionerNalogForma(reck.getRf(),true,recepcionerSelektovani,recepcionerUlogovani,reck));
         rnk.otvoriFormu();
     }
 
@@ -83,9 +99,29 @@ public class GlavniKontroler {
 
     }
 
-    public void otvoriTerminDezKreirajFormu() {
-        tdkk=new TerminDezurstvaKreirajKontroler(new TerminDezurstvaKreirajForma(tdk.getTdf(), true,tdk));
+    public void otvoriTerminDezKreirajFormu(TerminDezurstva selektovani,FormaMod mod) {
+        tdkk=new TerminDezurstvaKreirajKontroler(new TerminDezurstvaKreirajForma(tdk.getTdf(), true,tdk,selektovani,mod));
         tdkk.otvoriFormu();
+    }
+
+    public void otvoriMestoFormu() {
+        mk=new MestoKontroler(new MestoForma());
+        mk.otvoriFormu();
+    }
+
+    public void otvoriMestoKreirajFormu(Mesto selektovano, FormaMod mod) {
+        mkk=new MestoKreirajKontroler(new MestoKreirajForma(mk.getMf(), true, mk, selektovano, mod));
+        mkk.otvoriFormu();
+    }
+
+    public void otvoriSobaFormu() {
+        sk=new SobaKontroler(new SobaForma());
+        sk.otvoriFormu();
+    }
+
+    public void otvoriSobaKreirajFormu(Soba selektovana, FormaMod formaMod) {
+        skk=new SobaKreirajKontroler(new SobaKreirajForma(sk.getSf(), true, sk, selektovana, formaMod));
+        skk.otvoriFormu();
     }
     
 }

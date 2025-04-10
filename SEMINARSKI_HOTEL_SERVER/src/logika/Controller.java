@@ -6,16 +6,29 @@ package logika;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Mesto;
 import model.OpstiDomenskiObjekat;
 import model.Recepcioner;
+import model.Soba;
 import model.TerminDezurstva;
+import operacija.mesto.KreirajMesto;
+import operacija.mesto.ObrisiMesto;
+import operacija.mesto.VratiListuMesto;
+import operacija.mesto.VratiListuSviMesto;
 import operacija.recepcioner.KreirajRecepcioner;
-import operacija.recepcioner.LoginOperacija;
-import operacija.recepcioner.VratiFilterListuRecepcioner;
+import operacija.recepcioner.PrijaviRecepcioner;
+import operacija.recepcioner.PromeniRecepcioner;
+import operacija.recepcioner.VratiListuRecepcioner;
 import operacija.recepcioner.VratiListuSviRecepcioner;
-import operacija.termin_dezurstva.KreirajTerminDezurstva;
-import operacija.termin_dezurstva.VratiFilterListuTerminDez;
-import operacija.termin_dezurstva.VratiListuSviTermin;
+import operacija.soba.KreirajSoba;
+import operacija.soba.ObrisiSoba;
+import operacija.soba.VratiListuSoba;
+import operacija.soba.VratiListuSviSoba;
+import operacija.termin_dezurstva.ObrisiTerminDezurstva;
+import operacija.termin_dezurstva.PromeniTerminDezurstva;
+import operacija.termin_dezurstva.UbaciTerminDezurstva;
+import operacija.termin_dezurstva.VratiListuTerminDezurstva;
+import operacija.termin_dezurstva.VratiListuSviTerminDezurstva;
 
 /**
  *
@@ -27,6 +40,8 @@ public class Controller {
     private Recepcioner ulogovaniRecepcioner;
     private Recepcioner kreiraniRecepcioner;
     private TerminDezurstva kreiraniTerminDez;
+    private Mesto kreiranoMesto;
+    private Soba kreiranaSoba;
     
     private Controller(){
     }
@@ -38,7 +53,7 @@ public class Controller {
     }
 
     public Recepcioner login(Recepcioner recepcioner) throws Exception {
-        LoginOperacija operacija=new LoginOperacija();
+        PrijaviRecepcioner operacija=new PrijaviRecepcioner();
         operacija.izvrsi(recepcioner);
         ulogovaniRecepcioner=operacija.getRecepcioner();
         return ulogovaniRecepcioner;
@@ -59,27 +74,90 @@ public class Controller {
     }
 
     public List<Recepcioner> vratiFilterListuRecepcionera(Recepcioner recepcioner) throws Exception {
-        VratiFilterListuRecepcioner operacija=new VratiFilterListuRecepcioner();
+        VratiListuRecepcioner operacija=new VratiListuRecepcioner();
         operacija.izvrsi(recepcioner);
         return operacija.getLista();
     }
 
     public List<TerminDezurstva> vratiListuTerminaDezurstava() throws Exception {
-        VratiListuSviTermin operacija=new VratiListuSviTermin();
+        VratiListuSviTerminDezurstva operacija=new VratiListuSviTerminDezurstva();
         operacija.izvrsi(new TerminDezurstva());
         return operacija.getLista();
     }
 
-    public Object vratiFilterListuTerminDez(TerminDezurstva td) throws Exception {
-        VratiFilterListuTerminDez operacija=new VratiFilterListuTerminDez();
+    public List<TerminDezurstva> vratiFilterListuTerminDez(TerminDezurstva td) throws Exception {
+        VratiListuTerminDezurstva operacija=new VratiListuTerminDezurstva();
         operacija.izvrsi(td);
         return operacija.getLista();
     }
 
-    public Object kreirajTerminDezurstva(TerminDezurstva td) throws Exception {
-        KreirajTerminDezurstva operacija=new KreirajTerminDezurstva();
+    public TerminDezurstva kreirajTerminDezurstva(TerminDezurstva td) throws Exception {
+        UbaciTerminDezurstva operacija=new UbaciTerminDezurstva();
         operacija.izvrsi(td);
         kreiraniTerminDez=operacija.getTd();
         return kreiraniTerminDez;
+    }
+
+    public void obrisiTerminDezurstva(TerminDezurstva td) throws Exception {
+        ObrisiTerminDezurstva operacija=new ObrisiTerminDezurstva();
+        operacija.izvrsi(td);   
+    }
+
+    public void promeniTerminDezurstva(TerminDezurstva td) throws Exception {
+        PromeniTerminDezurstva operacija=new PromeniTerminDezurstva();
+        operacija.izvrsi(td);
+    }
+
+    public void promeniRecepcionera(Recepcioner r) throws Exception {
+        PromeniRecepcioner operacija=new PromeniRecepcioner();
+        operacija.izvrsi(r);
+    }
+
+    public List<Mesto> vratiListuMesta() throws Exception {
+        VratiListuSviMesto operacija=new VratiListuSviMesto();
+        operacija.izvrsi(new Mesto());
+        return operacija.getLista();
+    }
+
+    public Mesto kreirajMesto(Mesto m) throws Exception {
+        KreirajMesto operacija=new KreirajMesto();
+        operacija.izvrsi(m);
+        kreiranoMesto=operacija.getMesto();
+        return kreiranoMesto;
+    }
+
+    public void obrisiMesto(Mesto m) throws Exception {
+        ObrisiMesto operacija=new ObrisiMesto();
+        operacija.izvrsi(m); 
+    }
+
+    public List<Mesto> vratiFilterListuMesto(Mesto m) throws Exception {
+        VratiListuMesto operacija=new VratiListuMesto();
+        operacija.izvrsi(m);
+        return operacija.getLista();
+    }
+
+    public List<Soba> vratiListuSoba() throws Exception {
+        VratiListuSviSoba operacija=new VratiListuSviSoba();
+        operacija.izvrsi(new Soba());
+        return operacija.getLista();
+    }
+
+    public Soba kreirajSobu(Soba s) throws Exception{
+        KreirajSoba operacija=new KreirajSoba();
+        operacija.izvrsi(s);
+        kreiranaSoba=operacija.getSoba();
+        return kreiranaSoba;
+    }
+
+    public void obrisiSobu(Soba s) throws Exception {
+        ObrisiSoba operacija=new ObrisiSoba();
+        operacija.izvrsi(s);
+    }
+
+    public List<Soba> vratiFilterListuSoba(Soba s) throws Exception {
+        var operacija=new VratiListuSoba();
+        operacija.izvrsi(s);
+        return operacija.getLista();
     }
 }

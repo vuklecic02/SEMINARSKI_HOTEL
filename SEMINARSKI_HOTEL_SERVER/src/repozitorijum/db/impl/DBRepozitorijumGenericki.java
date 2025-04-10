@@ -38,13 +38,6 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
     }
 
     @Override
-    public List<OpstiDomenskiObjekat> vratiSve() {
-
-         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-         return lista;
-    }
-
-    @Override
     public void kreiraj(OpstiDomenskiObjekat param) throws Exception {
         try
         {
@@ -68,7 +61,7 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
             String upit = "UPDATE "+param.vratiNazivTabele()+ " SET "+param.vratiVrednostiZaIzmenu()+ " WHERE "+param.vratiPrimarniKljuc();
             System.out.println(upit);
             Statement st=DBKonekcija.getInstance().getConnection().createStatement();
-            st.executeQuery(upit);
+            st.executeUpdate(upit);
             st.close();            
         }
         catch(SQLException ex)
@@ -100,7 +93,7 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
     {
         try {
             ResultSet rs;
-            String upit = "SELECT * FROM " + param.vratiNazivTabele() + " WHERE " + param.vratiUslovPostoji();
+            String upit = "SELECT * FROM " + param.vratiNazivTabele() + " WHERE (" + param.vratiUslovPostoji()+") AND "+param.vratiRazlicitPrimarniKljuc();
             System.out.println(upit);
             PreparedStatement ps = DBKonekcija.getInstance().getConnection().prepareStatement(upit);
             rs = ps.executeQuery();

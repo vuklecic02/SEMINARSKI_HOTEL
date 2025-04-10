@@ -39,27 +39,27 @@ public class LoginKontroler {
                 try {
                     String username=lf.getjTextFieldUsername().getText().trim();
                     String sifra=String.valueOf(lf.getjPasswordFieldSifra().getPassword());
-                    if(username.isEmpty() || sifra.isEmpty())
-                    {
-                        JOptionPane.showMessageDialog(lf, "Niste popunili polje/a!","Login", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                    System.out.println(username+" "+sifra);
+//                    if(username.isEmpty() || sifra.isEmpty())
+//                    {
+//                        JOptionPane.showMessageDialog(lf, "Niste popunili polje/a!","Login", JOptionPane.ERROR_MESSAGE);
+//                        return;
+//                    }
+//                    System.out.println(username+" "+sifra);
                     Recepcioner recepcioner=Komunikacija.getInstance().login(username,sifra);
                     
                     if(recepcioner==null)
                     {
-                        JOptionPane.showMessageDialog(lf, "Neuspesno prijavljivanje!","Login", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(lf, "Sistem ne može da prijavi korisnika","Login", JOptionPane.ERROR_MESSAGE);
                     }
                     else
                     {
                         GlavniKontroler.getInstance().setUlogovaniRecepcioner(recepcioner);
-                        JOptionPane.showMessageDialog(lf, recepcioner.getIme()+" je prijavljen!","Login", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(lf, "Sistem je prijavio korisnika "+recepcioner.getIme(),"Login", JOptionPane.INFORMATION_MESSAGE);
                         GlavniKontroler.getInstance().otvoriGlavnuFormu();
                         lf.dispose();
                     }
                 } catch (Exception ex) {
-                    Logger.getLogger(LoginKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                     JOptionPane.showMessageDialog(lf, ex.getMessage(),"Login", JOptionPane.ERROR_MESSAGE);
                 }
                 
             }

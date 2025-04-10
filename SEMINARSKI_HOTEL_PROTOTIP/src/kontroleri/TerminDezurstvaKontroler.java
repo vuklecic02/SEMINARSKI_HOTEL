@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import komunikacijaKlijent.Komunikacija;
+import model.FormaMod;
 import model.TerminDezurstva;
 import modelTabela.TerminDezModelTabela;
 import view.TerminDezurstvaForma;
@@ -39,20 +40,14 @@ public class TerminDezurstvaKontroler {
     }
 
     private void addActionListener() {
-        tdf.ocistiAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tdf.getjTextFieldPretraga().setText("");
-                popuniTabelu();
-            }
+        tdf.ocistiAddActionListener((ActionEvent e) -> {
+            tdf.getjTextFieldPretraga().setText("");
+            popuniTabelu();
         });
         
-        tdf.nazadAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tdf.dispose();
-                GlavniKontroler.getInstance().otvoriGlavnuFormu();
-            }
+        tdf.nazadAddActionListener((ActionEvent e) -> {
+            tdf.dispose();
+            GlavniKontroler.getInstance().otvoriGlavnuFormu();
         });
         
         tdf.pretraziAddActionListener(new ActionListener() {
@@ -85,15 +80,47 @@ public class TerminDezurstvaKontroler {
             
         });
         
-        tdf.kreirajAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GlavniKontroler.getInstance().otvoriTerminDezKreirajFormu();
+        tdf.kreirajAddActionListener((ActionEvent e) -> {
+            GlavniKontroler.getInstance().otvoriTerminDezKreirajFormu(null,FormaMod.KREIRAJ);
+        });
+        
+        tdf.obrisiAddActionListener((ActionEvent e) -> {
+            try {
+                if(tdf.getjTableTerminDez().getSelectedRow()==-1)
+                {
+                    JOptionPane.showMessageDialog(tdf, "Odaberite termin dežurstva!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                TerminDezModelTabela tdmt=(TerminDezModelTabela) tdf.getjTableTerminDez().getModel();
+                TerminDezurstva selektovani=tdmt.getLista().get(tdf.getjTableTerminDez().getSelectedRow());
+                Komunikacija.getInstance().obrisiTerminDezurstva(selektovani);
+                JOptionPane.showMessageDialog(tdf, "Sistem je obrisao termin dežurstva", "Greska", JOptionPane.INFORMATION_MESSAGE);
+                popuniTabelu();
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(tdf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
+        tdf.detaljiAddActionListener((ActionEvent e) -> {
+            try {
+                if(tdf.getjTableTerminDez().getSelectedRow()==-1)
+                {
+                    JOptionPane.showMessageDialog(tdf, "Odaberite termin dežurstva!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                TerminDezModelTabela tdmt=(TerminDezModelTabela) tdf.getjTableTerminDez().getModel();
+                TerminDezurstva selektovani=tdmt.getLista().get(tdf.getjTableTerminDez().getSelectedRow());
+                GlavniKontroler.getInstance().otvoriTerminDezKreirajFormu(selektovani,FormaMod.IZMENI);
+                popuniTabelu();
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(tdf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);                
             }
         });
     }
 
-    private void popuniTabelu() {
+    public void popuniTabelu() {
         try {
             List<TerminDezurstva> lista=Komunikacija.getInstance().vratiListuTerminaDezurstava();
             TerminDezModelTabela tdm=new TerminDezModelTabela(lista);
@@ -104,8 +131,4 @@ public class TerminDezurstvaKontroler {
         }        
     }
     
-    public void azurirajTabelu()
-    {
-        popuniTabelu();
-    }
 }

@@ -14,7 +14,7 @@ import repozitorijum.db.impl.DBRepozitorijumGenericki;
  *
  * @author vuk
  */
-public class VratiFilterListuRecepcioner extends OpstaSistemskaOperacija {
+public class VratiListuRecepcioner extends OpstaSistemskaOperacija {
 
     //private Recepcioner recepcioner;
     private List<Recepcioner> lista=new ArrayList<>();
@@ -27,10 +27,14 @@ public class VratiFilterListuRecepcioner extends OpstaSistemskaOperacija {
 
     @Override
     protected void izvrsiOperaciju(Object param) throws Exception {
-        Recepcioner r=(Recepcioner) param;
-        String uslov=" WHERE ime LIKE '%"+r.getIme()+"%' OR prezime LIKE '%"+r.getPrezime()+"%' "
-                + "OR CONCAT(ime, ' ', prezime) LIKE '%"+(r.getIme()+" "+r.getPrezime()).trim()+"%'";
-        lista=dbbroker.vratiSve(param, uslov);
+        if(param instanceof Recepcioner)
+        {
+            Recepcioner r=(Recepcioner) param;
+            String uslov=" WHERE ime LIKE '%"+r.getIme()+"%' OR prezime LIKE '%"+r.getPrezime()+"%' "
+                    + "OR CONCAT(ime, ' ', prezime) LIKE '%"+(r.getIme()+" "+r.getPrezime()).trim()+"%'";
+            lista=dbbroker.vratiSve(param, uslov);
+        }
+
     }
     
 }

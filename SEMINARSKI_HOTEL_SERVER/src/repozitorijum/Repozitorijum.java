@@ -13,7 +13,6 @@ import java.util.List;
  */
 public interface Repozitorijum<T> {
     List<T> vratiSve(T param,String uslov) throws Exception;
-    List<T> vratiSve();
     void kreiraj(T param) throws Exception;
     void izmeni(T param ) throws Exception;
     void obrisi(T param) throws Exception;

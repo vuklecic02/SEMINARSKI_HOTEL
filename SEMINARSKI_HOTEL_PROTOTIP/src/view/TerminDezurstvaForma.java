@@ -52,6 +52,11 @@ public class TerminDezurstvaForma extends javax.swing.JFrame {
     public JTable getjTableTerminDez() {
         return jTableTerminDez;
     }
+
+    public JButton getjButtonObrisi() {
+        return jButtonObrisi;
+    }
+    
     
     
 
@@ -74,6 +79,7 @@ public class TerminDezurstvaForma extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldPretraga = new javax.swing.JTextField();
         jButtonKreiraj = new javax.swing.JButton();
+        jButtonObrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +141,8 @@ public class TerminDezurstvaForma extends javax.swing.JFrame {
 
         jButtonKreiraj.setText("Kreiraj");
 
+        jButtonObrisi.setText("Obriši");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,10 +156,11 @@ public class TerminDezurstvaForma extends javax.swing.JFrame {
                         .addGap(63, 63, 63)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonKreiraj, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNazad)
-                    .addComponent(jButtonDetalji))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNazad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDetalji, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -168,7 +177,10 @@ public class TerminDezurstvaForma extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonKreiraj))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonKreiraj)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonObrisi)))
                 .addGap(48, 48, 48))
         );
 
@@ -183,6 +195,7 @@ public class TerminDezurstvaForma extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDetalji;
     private javax.swing.JButton jButtonKreiraj;
     private javax.swing.JButton jButtonNazad;
+    private javax.swing.JButton jButtonObrisi;
     private javax.swing.JButton jButtonOcisti;
     private javax.swing.JButton jButtonPretrazi;
     private javax.swing.JLabel jLabel1;
@@ -206,5 +219,13 @@ public class TerminDezurstvaForma extends javax.swing.JFrame {
 
     public void kreirajAddActionListener(ActionListener actionListener) {
         jButtonKreiraj.addActionListener(actionListener);
+    }
+
+    public void obrisiAddActionListener(ActionListener actionListener) {
+        jButtonObrisi.addActionListener(actionListener);
+    }
+
+    public void detaljiAddActionListener(ActionListener actionListener) {
+        jButtonDetalji.addActionListener(actionListener);
     }
 }

@@ -100,7 +100,7 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "iznajmljivanje.idIznajmljivanje"+idIznajmljivanje;
+        return "iznajmljivanje.idIznajmljivanje="+idIznajmljivanje;
     }
 
     @Override
@@ -116,6 +116,11 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
     @Override
     public String vratiUslovPostoji() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "iznajmljivanje.idIznajmljivanje<>"+idIznajmljivanje;
     }
     
     

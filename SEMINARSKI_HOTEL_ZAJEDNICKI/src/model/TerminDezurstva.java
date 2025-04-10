@@ -24,6 +24,11 @@ public class TerminDezurstva implements OpstiDomenskiObjekat{
         this.smena = smena;
     }
 
+    @Override
+    public String toString() {
+        return smena;
+    }
+
     public int getIdTerminDezurstva() {
         return idTerminDezurstva;
     }
@@ -70,7 +75,7 @@ public class TerminDezurstva implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "termindezurstva.idTerminDezurstva"+idTerminDezurstva;
+        return "termindezurstva.idTerminDezurstva="+idTerminDezurstva;
     }
 
     @Override
@@ -86,6 +91,11 @@ public class TerminDezurstva implements OpstiDomenskiObjekat{
     @Override
     public String vratiUslovPostoji() {
         return "smena='"+smena+"'";
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "termindezurstva.idTerminDezurstva<>"+idTerminDezurstva;
     }
     
     

@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="jMenuNalog">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nalog"/>
           </Properties>
@@ -24,19 +24,27 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenuMesto">
+        <Menu class="javax.swing.JMenu" name="jMenuPodesavanja">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pode&#x161;avanja"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMesto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mesto"/>
+                <Property name="text" type="java.lang.String" value="Mesta"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemMestoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSmena">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Smena"/>
+                <Property name="text" type="java.lang.String" value="Smene"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSobe">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sobe"/>
               </Properties>
             </MenuItem>
           </SubComponents>

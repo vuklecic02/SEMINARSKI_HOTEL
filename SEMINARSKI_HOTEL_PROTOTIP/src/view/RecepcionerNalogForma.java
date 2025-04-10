@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import kontroleri.RecepcionerKontroler;
 import model.Recepcioner;
+import model.TerminDezurstva;
 
 /**
  *
@@ -19,15 +21,17 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
 
     private Recepcioner recepcionerUlogovani;
     private Recepcioner recepcionerSelektovani;
+    private RecepcionerKontroler roditelj;
     /**
      * Creates new form RecepcionerNalogForma
      */
-    public RecepcionerNalogForma(java.awt.Frame parent, boolean modal, Recepcioner recepcionerSelektovani, Recepcioner recepcionerUlogovani) {
+    public RecepcionerNalogForma(java.awt.Frame parent, boolean modal, Recepcioner recepcionerSelektovani, Recepcioner recepcionerUlogovani, RecepcionerKontroler roditelj) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.recepcionerSelektovani=recepcionerSelektovani;
         this.recepcionerUlogovani=recepcionerUlogovani;
+        this.roditelj=roditelj;
     }
 
     public Recepcioner getRecepcionerUlogovani() {
@@ -66,7 +70,7 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
         return jButtonSacuvaj;
     }
 
-    public JComboBox<String> getjComboBoxSmena() {
+    public JComboBox<TerminDezurstva> getjComboBoxSmena() {
         return jComboBoxSmena;
     }
 
@@ -77,6 +81,11 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
     public JButton getjButtonDodajSmenu() {
         return jButtonDodajSmenu;
     }
+
+    public RecepcionerKontroler getRoditelj() {
+        return roditelj;
+    }
+    
     
     
     
@@ -138,8 +147,6 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
         jButtonSacuvaj.setText("Sačuvaj");
 
         jLabel6.setText("Odaberite smenu:");
-
-        jComboBoxSmena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel7.setText("Datum smene:");
 
@@ -268,7 +275,7 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
     private javax.swing.JButton jButtonNazad;
     private javax.swing.JButton jButtonPrikaziSmene;
     private javax.swing.JButton jButtonSacuvaj;
-    private javax.swing.JComboBox<String> jComboBoxSmena;
+    private javax.swing.JComboBox<TerminDezurstva> jComboBoxSmena;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -292,5 +299,9 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
 
     public void sacuvajAddActionListener(ActionListener actionListener) {
         jButtonSacuvaj.addActionListener(actionListener);
+    }
+
+    public void nazadAddActionListener(ActionListener actionListener) {
+        jButtonNazad.addActionListener(actionListener);
     }
 }

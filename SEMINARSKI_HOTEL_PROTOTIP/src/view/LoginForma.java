@@ -117,7 +117,7 @@ public class LoginForma extends javax.swing.JFrame {
             }
         });
 
-        jPasswordFieldSifra.setText("vuk1234");
+        jPasswordFieldSifra.setText("vule2002");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

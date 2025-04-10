@@ -29,5 +29,7 @@ public interface OpstiDomenskiObjekat extends Serializable {
     public String vratiVrednostiZaIzmenu();
 
     public String vratiUslovPostoji();
+    
+    public String vratiRazlicitPrimarniKljuc();
 
 }

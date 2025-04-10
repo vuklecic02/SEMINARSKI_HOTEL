@@ -135,7 +135,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "recepcioner.idRecepcioner"+idRecepcioner;
+        return "recepcioner.idRecepcioner="+idRecepcioner;
     }
 
     @Override
@@ -175,6 +175,11 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
     @Override
     public String vratiUslovPostoji() {
         return "username='"+username+"' OR email='"+email+"'";
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "recepcioner.idRecepcioner<>"+idRecepcioner;
     }
     
 }

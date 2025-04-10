@@ -13,21 +13,22 @@ import operacija.OpstaSistemskaOperacija;
  *
  * @author vuk
  */
-public class VratiFilterListuTerminDez extends OpstaSistemskaOperacija {
+public class VratiListuSviTerminDezurstva extends OpstaSistemskaOperacija {
 
     private List<TerminDezurstva> lista=new ArrayList<>();
+
     public List<TerminDezurstva> getLista() {
         return lista;
-    }     
+    }
+    
+    
     @Override
     protected void preduslovi(Object param) throws Exception {
     }
 
     @Override
     protected void izvrsiOperaciju(Object param) throws Exception {
-        TerminDezurstva td=(TerminDezurstva) param;
-        String uslov=" WHERE smena LIKE '%"+td.getSmena()+"%'";
-        lista=dbbroker.vratiSve(param, uslov);
+        lista=dbbroker.vratiSve(param, null);
     }
     
 }

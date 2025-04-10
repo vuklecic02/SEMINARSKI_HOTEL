@@ -4,7 +4,6 @@
  */
 package operacija.termin_dezurstva;
 
-import model.OpstiDomenskiObjekat;
 import model.TerminDezurstva;
 import operacija.OpstaSistemskaOperacija;
 
@@ -12,27 +11,19 @@ import operacija.OpstaSistemskaOperacija;
  *
  * @author vuk
  */
-public class KreirajTerminDezurstva extends OpstaSistemskaOperacija {
-
-    private TerminDezurstva td;
-
-    public TerminDezurstva getTd() {
-        return td;
-    }
+public class ObrisiTerminDezurstva extends OpstaSistemskaOperacija {
 
     @Override
     protected void preduslovi(Object param) throws Exception {
-        if(dbbroker.daLiPostoji((OpstiDomenskiObjekat) param))
+        if(param==null || !(param instanceof TerminDezurstva))
         {
-            throw new Exception("Vec postoji slog u bazi!");
-        }        
+            throw new Exception("Sistem ne može da obriše termin dežurstva");
+        }
     }
 
     @Override
     protected void izvrsiOperaciju(Object param) throws Exception {
-        td=(TerminDezurstva)param;
-        dbbroker.kreiraj(td);
-        return;
+        dbbroker.obrisi(param);
     }
     
 }

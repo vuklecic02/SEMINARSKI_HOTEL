@@ -132,6 +132,11 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
     public String vratiUslovPostoji() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

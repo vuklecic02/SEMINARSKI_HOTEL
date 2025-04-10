@@ -129,7 +129,7 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordFieldSifra">
       <Properties>
-        <Property name="text" type="java.lang.String" value="vuk1234"/>
+        <Property name="text" type="java.lang.String" value="vule2002"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -9,5 +9,14 @@ package model;
  * @author vuk
  */
 public enum TipSobe {
-    JEDNOKREVETNA, DVOKREVETNA, TROKREVETNA, CETVOROKREVETNA;
+    JEDNOKREVETNA, DVOKREVETNA, TROKREVETNA, ČETVOROKREVETNA, VIP_DVOKREVETNA;
+    
+    @Override
+    public String toString() {
+        return name().replace("_", " ");
+    }
+    
+    public static TipSobe izBazeString(String dbVrednost) {
+        return TipSobe.valueOf(dbVrednost.replace(" ", "_"));
+    }    
 }

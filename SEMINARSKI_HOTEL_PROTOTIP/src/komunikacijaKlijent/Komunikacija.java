@@ -15,7 +15,9 @@ import komunikacijaZajednicki.Operacija;
 import komunikacijaZajednicki.Posiljalac;
 import komunikacijaZajednicki.Primalac;
 import komunikacijaZajednicki.Zahtev;
+import model.Mesto;
 import model.Recepcioner;
+import model.Soba;
 import model.TerminDezurstva;
 
 /**
@@ -123,6 +125,144 @@ public class Komunikacija {
             return (TerminDezurstva) odgovor.getRezultat();
         }
         throw odgovor.getException();        
+    }
+
+    public void obrisiTerminDezurstva(TerminDezurstva selektovani) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.OBRISI_TERMIN_DEZURSTVA, selektovani);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNO BRISANJE");
+                return;
+            }
+        }
+        throw odgovor.getException();          
+    }
+
+    public void promeniTerminDezurstva(TerminDezurstva td) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.PROMENI_TERMIN_DEZURSTVA, td);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNA IZMENA");
+                return;
+            }
+        }
+        throw odgovor.getException();           
+    }
+
+    public void promeniRecepcionera(Recepcioner selektovani) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.PROMENI_RECEPCIONERA, selektovani);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNA IZMENA");
+                return;
+            }
+        }
+        throw odgovor.getException();         
+    }
+
+    public List<Mesto> vratiListuMesta() throws Exception {
+        List<Mesto> lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_MESTA);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<Mesto>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException();          
+    }
+
+    public Mesto kreirajMesto(Mesto m) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.KREIRAJ_MESTO, m);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            return (Mesto) odgovor.getRezultat();
+        }
+        throw odgovor.getException();     
+    }
+
+    public void obrisiMesto(Mesto selektovano) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.OBRISI_MESTO, selektovano);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNO BRISANJE");
+                return;
+            }
+        }
+        throw odgovor.getException();     
+    }
+
+    public List<Mesto> vratiFilterListuMesto(Mesto m) throws Exception {
+        List<Mesto> lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_MESTA_FILTER,m);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<Mesto>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException();        
+    }
+
+    public List<Soba> vratiListuSoba() throws Exception {
+        List<Soba>lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_SOBE);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<Soba>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException();     
+    }
+
+    public Soba kreirajSobu(Soba s) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.KREIRAJ_SOBU, s);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            return (Soba) odgovor.getRezultat();
+        }
+        throw odgovor.getException(); 
+    }
+
+    public void obrisiSobu(Soba selektovana) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.OBRISI_SOBU, selektovana);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNO BRISANJE");
+                return;
+            }
+        }
+        throw odgovor.getException();
+    }
+
+    public List<Soba> vratiFilterListuSoba(Soba s) throws Exception {
+        List<Soba> lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_SOBE_FILTER,s);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<Soba>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException(); 
     }
        
 

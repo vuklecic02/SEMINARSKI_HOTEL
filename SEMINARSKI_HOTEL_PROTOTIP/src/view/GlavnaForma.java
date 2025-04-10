@@ -44,12 +44,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButtonGosti = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuNalog = new javax.swing.JMenu();
         jMenuItemMojNalog = new javax.swing.JMenuItem();
         jMenuItemOdjaviSe = new javax.swing.JMenuItem();
-        jMenuMesto = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuPodesavanja = new javax.swing.JMenu();
+        jMenuItemMesto = new javax.swing.JMenuItem();
         jMenuItemSmena = new javax.swing.JMenuItem();
+        jMenuItemSobe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,10 +120,10 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
-        jMenu1.setText("Nalog");
+        jMenuNalog.setText("Nalog");
 
         jMenuItemMojNalog.setText("Moj nalog");
-        jMenu1.add(jMenuItemMojNalog);
+        jMenuNalog.add(jMenuItemMojNalog);
 
         jMenuItemOdjaviSe.setText("Odjavi se");
         jMenuItemOdjaviSe.addActionListener(new java.awt.event.ActionListener() {
@@ -130,19 +131,27 @@ public class GlavnaForma extends javax.swing.JFrame {
                 jMenuItemOdjaviSeActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemOdjaviSe);
+        jMenuNalog.add(jMenuItemOdjaviSe);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuNalog);
 
-        jMenuMesto.setText("Podešavanja");
+        jMenuPodesavanja.setText("Podešavanja");
 
-        jMenuItem1.setText("Mesto");
-        jMenuMesto.add(jMenuItem1);
+        jMenuItemMesto.setText("Mesta");
+        jMenuItemMesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMestoActionPerformed(evt);
+            }
+        });
+        jMenuPodesavanja.add(jMenuItemMesto);
 
-        jMenuItemSmena.setText("Smena");
-        jMenuMesto.add(jMenuItemSmena);
+        jMenuItemSmena.setText("Smene");
+        jMenuPodesavanja.add(jMenuItemSmena);
 
-        jMenuBar1.add(jMenuMesto);
+        jMenuItemSobe.setText("Sobe");
+        jMenuPodesavanja.add(jMenuItemSobe);
+
+        jMenuBar1.add(jMenuPodesavanja);
 
         setJMenuBar(jMenuBar1);
 
@@ -185,6 +194,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemOdjaviSeActionPerformed
 
+    private void jMenuItemMestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemMestoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -196,13 +209,14 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelIme;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemMesto;
     private javax.swing.JMenuItem jMenuItemMojNalog;
     private javax.swing.JMenuItem jMenuItemOdjaviSe;
     private javax.swing.JMenuItem jMenuItemSmena;
-    private javax.swing.JMenu jMenuMesto;
+    private javax.swing.JMenuItem jMenuItemSobe;
+    private javax.swing.JMenu jMenuNalog;
+    private javax.swing.JMenu jMenuPodesavanja;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -218,6 +232,14 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     public void smeneAddActionListener(ActionListener actionListener) {
         jMenuItemSmena.addActionListener(actionListener);
+    }
+
+    public void mestaAddActionListener(ActionListener actionListener) {
+        jMenuItemMesto.addActionListener(actionListener);
+    }
+
+    public void sobeAddActionListener(ActionListener actionListener) {
+        jMenuItemSobe.addActionListener(actionListener);
     }
     
     

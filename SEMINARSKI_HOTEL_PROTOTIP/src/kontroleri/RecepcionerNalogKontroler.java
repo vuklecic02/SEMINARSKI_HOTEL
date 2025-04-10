@@ -4,13 +4,21 @@
  */
 package kontroleri;
 
+import glavniKontroler.GlavniKontroler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import model.Recepcioner;
 import view.RecepcionerNalogForma;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import komunikacijaKlijent.Komunikacija;
+import model.TerminDezurstva;
+import view.RecepcionerForma;
 
 /**
  *
@@ -19,12 +27,15 @@ import javax.swing.event.DocumentListener;
 public class RecepcionerNalogKontroler {
     
     private final RecepcionerNalogForma rnf;
+    private final RecepcionerKontroler roditelj;
     private Recepcioner selektovani;
     private Recepcioner ulogovani;
 
     public RecepcionerNalogKontroler(RecepcionerNalogForma rnf) {
         this.rnf = rnf;
-        popuniPolja();
+        roditelj=rnf.getRoditelj();
+        pripremiFormu();
+        popuniComboBox();
         addActionListener();
     }
     
@@ -32,7 +43,7 @@ public class RecepcionerNalogKontroler {
         rnf.setVisible(true);
     }    
 
-    private void popuniPolja() {
+    private void pripremiFormu() {
         selektovani=rnf.getRecepcionerSelektovani();
         ulogovani=rnf.getRecepcionerUlogovani();
         rnf.getjTextFieldIme().setText(selektovani.getIme());
@@ -105,8 +116,51 @@ public class RecepcionerNalogKontroler {
         rnf.sacuvajAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                String ime=rnf.getjTextFieldIme().getText();
+                String prezime=rnf.getjTextFieldPrezime().getText();
+                String username=rnf.getjTextFieldUsername().getText();
+                String email=rnf.getjTextFieldMail().getText();
+                String password=String.valueOf(rnf.getjPasswordField1().getPassword());
+                selektovani.setIme(ime);
+                selektovani.setPrezime(prezime);
+                selektovani.setUsername(username);
+                selektovani.setEmail(email);
+                selektovani.setPassword(password);
+                try 
+                {
+
+                    Komunikacija.getInstance().promeniRecepcionera(selektovani);
+                    JOptionPane.showMessageDialog(rnf, "Sistem je zapamtio recepcionera", "Promeni recepcionera", JOptionPane.INFORMATION_MESSAGE); 
+                    roditelj.azurirajTabelu();
+                    rnf.dispose();
+                    GlavniKontroler.getInstance().otvoriRecepcionerFormu();
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(rnf, ex.getMessage(), "Promeni recepcionera", JOptionPane.ERROR_MESSAGE);
+
+                }                 
             }
         });
+        
+        rnf.nazadAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rnf.dispose();
+                GlavniKontroler.getInstance().otvoriRecepcionerFormu();
+            }
+        });
+    }
+
+    private void popuniComboBox() {
+        try {
+            List<TerminDezurstva> termini=Komunikacija.getInstance().vratiListuTerminaDezurstava();
+            for(TerminDezurstva td:termini)
+            {
+                rnf.getjComboBoxSmena().addItem(td);
+            }
+            rnf.getjComboBoxSmena().setSelectedItem(null);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rnf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

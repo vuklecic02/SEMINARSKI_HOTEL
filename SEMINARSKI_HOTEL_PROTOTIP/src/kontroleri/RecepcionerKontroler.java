@@ -18,6 +18,7 @@ import model.Recepcioner;
 import view.RecepcionerForma;
 import modelTabela.RecepcionerModelTabela;
 import glavniKontroler.GlavniKontroler;
+import model.TerminDezurstva;
 
 
 /**
@@ -30,6 +31,7 @@ public class RecepcionerKontroler {
     public RecepcionerKontroler(RecepcionerForma rf) {
         this.rf = rf;
         popuniTabelu();
+        popuniComboBox();
         addActionListener();
     }
 
@@ -53,6 +55,11 @@ public class RecepcionerKontroler {
         }
         
     }
+    
+    public void azurirajTabelu()
+    {
+        popuniTabelu();
+    }    
 
     private void addActionListener() {
         
@@ -127,9 +134,23 @@ public class RecepcionerKontroler {
                 RecepcionerModelTabela rmt=(RecepcionerModelTabela)rf.getjTableRecepcioneri().getModel();
                 Recepcioner recepcionerSelektovani=rmt.getLista().get(rf.getjTableRecepcioneri().getSelectedRow());
                 Recepcioner recepcionerUlogovani=GlavniKontroler.getInstance().getUlogovaniRecepcioner();
+                rf.dispose();
                 GlavniKontroler.getInstance().otvoriRecepcionerNalogFormu(recepcionerSelektovani,recepcionerUlogovani);
             }
         });
+    }
+
+    private void popuniComboBox() {
+        try {
+            List<TerminDezurstva> termini=Komunikacija.getInstance().vratiListuTerminaDezurstava();
+            for(TerminDezurstva td:termini)
+            {
+                rf.getjComboBoxTerminDezurstva().addItem(td);
+            }
+            rf.getjComboBoxTerminDezurstva().setSelectedItem(null);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }

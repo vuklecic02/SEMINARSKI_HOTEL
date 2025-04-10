@@ -13,16 +13,18 @@ import komunikacijaZajednicki.Primalac;
 import komunikacijaZajednicki.Zahtev;
 import komunikacijaZajednicki.Odgovor;
 import logika.Controller;
+import model.Mesto;
 import model.Recepcioner;
+import model.Soba;
 import model.TerminDezurstva;
 /**
  *
  * @author vuk
  */
 public class ObradaKlijentskihZahteva extends Thread{
-    private Socket clientSocket;
-    private Posiljalac posiljalac;
-    private Primalac primalac;
+    private final Socket clientSocket;
+    private final Posiljalac posiljalac;
+    private final Primalac primalac;
     boolean kraj=false;
     
     public ObradaKlijentskihZahteva(Socket clientSocket) {
@@ -39,24 +41,40 @@ public class ObradaKlijentskihZahteva extends Thread{
             Odgovor odgovor = new Odgovor();
             Recepcioner r;
             TerminDezurstva td;
+            Mesto m;
+            Soba s;
             try{
             switch(zahtev.getOperacija()){
                 case LOGIN: 
-                    System.out.println("Operacija login");
-                    r = (Recepcioner) zahtev.getArgument();
-                    odgovor.setRezultat(Controller.getInstance().login(r));
+                    try
+                    {
+                        System.out.println("Operacija login");
+                        r = (Recepcioner) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().login(r));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
                     break;
                 case KREIRAJ_RECEPCIONER:
-                    System.out.println("Operacija kreiraj recepcionera");
-                    r = (Recepcioner) zahtev.getArgument();
-                    odgovor.setRezultat(Controller.getInstance().kreirajRecepcionera(r));
+                    try
+                    {
+                        System.out.println("Operacija kreiraj recepcionera");
+                        r = (Recepcioner) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajRecepcionera(r));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
                     break;
                 case UCITAJ_RECEPCIONERE:
-                    System.out.println("Operacija ucitaj recepcionere");
+                    System.out.println("Operacija učitaj recepcionere");
                     odgovor.setRezultat(Controller.getInstance().vratiListuRecepcionera());
                     break;
                 case UCITAJ_RECEPCIONERE_FILTER:
-                    System.out.println("Operacija ucitaj recepcionere-filter");
+                    System.out.println("Operacija učitaj recepcionere-filter");
                     r=(Recepcioner) zahtev.getArgument();
                     odgovor.setRezultat(Controller.getInstance().vratiFilterListuRecepcionera(r));
                     break;                    
@@ -65,15 +83,126 @@ public class ObradaKlijentskihZahteva extends Thread{
                     odgovor.setRezultat(Controller.getInstance().vratiListuTerminaDezurstava());
                     break;
                 case UCITAJ_TERMINE_DEZURSTAVA_FILTER:
-                    System.out.println("Operacija ucitaj termine dežurstava-filter");
+                    System.out.println("Operacija učitaj termine dežurstava-filter");
                     td=(TerminDezurstva) zahtev.getArgument();
                     odgovor.setRezultat(Controller.getInstance().vratiFilterListuTerminDez(td));
                     break;
                 case KREIRAJ_TERMIN_DEZURSTVA:
-                    System.out.println("Operacija kreiraj termin dežurstva");
-                    td=(TerminDezurstva) zahtev.getArgument();
-                    odgovor.setRezultat(Controller.getInstance().kreirajTerminDezurstva(td));
+                    try
+                    {
+                        System.out.println("Operacija kreiraj termin dežurstva");
+                        td=(TerminDezurstva) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajTerminDezurstva(td));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
                     break;
+                case OBRISI_TERMIN_DEZURSTVA:
+                    try
+                    {
+                        System.out.println("Operacija obriši termin dežurstva");
+                        td=(TerminDezurstva) zahtev.getArgument();
+                        Controller.getInstance().obrisiTerminDezurstva(td);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    } 
+                case PROMENI_TERMIN_DEZURSTVA:
+                    try
+                    {
+                        System.out.println("Operacija promeni termin dežurstva");
+                        td=(TerminDezurstva) zahtev.getArgument();
+                        Controller.getInstance().promeniTerminDezurstva(td);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }   
+                case PROMENI_RECEPCIONERA:
+                    try
+                    {
+                        System.out.println("Operacija promeni recepcionera");
+                        r=(Recepcioner) zahtev.getArgument();
+                        Controller.getInstance().promeniRecepcionera(r);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                case UCITAJ_MESTA:
+                    System.out.println("Operacija učitaj mesta");
+                    odgovor.setRezultat(Controller.getInstance().vratiListuMesta());
+                    break;
+                case KREIRAJ_MESTO:
+                    try
+                    {
+                        System.out.println("Operacija kreiraj mesto");
+                        m = (Mesto) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajMesto(m));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                    break;
+                case OBRISI_MESTO:
+                    try
+                    {
+                        System.out.println("Operacija obriši mesto");
+                        m=(Mesto) zahtev.getArgument();
+                        Controller.getInstance().obrisiMesto(m);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                case UCITAJ_MESTA_FILTER:
+                    System.out.println("Operacija učitaj mesta-filter");
+                    m=(Mesto) zahtev.getArgument();
+                    odgovor.setRezultat(Controller.getInstance().vratiFilterListuMesto(m));
+                    break;
+                case UCITAJ_SOBE:
+                    System.out.println("Operacija učitaj sobe");
+                    odgovor.setRezultat(Controller.getInstance().vratiListuSoba());
+                    break;
+                case KREIRAJ_SOBU:
+                    try
+                    {
+                        System.out.println("Operacija kreiraj sobu");
+                        s = (Soba) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajSobu(s));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                    break;
+                case OBRISI_SOBU:
+                    try
+                    {
+                        System.out.println("Operacija obriši sobu");
+                        s=(Soba) zahtev.getArgument();
+                        Controller.getInstance().obrisiSobu(s);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                    break;
+                case UCITAJ_SOBE_FILTER:
+                    System.out.println("Operacija učitaj sobe-filter");
+                    s=(Soba) zahtev.getArgument();
+                    odgovor.setRezultat(Controller.getInstance().vratiFilterListuSoba(s));
+                    break;  
+                    
             }
             }catch(Exception ex){
                 odgovor.setException(ex);

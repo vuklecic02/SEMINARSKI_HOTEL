@@ -22,18 +22,32 @@ public class KreirajRecepcioner extends OpstaSistemskaOperacija {
 
     @Override
     protected void preduslovi(Object param) throws Exception {
+        if(param==null || !(param instanceof Recepcioner))
+        {
+            throw new Exception("Sistem ne može da kreira korisnika");
+        }
+        recepcioner=(Recepcioner)param;
+
+        if(recepcioner.getIme().isEmpty() || recepcioner.getPrezime().isEmpty() || recepcioner.getUsername().isEmpty() ||
+                recepcioner.getEmail().isEmpty() || recepcioner.getPassword().isEmpty() )
+        {
+            throw new Exception("Sistem ne može da kreira korisnika");
+        }  
+        if(recepcioner.getPassword().length()<8 || recepcioner.getPassword().contains(" ") || 
+                !recepcioner.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.com$") || recepcioner.getUsername().length()>15)
+        {
+            throw new Exception("Sistem ne može da kreira korisnika");
+        }
         if(dbbroker.daLiPostoji((OpstiDomenskiObjekat) param))
         {
-            throw new Exception("Vec postoji slog u bazi!");
+            throw new Exception("Sistem ne može da kreira korisnika");
         }
     }
 
     @Override
-    protected void izvrsiOperaciju(Object param) throws Exception {
-        
+    protected void izvrsiOperaciju(Object param) throws Exception {       
         recepcioner=(Recepcioner)param;
         dbbroker.kreiraj(recepcioner);
-        return;
     }
     
 }

@@ -389,5 +389,15 @@ Jemen,
 
 Zambija,
 
-Zimbabve,
+Zimbabve,;
+
+    @Override
+    public String toString() {
+        return name().replace("_", " ");
+    }
+    
+    public static Drzava izBazeString(String dbVrednost) {
+        return Drzava.valueOf(dbVrednost.replace(" ", "_"));
+    }
 }
+

@@ -53,7 +53,7 @@ public class Mesto implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return naziv+", "+String.valueOf(drzava).replace("_", " ");
+        return naziv+", "+drzava.toString();
     }
 
     @Override
@@ -64,8 +64,16 @@ public class Mesto implements OpstiDomenskiObjekat{
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-        
-        return lista;    }
+        while(rs.next())
+        {
+            int idMesta=rs.getInt("mesto.idMesta");
+            String naziv=rs.getString("mesto.naziv");
+            Drzava drzava=Drzava.izBazeString(rs.getString("mesto.drzava"));
+            Mesto m=new Mesto(idMesta, naziv, drzava);
+            lista.add(m);
+        }        
+        return lista;    
+    }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
@@ -74,12 +82,12 @@ public class Mesto implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return "'"+naziv+"', '"+String.valueOf(drzava).replace("_", " ")+"'";
+        return "'"+naziv+"', '"+drzava.toString()+"'";
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "mesto.idMesta"+idMesta;
+        return "mesto.idMesta="+idMesta;
     }
 
     @Override
@@ -89,12 +97,17 @@ public class Mesto implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        return "naziv='"+naziv+"', drzava='"+String.valueOf(drzava)+"'";
+        return "naziv='"+naziv+"', drzava='"+drzava.toString()+"'";
     }
 
     @Override
     public String vratiUslovPostoji() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "naziv='"+naziv+"' AND drzava='"+drzava.toString()+"'";
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "mesto.idMesta<>"+idMesta;
     }
     
     

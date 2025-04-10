@@ -63,7 +63,14 @@ public class Soba implements OpstiDomenskiObjekat{
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-        
+        while(rs.next())
+        {
+            int idSoba=rs.getInt("soba.idSoba");
+            double cenaDan=rs.getDouble("soba.cenaDan");
+            TipSobe tipSobe=TipSobe.izBazeString(rs.getString("soba.tipSobe"));
+            Soba s=new Soba(idSoba, cenaDan, tipSobe);
+            lista.add(s);
+        }         
         return lista;    }
 
     @Override
@@ -73,12 +80,12 @@ public class Soba implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return cenaDan+",'"+String.valueOf(tipSobe)+"'";
+        return cenaDan+",'"+tipSobe.toString()+"'";
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "soba.idSoba"+idSoba;
+        return "soba.idSoba="+idSoba;
     }
 
     @Override
@@ -88,12 +95,18 @@ public class Soba implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-      return "cenaDan="+cenaDan+",tipSobe='"+String.valueOf(tipSobe)+"'";
+      return "cenaDan="+cenaDan+",tipSobe='"+tipSobe.toString()+"'";
     }
 
     @Override
     public String vratiUslovPostoji() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "cenaDan="+cenaDan+" AND tipSobe='"+tipSobe.toString()+"'";
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "soba.idSoba<>"+idSoba;
+
     }
     
     

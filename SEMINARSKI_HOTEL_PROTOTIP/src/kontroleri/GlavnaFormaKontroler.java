@@ -29,28 +29,29 @@ public class GlavnaFormaKontroler {
     }
 
     private void addActionListener() {
-        gf.odjaviSeAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gf.dispose();
-                GlavniKontroler.getInstance().otvoriLoginFormu();
-            }
+        gf.odjaviSeAddActionListener((ActionEvent e) -> {
+            gf.dispose();
+            GlavniKontroler.getInstance().otvoriLoginFormu();
         });
         
-        gf.recepcioneriAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gf.dispose();
-                GlavniKontroler.getInstance().otvoriRecepcionerFormu();
-            }
+        gf.recepcioneriAddActionListener((ActionEvent e) -> {
+            gf.dispose();
+            GlavniKontroler.getInstance().otvoriRecepcionerFormu();
         });
         
-        gf.smeneAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gf.dispose();
-                GlavniKontroler.getInstance().otvoriTerminDezurstvaFormu();
-            }
+        gf.smeneAddActionListener((ActionEvent e) -> {
+            gf.dispose();
+            GlavniKontroler.getInstance().otvoriTerminDezurstvaFormu();
+        });
+        
+        gf.mestaAddActionListener((ActionEvent e) -> {
+            gf.dispose();
+            GlavniKontroler.getInstance().otvoriMestoFormu();
+        });
+        
+        gf.sobeAddActionListener((ActionEvent e) -> {
+            gf.dispose();
+            GlavniKontroler.getInstance().otvoriSobaFormu();
         });
         
     }

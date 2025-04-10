@@ -35,10 +35,11 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonKreiraj" min="-2" pref="72" max="-2" attributes="0"/>
-                  <Component id="jButtonNazad" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonDetalji" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jButtonKreiraj" max="32767" attributes="0"/>
+                  <Component id="jButtonNazad" max="32767" attributes="0"/>
+                  <Component id="jButtonDetalji" max="32767" attributes="0"/>
+                  <Component id="jButtonObrisi" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
@@ -60,7 +61,11 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="191" max="-2" attributes="0"/>
-                  <Component id="jButtonKreiraj" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jButtonKreiraj" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="jButtonObrisi" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
           </Group>
@@ -181,6 +186,11 @@
     <Component class="javax.swing.JButton" name="jButtonKreiraj">
       <Properties>
         <Property name="text" type="java.lang.String" value="Kreiraj"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonObrisi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
       </Properties>
     </Component>
   </SubComponents>

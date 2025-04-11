@@ -4,11 +4,13 @@
  */
 package view;
 
+import java.awt.Dialog;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import kontroleri.MestoKontroler;
+import kontroleri.OsobaKreirajKontroler;
 import model.Drzava;
 import model.FormaMod;
 import model.Mesto;
@@ -19,23 +21,24 @@ import model.Mesto;
  */
 public class MestoKreirajForma extends javax.swing.JDialog {
 
-    private MestoKontroler roditelj;
+    private MestoKontroler roditeljMesto;
+    private OsobaKreirajKontroler roditeljOsoba;
     private Mesto selektovano;
     private FormaMod mod;
     /**
      * Creates new form MestoKreirajForma
+     * @param parent
+     * @param modal
      */
-    public MestoKreirajForma(java.awt.Frame parent, boolean modal, MestoKontroler roditelj, Mesto selektovano, FormaMod mod) {
+    public MestoKreirajForma(java.awt.Frame parent,Dialog parentDialog, boolean modal, MestoKontroler roditeljMesto,
+            OsobaKreirajKontroler roditeljOsoba, Mesto selektovano, FormaMod mod) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.roditelj=roditelj;
+        this.roditeljMesto=roditeljMesto;
+        this.roditeljOsoba=roditeljOsoba;
         this.selektovano=selektovano;
         this.mod=mod;
-    }
-
-    public MestoKontroler getRoditelj() {
-        return roditelj;
     }
 
     public Mesto getSelektovano() {
@@ -68,6 +71,14 @@ public class MestoKreirajForma extends javax.swing.JDialog {
 
     public JTextField getjTextFieldNaziv() {
         return jTextFieldNaziv;
+    }
+
+    public MestoKontroler getRoditeljMesto() {
+        return roditeljMesto;
+    }
+
+    public OsobaKreirajKontroler getRoditeljOsoba() {
+        return roditeljOsoba;
     }
     
     

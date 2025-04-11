@@ -4,6 +4,7 @@
  */
 package operacija.osoba;
 
+import model.Osoba;
 import operacija.OpstaSistemskaOperacija;
 
 /**
@@ -14,12 +15,15 @@ public class ObrisiOsoba extends OpstaSistemskaOperacija {
 
     @Override
     protected void preduslovi(Object param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(param==null || !(param instanceof Osoba))
+        {
+            throw new Exception("Sistem ne može da obriše termin dežurstva");
+        }        
     }
 
     @Override
     protected void izvrsiOperaciju(Object param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        dbbroker.obrisi(param);
     }
     
 }

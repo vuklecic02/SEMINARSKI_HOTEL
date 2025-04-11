@@ -72,13 +72,10 @@ public class MestoKontroler {
             GlavniKontroler.getInstance().otvoriGlavnuFormu();
         });
         
-        mf.ocistiAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mf.getjTextFieldMesto().setText("");
-                mf.getjComboBoxDrzave().setSelectedItem(null);
-                popuniTabelu();
-            }
+        mf.ocistiAddActionListener((ActionEvent e) -> {
+            mf.getjTextFieldMesto().setText("");
+            mf.getjComboBoxDrzave().setSelectedItem(null);
+            popuniTabelu();
         });
         
         mf.pretraziAddActionListener((ActionEvent e) -> {
@@ -95,7 +92,7 @@ public class MestoKontroler {
             try {
                 azuriraj(m);
             } catch (Exception ex) {
-                Logger.getLogger(TerminDezurstvaKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(mf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
             }
         });
     }
@@ -109,7 +106,7 @@ public class MestoKontroler {
             mf.getjTableMesto().setFillsViewportHeight(true);
             
         } catch (Exception ex) {
-            Logger.getLogger(RecepcionerKontroler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(mf, ex.getMessage(), "Tabela mesta", JOptionPane.ERROR_MESSAGE);
         }           
     }
 

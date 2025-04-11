@@ -39,10 +39,8 @@ public class TerminDezurstvaKreirajKontroler {
     }
 
     private void addActionListener() {
-        tdkf.unesiAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String smena=tdkf.getjTextFieldSmena().getText();
+        tdkf.unesiAddActionListener((ActionEvent e) -> {
+            String smena=tdkf.getjTextFieldSmena().getText();
 //                if(smena.isBlank() || smena.isEmpty())
 //                {
 //                    JOptionPane.showMessageDialog(tdkf, "Niste uneli ništa!", "Greška", JOptionPane.ERROR_MESSAGE);
@@ -60,11 +58,11 @@ public class TerminDezurstvaKreirajKontroler {
 //                    }
                     TerminDezurstva td=new TerminDezurstva();
                     td.setSmena(smena);
-                    try 
+                    try
                     {
-                        
+
                         td=Komunikacija.getInstance().kreirajTerminDezurstva(td);
-                        JOptionPane.showMessageDialog(tdkf, "Sistem je kreirao termin dežurstva", "Kreiraj termin dežurstva", JOptionPane.INFORMATION_MESSAGE); 
+                        JOptionPane.showMessageDialog(tdkf, "Sistem je kreirao termin dežurstva", "Kreiraj termin dežurstva", JOptionPane.INFORMATION_MESSAGE);
                         tdkf.getjTextFieldSmena().setText("");
                         onSmenaPerformed();
 
@@ -77,25 +75,19 @@ public class TerminDezurstvaKreirajKontroler {
 //                {
 //                    JOptionPane.showMessageDialog(tdkf, "Nepravilan unos!", "Greška", JOptionPane.ERROR_MESSAGE);
 //                }
-            }
-
-//            private static int trajanjeSmena(int pocetak, int kraj) {
+        }//            private static int trajanjeSmena(int pocetak, int kraj) {
 //                if(kraj>=pocetak)
 //                    return kraj-pocetak;
 //                else
 //                    return (24+kraj)-pocetak;
 //
 //            }
-
-        });
+        );
         
-        tdkf.odustaniAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int rezultat = JOptionPane.showConfirmDialog(null, "Da li odustajete?", "Potvrda", JOptionPane.YES_NO_OPTION);
-                if (rezultat == JOptionPane.YES_OPTION) {
-                    tdkf.dispose(); 
-                }
+        tdkf.odustaniAddActionListener((ActionEvent e) -> {
+            int rezultat = JOptionPane.showConfirmDialog(null, "Da li odustajete?", "Potvrda", JOptionPane.YES_NO_OPTION);
+            if (rezultat == JOptionPane.YES_OPTION) {
+                tdkf.dispose();
             }
         });
         
@@ -130,23 +122,20 @@ public class TerminDezurstvaKreirajKontroler {
             }
         });
         
-        tdkf.sacuvajAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String smena=tdkf.getjTextFieldSmena().getText();
-                tdkf.getSelektovani().setSmena(smena);
-                try 
-                {
-
-                    Komunikacija.getInstance().promeniTerminDezurstva(tdkf.getSelektovani());
-                    JOptionPane.showMessageDialog(tdkf, "Sistem je zapamtio termin dežurstva", "Promeni termin dežurstva", JOptionPane.INFORMATION_MESSAGE); 
-                    onSmenaPerformed();
-                    tdkf.dispose();
-
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(tdkf, ex.getMessage(), "Promeni termin dežurstva", JOptionPane.ERROR_MESSAGE);
-
-                }                
+        tdkf.sacuvajAddActionListener((ActionEvent e) -> {
+            String smena=tdkf.getjTextFieldSmena().getText();
+            tdkf.getSelektovani().setSmena(smena);
+            try
+            {
+                
+                Komunikacija.getInstance().promeniTerminDezurstva(tdkf.getSelektovani());
+                JOptionPane.showMessageDialog(tdkf, "Sistem je zapamtio termin dežurstva", "Promeni termin dežurstva", JOptionPane.INFORMATION_MESSAGE);
+                onSmenaPerformed();
+                tdkf.dispose();
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(tdkf, ex.getMessage(), "Promeni termin dežurstva", JOptionPane.ERROR_MESSAGE);
+                                
             }
         });
     }

@@ -16,6 +16,7 @@ import komunikacijaZajednicki.Posiljalac;
 import komunikacijaZajednicki.Primalac;
 import komunikacijaZajednicki.Zahtev;
 import model.Mesto;
+import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
 import model.TerminDezurstva;
@@ -261,6 +262,68 @@ public class Komunikacija {
         if (odgovor.getException() == null) {
             lista = (List<Soba>) odgovor.getRezultat();
             return lista;
+        }
+        throw odgovor.getException(); 
+    }
+
+    public List<Osoba> vratiListuOsoba() throws Exception {
+        List<Osoba>lista;
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_OSOBE);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<Osoba>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException(); 
+    }
+
+    public Osoba kreirajOsobu(Osoba osoba) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.KREIRAJ_OSOBU, osoba);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            return (Osoba) odgovor.getRezultat();
+        }
+        throw odgovor.getException(); 
+    }
+
+    public void obrisiOsobu(Osoba selektovani) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.OBRISI_OSOBU, selektovani);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNO BRISANJE");
+                return;
+            }
+        }
+        throw odgovor.getException(); 
+    }
+
+    public List<Osoba> vratiFilterListuOsoba(Osoba o) throws Exception {
+        List<Osoba> lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_OSOBE_FILTER,o);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<Osoba>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException(); 
+    }
+
+    public void promeniOsobu(Osoba selektovani) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.PROMENI_OSOBU, selektovani);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNA IZMENA");
+                return;
+            }
         }
         throw odgovor.getException(); 
     }

@@ -8,6 +8,8 @@ import kontroleri.GlavnaFormaKontroler;
 import kontroleri.LoginKontroler;
 import kontroleri.MestoKontroler;
 import kontroleri.MestoKreirajKontroler;
+import kontroleri.OsobaKontroler;
+import kontroleri.OsobaKreirajKontroler;
 import kontroleri.RecepcionerKontroler;
 import kontroleri.RecepcionerNalogKontroler;
 import kontroleri.RegistracijaKontroler;
@@ -17,6 +19,7 @@ import kontroleri.TerminDezurstvaKontroler;
 import kontroleri.TerminDezurstvaKreirajKontroler;
 import model.FormaMod;
 import model.Mesto;
+import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
 import model.TerminDezurstva;
@@ -24,6 +27,8 @@ import view.GlavnaForma;
 import view.LoginForma;
 import view.MestoForma;
 import view.MestoKreirajForma;
+import view.OsobaForma;
+import view.OsobaKreirajForma;
 import view.RecepcionerForma;
 import view.RecepcionerNalogForma;
 import view.RegistracijaForma;
@@ -50,6 +55,8 @@ public class GlavniKontroler {
     private MestoKreirajKontroler mkk;
     private SobaKontroler sk;
     private SobaKreirajKontroler skk;
+    private OsobaKontroler ok;
+    private OsobaKreirajKontroler okk;
 
     public void setUlogovaniRecepcioner(Recepcioner ulogovaniRecepcioner) {
         this.ulogovaniRecepcioner = ulogovaniRecepcioner;
@@ -110,7 +117,14 @@ public class GlavniKontroler {
     }
 
     public void otvoriMestoKreirajFormu(Mesto selektovano, FormaMod mod) {
-        mkk=new MestoKreirajKontroler(new MestoKreirajForma(mk.getMf(), true, mk, selektovano, mod));
+        if(mk==null)
+        {
+            mkk=new MestoKreirajKontroler(new MestoKreirajForma(null,okk.getOkf(), true, mk,okk, selektovano, mod));
+        }
+        else
+        {
+            mkk=new MestoKreirajKontroler(new MestoKreirajForma(mk.getMf(),null, true, mk,okk, selektovano, mod));
+        }      
         mkk.otvoriFormu();
     }
 
@@ -122,6 +136,16 @@ public class GlavniKontroler {
     public void otvoriSobaKreirajFormu(Soba selektovana, FormaMod formaMod) {
         skk=new SobaKreirajKontroler(new SobaKreirajForma(sk.getSf(), true, sk, selektovana, formaMod));
         skk.otvoriFormu();
+    }
+
+    public void otvoriOsobaFormu() {
+        ok=new OsobaKontroler(new OsobaForma());
+        ok.otvoriFormu();
+    }
+
+    public void otvoriOsobaKreirajFormu(Osoba selektovani, FormaMod formaMod) {
+        okk=new OsobaKreirajKontroler(new OsobaKreirajForma(ok.getOf(),true,ok,selektovani,formaMod));
+        okk.otvoriFormu();
     }
     
 }

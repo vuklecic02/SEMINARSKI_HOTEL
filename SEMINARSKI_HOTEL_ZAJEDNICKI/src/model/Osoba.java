@@ -31,7 +31,15 @@ public class Osoba implements OpstiDomenskiObjekat{
         this.brLicneIsprave = brLicneIsprave;
         this.mesto = mesto;
     }
-
+    
+    public Osoba(String ime, String prezime, String telefon, String brLicneIsprave, Mesto mesto) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.telefon = telefon;
+        this.brLicneIsprave = brLicneIsprave;
+        this.mesto = mesto;
+    }
+    
     public int getIdOsoba() {
         return idOsoba;
     }
@@ -93,7 +101,21 @@ public class Osoba implements OpstiDomenskiObjekat{
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-        
+        while(rs.next())
+        {
+            int idOsoba=rs.getInt("osoba.idOsoba");
+            String ime=rs.getString("osoba.ime");
+            String prezime=rs.getString("osoba.prezime");
+            String telefon=rs.getString("osoba.telefon");
+            String brLicneIsprave=rs.getString("osoba.brLicneIsprave");
+            
+            int idMesta=rs.getInt("mesto.idMesta");
+            String naziv=rs.getString("mesto.naziv");
+            Drzava drzava=Drzava.izBazeString(rs.getString("mesto.drzava"));
+            Mesto mesto=new Mesto(idMesta, naziv, drzava);
+            Osoba o=new Osoba(idOsoba, ime, prezime, telefon, brLicneIsprave, mesto);
+            lista.add(o);
+        }        
         return lista;    }
 
     @Override
@@ -123,7 +145,7 @@ public class Osoba implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiUslovPostoji() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "telefon='"+telefon+"' AND brLicneIsprave='"+brLicneIsprave+"'";
     }
 
     @Override

@@ -6,6 +6,7 @@ package operacija.osoba;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Mesto;
 import model.Osoba;
 import operacija.OpstaSistemskaOperacija;
 
@@ -13,21 +14,29 @@ import operacija.OpstaSistemskaOperacija;
  *
  * @author vuk
  */
-public class VratiListuSviOsoba extends OpstaSistemskaOperacija {
-    private List<Osoba> lista=new ArrayList<>();
+public class VratiListuOsoba extends OpstaSistemskaOperacija {
 
+    private List<Osoba> lista=new ArrayList<>();
+    
     public List<Osoba> getLista() {
         return lista;
-    }
+    } 
     @Override
     protected void preduslovi(Object param) throws Exception {
     }
 
     @Override
     protected void izvrsiOperaciju(Object param) throws Exception {
-        String uslov=" JOIN mesto ON osoba.mesto=mesto.idMesta";
+        Osoba o=(Osoba)param;
+        String uslov=" JOIN mesto ON osoba.mesto=mesto.idMesta WHERE 1=1";
+        if (o.getMesto().getDrzava() != null) {
+            uslov += " AND mesto.drzava = '" + o.getMesto().getDrzava().toString() + "'";
+        }
+
+        if (o.getMesto().getNaziv()!= null) {
+            uslov += " AND mesto.naziv='" + o.getMesto().getNaziv() + "'";
+        }  
         lista=dbbroker.vratiSve(param, uslov);
-        //lista=dbbroker.vratiOsobuSaMestom((Osoba)param);
     }
     
 }

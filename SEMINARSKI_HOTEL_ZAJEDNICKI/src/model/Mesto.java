@@ -7,6 +7,7 @@ package model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -108,6 +109,30 @@ public class Mesto implements OpstiDomenskiObjekat{
     @Override
     public String vratiRazlicitPrimarniKljuc() {
         return "mesto.idMesta<>"+idMesta;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Mesto other = (Mesto) obj;
+        if (!Objects.equals(this.naziv, other.naziv)) {
+            return false;
+        }
+        return this.drzava == other.drzava;
     }
     
     

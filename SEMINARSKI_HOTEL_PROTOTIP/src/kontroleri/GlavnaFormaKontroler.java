@@ -54,6 +54,11 @@ public class GlavnaFormaKontroler {
             GlavniKontroler.getInstance().otvoriSobaFormu();
         });
         
+        gf.osobeAddActionListener((ActionEvent e) -> {
+            gf.dispose();
+            GlavniKontroler.getInstance().otvoriOsobaFormu();
+        });
+        
     }
     
     

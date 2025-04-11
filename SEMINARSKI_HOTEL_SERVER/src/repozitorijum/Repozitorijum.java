@@ -5,6 +5,7 @@
 package repozitorijum;
 
 import java.util.List;
+import model.Osoba;
 
 /**
  *
@@ -18,6 +19,6 @@ public interface Repozitorijum<T> {
     void obrisi(T param) throws Exception;
     boolean daLiPostoji(T param);
     T vratiJednog(T param,String uslov,Object... vrednosti) throws Exception;
-    
-    
+    //public List<Osoba> vratiOsobuSaMestom(Osoba osoba);
+
 }

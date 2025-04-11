@@ -23,12 +23,14 @@ import view.MestoKreirajForma;
 public class MestoKreirajKontroler {
     
     private final MestoKreirajForma mkf;
-    private final MestoKontroler roditeljKontroler;
+    private final MestoKontroler roditeljMesto;
+    private final OsobaKreirajKontroler roditeljOsoba;
     private final FormaMod mod;
 
     public MestoKreirajKontroler(MestoKreirajForma mkf) {
         this.mkf = mkf;
-        roditeljKontroler=mkf.getRoditelj();
+        roditeljMesto=mkf.getRoditeljMesto();
+        roditeljOsoba=mkf.getRoditeljOsoba();
         mod=mkf.getMod();
         popuniComboBox();
         addActionListener();
@@ -69,13 +71,10 @@ public class MestoKreirajKontroler {
             }
         });
         
-        mkf.odustaniAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int rezultat = JOptionPane.showConfirmDialog(mkf, "Da li odustajete?", "Potvrda", JOptionPane.YES_NO_OPTION);
-                if (rezultat == JOptionPane.YES_OPTION) {
-                    mkf.dispose(); 
-                }
+        mkf.odustaniAddActionListener((ActionEvent e) -> {
+            int rezultat = JOptionPane.showConfirmDialog(mkf, "Da li odustajete?", "Potvrda", JOptionPane.YES_NO_OPTION);
+            if (rezultat == JOptionPane.YES_OPTION) {
+                mkf.dispose();
             }
         });        
     }
@@ -95,7 +94,9 @@ public class MestoKreirajKontroler {
     }    
     
     private void onMestoPerformed() {
-        if(roditeljKontroler!=null)
-            roditeljKontroler.popuniTabelu();
+        if(roditeljMesto!=null)
+            roditeljMesto.popuniTabelu();
+        if(roditeljOsoba!=null)
+            roditeljOsoba.popuniComboBox();
     }
 }

@@ -14,6 +14,7 @@ import komunikacijaZajednicki.Zahtev;
 import komunikacijaZajednicki.Odgovor;
 import logika.Controller;
 import model.Mesto;
+import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
 import model.TerminDezurstva;
@@ -43,6 +44,7 @@ public class ObradaKlijentskihZahteva extends Thread{
             TerminDezurstva td;
             Mesto m;
             Soba s;
+            Osoba o;
             try{
             switch(zahtev.getOperacija()){
                 case LOGIN: 
@@ -201,7 +203,53 @@ public class ObradaKlijentskihZahteva extends Thread{
                     System.out.println("Operacija učitaj sobe-filter");
                     s=(Soba) zahtev.getArgument();
                     odgovor.setRezultat(Controller.getInstance().vratiFilterListuSoba(s));
-                    break;  
+                    break;
+                case UCITAJ_OSOBE:
+                    System.out.println("Operacija učitaj osobe");
+                    odgovor.setRezultat(Controller.getInstance().vratiListuOsoba());
+                    break;
+                case KREIRAJ_OSOBU:
+                    try
+                    {
+                        System.out.println("Operacija kreiraj osobu");
+                        o=(Osoba) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajOsobu(o));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                    break;
+                case OBRISI_OSOBU:
+                    try
+                    {
+                        System.out.println("Operacija obriši osobu");
+                        o=(Osoba) zahtev.getArgument();
+                        Controller.getInstance().obrisiOsobu(o);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    } 
+                    break;
+                case UCITAJ_OSOBE_FILTER:
+                    System.out.println("Operacija učitaj osobe-filter");
+                    o=(Osoba) zahtev.getArgument();
+                    odgovor.setRezultat(Controller.getInstance().vratiFilterListuOsoba(o));
+                    break;
+                case PROMENI_OSOBU:
+                    try
+                    {
+                        System.out.println("Operacija promeni osobu");
+                        o=(Osoba) zahtev.getArgument();
+                        Controller.getInstance().promeniOsobu(o);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
                     
             }
             }catch(Exception ex){

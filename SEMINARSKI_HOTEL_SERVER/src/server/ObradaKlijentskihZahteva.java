@@ -6,6 +6,7 @@ package server;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import komunikacijaZajednicki.Posiljalac;
@@ -18,6 +19,7 @@ import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
 import model.TerminDezurstva;
+import model.ZaposleniTermin;
 /**
  *
  * @author vuk
@@ -45,6 +47,8 @@ public class ObradaKlijentskihZahteva extends Thread{
             Mesto m;
             Soba s;
             Osoba o;
+            List<ZaposleniTermin> ztLista;
+            ZaposleniTermin zt;
             try{
             switch(zahtev.getOperacija()){
                 case LOGIN: 
@@ -113,6 +117,7 @@ public class ObradaKlijentskihZahteva extends Thread{
                     {
                         odgovor.setException(ex);
                     } 
+                    break;
                 case PROMENI_TERMIN_DEZURSTVA:
                     try
                     {
@@ -124,7 +129,8 @@ public class ObradaKlijentskihZahteva extends Thread{
                     catch(Exception ex)
                     {
                         odgovor.setException(ex);
-                    }   
+                    } 
+                    break;
                 case PROMENI_RECEPCIONERA:
                     try
                     {
@@ -137,6 +143,7 @@ public class ObradaKlijentskihZahteva extends Thread{
                     {
                         odgovor.setException(ex);
                     }
+                    break;
                 case UCITAJ_MESTA:
                     System.out.println("Operacija učitaj mesta");
                     odgovor.setRezultat(Controller.getInstance().vratiListuMesta());
@@ -165,6 +172,7 @@ public class ObradaKlijentskihZahteva extends Thread{
                     {
                         odgovor.setException(ex);
                     }
+                    break;
                 case UCITAJ_MESTA_FILTER:
                     System.out.println("Operacija učitaj mesta-filter");
                     m=(Mesto) zahtev.getArgument();
@@ -250,6 +258,24 @@ public class ObradaKlijentskihZahteva extends Thread{
                     {
                         odgovor.setException(ex);
                     }
+                    break;
+                case KREIRAJ_ZAPOSLENI_TERMIN:
+                    try
+                    {
+                        System.out.println("Operacija kreiraj zaposleni-termin");
+                        ztLista=(List<ZaposleniTermin>) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajZaposleniTermin(ztLista));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                    break;
+                case UCITAJ_ZAPOSLENI_TERMIN:
+                    System.out.println("Operacija učitaj zaposleni-termin");
+                    zt=(ZaposleniTermin) zahtev.getArgument();
+                    odgovor.setRezultat(Controller.getInstance().vratiListuZaposleniTermin(zt));
+                    break;
                     
             }
             }catch(Exception ex){

@@ -53,7 +53,7 @@ public class OsobaKontroler {
             of.getjTableOsoba().setFillsViewportHeight(true);
             
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(of, ex.getMessage(), "Tabela mesta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(of, ex.getMessage(), "Tabela osoba", JOptionPane.ERROR_MESSAGE);
         }          
     }
 

@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +117,8 @@ public class Osoba implements OpstiDomenskiObjekat{
             Osoba o=new Osoba(idOsoba, ime, prezime, telefon, brLicneIsprave, mesto);
             lista.add(o);
         }        
-        return lista;    }
+        return lista;    
+    }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
@@ -151,6 +153,11 @@ public class Osoba implements OpstiDomenskiObjekat{
     @Override
     public String vratiRazlicitPrimarniKljuc() {
         return "osoba.idOsoba<>"+idOsoba;
+    }
+
+    @Override
+    public void postaviVrednosti(PreparedStatement ps) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

@@ -4,10 +4,12 @@
  */
 package view;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import kontroleri.RecepcionerKontroler;
 import model.Recepcioner;
@@ -74,9 +76,15 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
         return jComboBoxSmena;
     }
 
-    public JTextField getjTextFieldDatum() {
-        return jTextFieldDatum;
+    public JDateChooser getjDateChooser1() {
+        return jDateChooser1;
     }
+
+    public JTable getjTableSmene() {
+        return jTableSmene;
+    }
+
+    
 
     public JButton getjButtonDodajSmenu() {
         return jButtonDodajSmenu;
@@ -113,12 +121,12 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jComboBoxSmena = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldDatum = new javax.swing.JTextField();
         jButtonDodajSmenu = new javax.swing.JButton();
-        jButtonPrikaziSmene = new javax.swing.JButton();
         jButtonNazad = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSmene = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jButtonSacuvajSmene = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -150,12 +158,7 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
 
         jLabel7.setText("Datum smene:");
 
-        jTextFieldDatum.setText("dd-mm-yyyy");
-        jTextFieldDatum.setEnabled(false);
-
         jButtonDodajSmenu.setText("Dodaj smenu");
-
-        jButtonPrikaziSmene.setText("Prikaži smene");
 
         jButtonNazad.setText("Nazad");
 
@@ -171,6 +174,8 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
             }
         ));
         jScrollPane1.setViewportView(jTableSmene);
+
+        jButtonSacuvajSmene.setText("Sačuvaj smene");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,26 +205,29 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonNazad)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonDodajSmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(31, 31, 31)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxSmena, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldDatum, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonDodajSmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonPrikaziSmene)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                                    .addComponent(jComboBoxSmena, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jButtonSacuvajSmene, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(1, 1, 1)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,18 +239,19 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
                     .addComponent(jLabel6)
                     .addComponent(jComboBoxSmena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextFieldDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTextFieldPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonDodajSmenu)
-                        .addComponent(jButtonPrikaziSmene)))
+                        .addComponent(jButtonSacuvajSmene)))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -273,9 +282,10 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
     private javax.swing.JButton jButtonDodajSmenu;
     private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JButton jButtonNazad;
-    private javax.swing.JButton jButtonPrikaziSmene;
     private javax.swing.JButton jButtonSacuvaj;
+    private javax.swing.JButton jButtonSacuvajSmene;
     private javax.swing.JComboBox<TerminDezurstva> jComboBoxSmena;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -286,7 +296,6 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSmene;
-    private javax.swing.JTextField jTextFieldDatum;
     private javax.swing.JTextField jTextFieldIme;
     private javax.swing.JTextField jTextFieldMail;
     private javax.swing.JTextField jTextFieldPrezime;
@@ -304,4 +313,14 @@ public class RecepcionerNalogForma extends javax.swing.JDialog {
     public void nazadAddActionListener(ActionListener actionListener) {
         jButtonNazad.addActionListener(actionListener);
     }
+
+    public void dodajSmenuAddActionListener(ActionListener actionListener) {
+        jButtonDodajSmenu.addActionListener(actionListener);    
+    }
+
+    public void sacuvajSmeneAddActionListener(ActionListener actionListener) {
+        jButtonSacuvajSmene.addActionListener(actionListener);
+    }
+
+
 }

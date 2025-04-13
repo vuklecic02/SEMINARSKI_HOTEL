@@ -7,6 +7,10 @@ package kontroleri;
 import glavniKontroler.GlavniKontroler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +22,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import komunikacijaKlijent.Komunikacija;
 import model.TerminDezurstva;
+import model.ZaposleniTermin;
+import modelTabela.OsobaModelTabela;
+import modelTabela.ZaposleniTerminModelTabele;
 import view.RecepcionerForma;
 
 /**
@@ -30,14 +37,22 @@ public class RecepcionerNalogKontroler {
     private final RecepcionerKontroler roditelj;
     private Recepcioner selektovani;
     private Recepcioner ulogovani;
+    private List<ZaposleniTermin> listaSmena;
 
     public RecepcionerNalogKontroler(RecepcionerNalogForma rnf) {
         this.rnf = rnf;
+        listaSmena=new ArrayList<>();
         roditelj=rnf.getRoditelj();
         pripremiFormu();
         popuniComboBox();
+        popuniTabelu();
         addActionListener();
     }
+
+    public List<ZaposleniTermin> getListaSmena() {
+        return listaSmena;
+    }
+    
     
     public void otvoriFormu() {
         rnf.setVisible(true);
@@ -58,13 +73,16 @@ public class RecepcionerNalogKontroler {
             rnf.getjButtonIzmeni().setEnabled(true);
             rnf.getjComboBoxSmena().setEnabled(true);
             rnf.getjButtonDodajSmenu().setEnabled(true);
-            rnf.getjTextFieldDatum().setEnabled(true);
+            rnf.getjDateChooser1().setEnabled(true);
+            rnf.getjTableSmene().setRowSelectionAllowed(true);
         }
         else
         {
             rnf.getjButtonIzmeni().setEnabled(false);
             rnf.getjComboBoxSmena().setEnabled(false);
-            rnf.getjButtonDodajSmenu().setEnabled(false);            
+            rnf.getjButtonDodajSmenu().setEnabled(false);
+            rnf.getjTableSmene().setRowSelectionAllowed(false);
+            rnf.getjTableSmene().setCellSelectionEnabled(false);
         }
         rnf.getjButtonSacuvaj().setEnabled(false);
 
@@ -143,6 +161,59 @@ public class RecepcionerNalogKontroler {
             rnf.dispose();
             GlavniKontroler.getInstance().otvoriRecepcionerFormu();
         });
+        
+        rnf.dodajSmenuAddActionListener((ActionEvent e) -> {
+            try
+            {
+                Date utilDatum = rnf.getjDateChooser1().getDate();
+                if(rnf.getjComboBoxSmena().getSelectedItem()==null)
+                {
+                    JOptionPane.showMessageDialog(rnf, "Izaberite smenu!","Dodavanje smene",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                if(utilDatum==null){
+                    JOptionPane.showMessageDialog(rnf, "Izaberite datum!","Dodavanje smene",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                LocalDate datum = utilDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                
+                if(datum.isBefore(LocalDate.now())){
+                    JOptionPane.showMessageDialog(rnf, "Datum se mora odnositi na budućnost!","Dodavanje smene",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                ZaposleniTermin smena=new ZaposleniTermin();
+                smena.setDatum(datum);
+                smena.setRecepcioner(ulogovani);
+                smena.setTerminDezurstva((TerminDezurstva) rnf.getjComboBoxSmena().getSelectedItem());
+                if(listaSmena.contains(smena))
+                {
+                    JOptionPane.showMessageDialog(rnf, "Ne možete uneti ovu smenu!\n Možete raditi samo jednu smenu jednog datuma!","Dodavanje smene",JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                listaSmena.add(smena);
+                System.out.println(listaSmena.size());
+                JOptionPane.showMessageDialog(rnf, "Smena je dodata!\n Pritisnite dugme Sačuvaj da ih zapamtite.","Dodavanje smene",JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(rnf, ex.getMessage(),"Dodavanje smene",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
+        rnf.sacuvajSmeneAddActionListener((ActionEvent e) -> {
+            try
+            {
+                listaSmena=Komunikacija.getInstance().kreirajZaposleniTermin(listaSmena);
+                popuniTabelu();
+                JOptionPane.showMessageDialog(rnf, "Sistem je kreirao smene za izabranog recepcionera","Čuvanje smene",JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(rnf, ex.getMessage(),"Čuvanje smene",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
     }
 
     private void popuniComboBox() {
@@ -156,5 +227,20 @@ public class RecepcionerNalogKontroler {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rnf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void popuniTabelu() {
+        try {
+            ZaposleniTermin zt=new ZaposleniTermin();
+            zt.setRecepcioner(selektovani);
+            List<ZaposleniTermin> lista=Komunikacija.getInstance().vratiListuZaposleniTermin(zt);
+            System.out.println("Broj zap-termina iz baze: " + lista.size());
+            ZaposleniTerminModelTabele ztmt=new ZaposleniTerminModelTabele(lista);
+            rnf.getjTableSmene().setModel(ztmt);
+            rnf.getjTableSmene().setFillsViewportHeight(true);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rnf, ex.getMessage(), "Tabela osoba", JOptionPane.ERROR_MESSAGE);
+        }        
     }
 }

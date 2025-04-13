@@ -138,5 +138,27 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
 
         return objekat;        
     }
+
+    @Override
+    public void kreirajVise(List<OpstiDomenskiObjekat> paramLista) throws Exception {
+        try
+        {
+            OpstiDomenskiObjekat param=paramLista.get(0);
+            String upit="INSERT INTO "+param.vratiNazivTabele()+"("+param.vratiKoloneZaUbacivanje()+")"+" VALUES"+"("+param.vratiVrednostiZaUbacivanje()+")";
+            System.out.println(upit);
+            PreparedStatement ps=DBKonekcija.getInstance().getConnection().prepareStatement(upit);
+            for(OpstiDomenskiObjekat odo:paramLista)
+            {
+                odo.postaviVrednosti(ps);
+                ps.addBatch();
+            }
+            ps.executeBatch();
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+    }
     
 }

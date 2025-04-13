@@ -20,6 +20,7 @@ import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
 import model.TerminDezurstva;
+import model.ZaposleniTermin;
 
 /**
  *
@@ -324,6 +325,28 @@ public class Komunikacija {
                 System.out.println("USPESNA IZMENA");
                 return;
             }
+        }
+        throw odgovor.getException(); 
+    }
+
+    public List<ZaposleniTermin> kreirajZaposleniTermin(List<ZaposleniTermin> listaSmena) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.KREIRAJ_ZAPOSLENI_TERMIN, listaSmena);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            return (List<ZaposleniTermin>) odgovor.getRezultat();
+        }
+        throw odgovor.getException(); 
+    }
+
+    public List<ZaposleniTermin> vratiListuZaposleniTermin(ZaposleniTermin zt) throws Exception {
+        List<ZaposleniTermin> lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_ZAPOSLENI_TERMIN,zt);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<ZaposleniTermin>) odgovor.getRezultat();
+            return lista;
         }
         throw odgovor.getException(); 
     }

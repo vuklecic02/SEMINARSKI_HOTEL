@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +108,11 @@ public class Soba implements OpstiDomenskiObjekat{
     public String vratiRazlicitPrimarniKljuc() {
         return "soba.idSoba<>"+idSoba;
 
+    }
+
+    @Override
+    public void postaviVrednosti(PreparedStatement ps) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

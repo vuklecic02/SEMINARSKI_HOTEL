@@ -19,6 +19,7 @@ public interface Repozitorijum<T> {
     void obrisi(T param) throws Exception;
     boolean daLiPostoji(T param);
     T vratiJednog(T param,String uslov,Object... vrednosti) throws Exception;
+    void kreirajVise(List<T> param) throws Exception;
     //public List<Osoba> vratiOsobuSaMestom(Osoba osoba);
 
 }

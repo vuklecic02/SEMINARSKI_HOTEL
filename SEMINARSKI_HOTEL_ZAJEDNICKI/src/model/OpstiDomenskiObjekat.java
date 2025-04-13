@@ -7,7 +7,7 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 import java.sql.ResultSet;
-
+import java.sql.PreparedStatement;
 /**
  *
  * @author vuk
@@ -31,5 +31,7 @@ public interface OpstiDomenskiObjekat extends Serializable {
     public String vratiUslovPostoji();
     
     public String vratiRazlicitPrimarniKljuc();
+    
+    public void postaviVrednosti(PreparedStatement ps) throws Exception;
 
 }

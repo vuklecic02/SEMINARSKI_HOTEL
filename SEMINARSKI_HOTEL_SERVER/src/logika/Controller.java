@@ -12,6 +12,7 @@ import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
 import model.TerminDezurstva;
+import model.ZaposleniTermin;
 import operacija.mesto.KreirajMesto;
 import operacija.mesto.ObrisiMesto;
 import operacija.mesto.VratiListuMesto;
@@ -35,6 +36,8 @@ import operacija.termin_dezurstva.PromeniTerminDezurstva;
 import operacija.termin_dezurstva.UbaciTerminDezurstva;
 import operacija.termin_dezurstva.VratiListuTerminDezurstva;
 import operacija.termin_dezurstva.VratiListuSviTerminDezurstva;
+import operacija.zaposleni_termin.KreirajZaposleniTermin;
+import operacija.zaposleni_termin.VratiListuZaposleniTermin;
 
 /**
  *
@@ -49,6 +52,7 @@ public class Controller {
     private Mesto kreiranoMesto;
     private Soba kreiranaSoba;
     private Osoba kreiranaOsoba;
+    private List<ZaposleniTermin> kreiraniZapTermini;
     
     private Controller(){
     }
@@ -195,5 +199,18 @@ public class Controller {
     public void promeniOsobu(Osoba o) throws Exception {
         PromeniOsoba operacija=new PromeniOsoba();
         operacija.izvrsi(o);
+    }
+
+    public List<ZaposleniTermin> kreirajZaposleniTermin(List<ZaposleniTermin> zt) throws Exception {
+        KreirajZaposleniTermin operacija=new KreirajZaposleniTermin();
+        operacija.izvrsi(zt);
+        kreiraniZapTermini=operacija.getZt();
+        return kreiraniZapTermini;
+    }
+
+    public List<ZaposleniTermin> vratiListuZaposleniTermin(ZaposleniTermin zt) throws Exception {
+        VratiListuZaposleniTermin operacija=new VratiListuZaposleniTermin();
+        operacija.izvrsi(zt);
+        return operacija.getLista();
     }
 }

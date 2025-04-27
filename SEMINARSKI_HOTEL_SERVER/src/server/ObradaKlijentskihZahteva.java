@@ -49,6 +49,7 @@ public class ObradaKlijentskihZahteva extends Thread{
             Osoba o;
             List<ZaposleniTermin> ztLista;
             ZaposleniTermin zt;
+            int idIzn;
             try{
             switch(zahtev.getOperacija()){
                 case LOGIN: 
@@ -276,7 +277,15 @@ public class ObradaKlijentskihZahteva extends Thread{
                     zt=(ZaposleniTermin) zahtev.getArgument();
                     odgovor.setRezultat(Controller.getInstance().vratiListuZaposleniTermin(zt));
                     break;
-                    
+                case UCITAJ_IZNAJMLJIVANJA:
+                    System.out.println("Operacija učitaj iznajmljivanja");
+                    odgovor.setRezultat(Controller.getInstance().vratiListuIznajmljivanja());
+                    break;
+                case UCITAJ_STAVKE_IZNAJMLJIVANJA:
+                    System.out.println("Operacija učitaj stavke iznajmljivanja");
+                    idIzn=(int) zahtev.getArgument();
+                    odgovor.setRezultat(Controller.getInstance().vratiListuStavkiIznajmljivanja(idIzn));
+                    break;
             }
             }catch(Exception ex){
                 odgovor.setException(ex);

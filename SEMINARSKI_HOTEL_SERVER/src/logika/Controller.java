@@ -6,13 +6,16 @@ package logika;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Iznajmljivanje;
 import model.Mesto;
 import model.OpstiDomenskiObjekat;
 import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
+import model.StavkaIznajmljivanja;
 import model.TerminDezurstva;
 import model.ZaposleniTermin;
+import operacija.iznajmljivanje.VratiListuSviIznajmljivanje;
 import operacija.mesto.KreirajMesto;
 import operacija.mesto.ObrisiMesto;
 import operacija.mesto.VratiListuMesto;
@@ -31,6 +34,7 @@ import operacija.soba.KreirajSoba;
 import operacija.soba.ObrisiSoba;
 import operacija.soba.VratiListuSoba;
 import operacija.soba.VratiListuSviSoba;
+import operacija.stavka_iznajmljivanja.VratiListuStavkiIznajmljivanja;
 import operacija.termin_dezurstva.ObrisiTerminDezurstva;
 import operacija.termin_dezurstva.PromeniTerminDezurstva;
 import operacija.termin_dezurstva.UbaciTerminDezurstva;
@@ -211,6 +215,18 @@ public class Controller {
     public List<ZaposleniTermin> vratiListuZaposleniTermin(ZaposleniTermin zt) throws Exception {
         VratiListuZaposleniTermin operacija=new VratiListuZaposleniTermin();
         operacija.izvrsi(zt);
+        return operacija.getLista();
+    }
+
+    public List<Iznajmljivanje> vratiListuIznajmljivanja() throws Exception {
+        VratiListuSviIznajmljivanje operacija=new VratiListuSviIznajmljivanje();
+        operacija.izvrsi(new Iznajmljivanje());
+        return operacija.getLista();
+    }
+
+    public List<StavkaIznajmljivanja> vratiListuStavkiIznajmljivanja(int idIzn) throws Exception {
+        VratiListuStavkiIznajmljivanja operacija=new VratiListuStavkiIznajmljivanja();
+        operacija.izvrsi(idIzn);
         return operacija.getLista();
     }
 }

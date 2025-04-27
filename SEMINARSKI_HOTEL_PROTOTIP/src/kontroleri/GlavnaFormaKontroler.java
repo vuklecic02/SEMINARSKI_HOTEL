@@ -59,6 +59,11 @@ public class GlavnaFormaKontroler {
             GlavniKontroler.getInstance().otvoriOsobaFormu();
         });
         
+        gf.iznajmljivanjaAddActionListener((ActionEvent e) -> {
+            gf.dispose();
+            GlavniKontroler.getInstance().otvoriIznajmljivanjaFormu();
+        });
+        
     }
     
     

@@ -15,10 +15,12 @@ import komunikacijaZajednicki.Operacija;
 import komunikacijaZajednicki.Posiljalac;
 import komunikacijaZajednicki.Primalac;
 import komunikacijaZajednicki.Zahtev;
+import model.Iznajmljivanje;
 import model.Mesto;
 import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
+import model.StavkaIznajmljivanja;
 import model.TerminDezurstva;
 import model.ZaposleniTermin;
 
@@ -349,6 +351,30 @@ public class Komunikacija {
             return lista;
         }
         throw odgovor.getException(); 
+    }
+
+    public List<Iznajmljivanje> vratiListuIznajmljivanja() throws Exception {
+        List<Iznajmljivanje> lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_IZNAJMLJIVANJA);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<Iznajmljivanje>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException();          
+    }
+
+    public List<StavkaIznajmljivanja> vratiStavke(int idIznajmljivanje) throws Exception {
+         List<StavkaIznajmljivanja> lista = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE_IZNAJMLJIVANJA,idIznajmljivanje);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            lista = (List<StavkaIznajmljivanja>) odgovor.getRezultat();
+            return lista;
+        }
+        throw odgovor.getException();        
     }
        
 

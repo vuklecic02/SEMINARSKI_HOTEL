@@ -6,6 +6,7 @@ package model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,8 +18,8 @@ import java.util.List;
 public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
     private Iznajmljivanje iznajmljivanje;
     private int rb;
-    private Date datumOd;
-    private Date datumDo;
+    private LocalDate datumOd;
+    private LocalDate datumDo;
     private int brojDana;
     private double iznos;
     private Soba soba;
@@ -26,7 +27,7 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
     public StavkaIznajmljivanja() {
     }
 
-    public StavkaIznajmljivanja(Iznajmljivanje iznajmljivanje, int rb, Date datumOd, Date datumDo, int brojDana, double iznos, Soba soba) {
+    public StavkaIznajmljivanja(Iznajmljivanje iznajmljivanje, int rb, LocalDate datumOd, LocalDate datumDo, int brojDana, double iznos, Soba soba) {
         this.iznajmljivanje = iznajmljivanje;
         this.rb = rb;
         this.datumOd = datumOd;
@@ -52,19 +53,19 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
         this.rb = rb;
     }
 
-    public Date getDatumOd() {
+    public LocalDate getDatumOd() {
         return datumOd;
     }
 
-    public void setDatumOd(Date datumOd) {
+    public void setDatumOd(LocalDate datumOd) {
         this.datumOd = datumOd;
     }
 
-    public Date getDatumDo() {
+    public LocalDate getDatumDo() {
         return datumDo;
     }
 
-    public void setDatumDo(Date datumDo) {
+    public void setDatumDo(LocalDate datumDo) {
         this.datumDo = datumDo;
     }
 
@@ -100,8 +101,29 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-        
-        return lista;    }
+        while(rs.next())
+        {
+            int rb=rs.getInt("stavkaiznajmljivanja.rb");
+            LocalDate datumOd=rs.getDate("stavkaiznajmljivanja.datumOd").toLocalDate();
+            LocalDate datumDo=rs.getDate("stavkaiznajmljivanja.datumDo").toLocalDate();
+            double iznos=rs.getDouble("stavkaiznajmljivanja.iznos");
+            int brojDana=rs.getInt("stavkaiznajmljivanja.brojDana");
+            
+            int idSoba=rs.getInt("soba.idSoba");
+            double cenaDan=rs.getDouble("soba.cenaDan");
+            TipSobe tipSobe=TipSobe.izBazeString(rs.getString("soba.tipSobe"));
+            Soba s=new Soba(idSoba, cenaDan, tipSobe);
+            
+            int idIznajmljivanje=rs.getInt("iznajmljivanje.idIznajmljivanje");
+            Iznajmljivanje i=new Iznajmljivanje();
+            i.setIdIznajmljivanje(idIznajmljivanje);
+            
+            StavkaIznajmljivanja si=new StavkaIznajmljivanja(i, rb, datumOd, datumDo, brojDana, iznos, s);
+            lista.add(si);
+
+        }         
+        return lista;    
+    }
 
     @Override
     public String vratiKoloneZaUbacivanje() {

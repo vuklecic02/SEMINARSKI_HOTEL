@@ -18,26 +18,18 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
     private double ukupnaCena;
     private Recepcioner recepcioner;
     private Osoba osoba;
-    private List<StavkaIznajmljivanja> stavke;
 
     public Iznajmljivanje() {
     }
 
-    public Iznajmljivanje(int idIznajmljivanje, double ukupnaCena, Recepcioner recepcioner, Osoba osoba, List<StavkaIznajmljivanja> stavke) {
+    public Iznajmljivanje(int idIznajmljivanje, double ukupnaCena, Recepcioner recepcioner, Osoba osoba){
         this.idIznajmljivanje = idIznajmljivanje;
         this.ukupnaCena = ukupnaCena;
         this.recepcioner = recepcioner;
         this.osoba = osoba;
-        this.stavke = stavke;
+        
     }
 
-    public List<StavkaIznajmljivanja> getStavke() {
-        return stavke;
-    }
-
-    public void setStavke(List<StavkaIznajmljivanja> stavke) {
-        this.stavke = stavke;
-    }
 
 
     public int getIdIznajmljivanje() {
@@ -85,7 +77,34 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
-        
+        while(rs.next())
+        {
+            int idIznajmljivanje=rs.getInt("iznajmljivanje.idIznajmljivanje");
+            double ukupnaCena=rs.getDouble("iznajmljivanje.ukupnaCena");
+            
+            int idRecepcioner=rs.getInt("recepcioner.idRecepcioner");
+            String ime=rs.getString("recepcioner.ime");
+            String prezime=rs.getString("recepcioner.prezime");
+            String username=rs.getString("recepcioner.username");
+            String password=rs.getString("recepcioner.password");
+            String email=rs.getString("recepcioner.email");
+            Recepcioner r=new Recepcioner(idRecepcioner, ime, prezime, username, password, email);
+            
+            int idOsoba=rs.getInt("osoba.idOsoba");
+            String imeOsoba=rs.getString("osoba.ime");
+            String prezimeOsoba=rs.getString("osoba.prezime");
+            String telefon=rs.getString("osoba.telefon");
+            String brLicneIsprave=rs.getString("osoba.brLicneIsprave");
+            
+            int idMesta=rs.getInt("mesto.idMesta");
+            String naziv=rs.getString("mesto.naziv");
+            Drzava drzava=Drzava.izBazeString(rs.getString("mesto.drzava"));
+            Mesto mesto=new Mesto(idMesta, naziv, drzava);
+            Osoba o=new Osoba(idOsoba, imeOsoba, prezimeOsoba, telefon, brLicneIsprave, mesto);
+            
+            Iznajmljivanje i=new Iznajmljivanje(idIznajmljivanje, ukupnaCena, r, o);
+            lista.add(i);
+        }        
         return lista;
     }
 

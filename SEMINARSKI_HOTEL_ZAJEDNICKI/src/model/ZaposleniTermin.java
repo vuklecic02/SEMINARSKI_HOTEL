@@ -99,7 +99,7 @@ public class ZaposleniTermin implements OpstiDomenskiObjekat{
             String password=rs.getString("recepcioner.password");
             String email=rs.getString("recepcioner.email");
             Rola rola=Rola.izBazeString(rs.getString("recepcioner.rola"));
-            boolean aktivan=rs.getBoolean("recepcioner.aktivan");
+            int aktivan=rs.getInt("recepcioner.aktivan");
             Recepcioner r=new Recepcioner(idRecepcioner, ime, prezime, username, password, email,rola,aktivan);
             
             int idTerminDezurstva=rs.getInt("termindezurstva.idTerminDezurstva");

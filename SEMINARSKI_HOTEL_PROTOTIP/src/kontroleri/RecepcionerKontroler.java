@@ -148,7 +148,7 @@ public class RecepcionerKontroler {
                     }
                     RecepcionerModelTabela rmt=(RecepcionerModelTabela)rf.getjTableRecepcioneri().getModel();
                     Recepcioner recepcionerSelektovani=rmt.getLista().get(rf.getjTableRecepcioneri().getSelectedRow());
-                    if(recepcionerSelektovani.isAktivan())
+                    if(recepcionerSelektovani.isAktivan()==1)
                     {
                         try 
                         {
@@ -194,7 +194,7 @@ public class RecepcionerKontroler {
                     }
                     RecepcionerModelTabela rmt=(RecepcionerModelTabela)rf.getjTableRecepcioneri().getModel();
                     Recepcioner recepcionerSelektovani=rmt.getLista().get(rf.getjTableRecepcioneri().getSelectedRow());
-                    if(!recepcionerSelektovani.isAktivan())
+                    if(recepcionerSelektovani.isAktivan()==0)
                     {
                         try 
                         {

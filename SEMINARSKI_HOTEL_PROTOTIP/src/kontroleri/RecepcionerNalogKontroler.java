@@ -5,8 +5,10 @@
 package kontroleri;
 
 import glavniKontroler.GlavniKontroler;
+import hashing.Hash;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -132,27 +134,33 @@ public class RecepcionerNalogKontroler {
         });
         
         rnf.sacuvajAddActionListener((ActionEvent e) -> {
-            String ime=rnf.getjTextFieldIme().getText();
-            String prezime=rnf.getjTextFieldPrezime().getText();
-            String username=rnf.getjTextFieldUsername().getText();
-            String email=rnf.getjTextFieldMail().getText();
-            String password=String.valueOf(rnf.getjPasswordField1().getPassword());
-            selektovani.setIme(ime);
-            selektovani.setPrezime(prezime);
-            selektovani.setUsername(username);
-            selektovani.setEmail(email);
-            selektovani.setPassword(password);
             try
             {
-                
-                Komunikacija.getInstance().promeniRecepcionera(selektovani);
-                JOptionPane.showMessageDialog(rnf, "Sistem je zapamtio recepcionera", "Promeni recepcionera", JOptionPane.INFORMATION_MESSAGE);
-                roditelj.azurirajTabelu();
-                rnf.dispose();
-                GlavniKontroler.getInstance().otvoriRecepcionerFormu();
-                
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(rnf, ex.getMessage(), "Promeni recepcionera", JOptionPane.ERROR_MESSAGE);
+                String ime=rnf.getjTextFieldIme().getText();
+                String prezime=rnf.getjTextFieldPrezime().getText();
+                String username=rnf.getjTextFieldUsername().getText();
+                String email=rnf.getjTextFieldMail().getText();
+                String password=Hash.hesirajLozinku(String.valueOf(rnf.getjPasswordField1().getPassword()));
+                selektovani.setIme(ime);
+                selektovani.setPrezime(prezime);
+                selektovani.setUsername(username);
+                selektovani.setEmail(email);
+                selektovani.setPassword(password);
+                try
+                {
+                    
+                    Komunikacija.getInstance().promeniRecepcionera(selektovani);
+                    JOptionPane.showMessageDialog(rnf, "Sistem je zapamtio recepcionera", "Promeni recepcionera", JOptionPane.INFORMATION_MESSAGE);
+                    roditelj.azurirajTabelu();
+                    rnf.dispose();
+                    GlavniKontroler.getInstance().otvoriRecepcionerFormu();
+                    
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(rnf, ex.getMessage(), "Promeni recepcionera", JOptionPane.ERROR_MESSAGE);
+                    
+                }
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(RecepcionerNalogKontroler.class.getName()).log(Level.SEVERE, null, ex);
                                  
             }
         });

@@ -23,7 +23,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
     private String password;
     private String email;
     private Rola rola;
-    private boolean aktivan;
+    private int aktivan;
 
     public Recepcioner() {
     }
@@ -34,7 +34,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
     }
 
     public Recepcioner(int idRecepcioner, String ime, String prezime, String username, 
-            String password, String email, Rola rola,boolean aktivan) {
+            String password, String email, Rola rola,int aktivan) {
         this.idRecepcioner = idRecepcioner;
         this.ime = ime;
         this.prezime = prezime;
@@ -42,7 +42,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
         this.password = password;
         this.email=email;
         this.rola=rola;
-        this.aktivan=aktivan;
+        this.aktivan=1;
     }
     
     public Recepcioner(String ime, String prezime, String username, String password, String email) {
@@ -52,7 +52,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
         this.password = password;
         this.email=email;
         this.rola=Rola.KORISNIK;
-        this.aktivan=true;
+        this.aktivan=1;
     }    
 
     public String getEmail() {
@@ -108,11 +108,11 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
         this.rola = rola;
     }
 
-    public boolean isAktivan() {
+    public int isAktivan() {
         return aktivan;
     }
 
-    public void setAktivan(boolean aktivan) {
+    public void setAktivan(int aktivan) {
         this.aktivan = aktivan;
     }
     
@@ -144,7 +144,7 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
             String password=rs.getString("recepcioner.password");
             String email=rs.getString("recepcioner.email");
             Rola rola=Rola.izBazeString(rs.getString("recepcioner.rola"));
-            boolean aktivan=rs.getBoolean("recepcioner.aktivan");
+            int aktivan=rs.getInt("recepcioner.aktivan");
             Recepcioner r=new Recepcioner(idRecepcioner, ime, prezime, username, password, email,rola,aktivan);
             lista.add(r);
         }

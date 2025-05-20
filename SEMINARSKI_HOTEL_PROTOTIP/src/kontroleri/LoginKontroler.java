@@ -6,6 +6,7 @@ package kontroleri;
 
 import com.sun.java.accessibility.util.AWTEventMonitor;
 import glavniKontroler.GlavniKontroler;
+import hashing.Hash;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -45,6 +46,7 @@ public class LoginKontroler {
                         return;
                     }
                     System.out.println(username+" "+sifra);
+                    sifra=Hash.hesirajLozinku(sifra);
                     Recepcioner recepcioner=Komunikacija.getInstance().login(username,sifra);
                     
                     if(recepcioner==null)
@@ -54,7 +56,7 @@ public class LoginKontroler {
                     else
                     {
                         GlavniKontroler.getInstance().setUlogovaniRecepcioner(recepcioner);
-                        if(!recepcioner.isAktivan())
+                        if(recepcioner.isAktivan()==0)
                         {
                             JOptionPane.showMessageDialog(lf, "Nalog je deaktiviran!","Login", JOptionPane.ERROR_MESSAGE);
                             return;

@@ -5,6 +5,7 @@
 package kontroleri;
 
 import glavniKontroler.GlavniKontroler;
+import hashing.Hash;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -31,27 +32,22 @@ public class RegistracijaKontroler {
     }
 
     private void addActionListener() {
-        rf.odustaniAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int rezultat = JOptionPane.showConfirmDialog(null, "Da li odustajete?", "Potvrda", JOptionPane.YES_NO_OPTION);
-                if (rezultat == JOptionPane.YES_OPTION) {
-                    rf.dispose();
-                    GlavniKontroler.getInstance().otvoriLoginFormu();
-                }                
+        rf.odustaniAddActionListener((ActionEvent e) -> {
+            int rezultat = JOptionPane.showConfirmDialog(null, "Da li odustajete?", "Potvrda", JOptionPane.YES_NO_OPTION);
+            if (rezultat == JOptionPane.YES_OPTION) {
+                rf.dispose();
+                GlavniKontroler.getInstance().otvoriLoginFormu();                
             }
         });
         
-        rf.registrujSeAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        rf.registrujSeAddActionListener((ActionEvent e) -> {
             try
             {        
                 String ime=rf.getjTextFieldIme().getText();
                 String prezime=rf.getjTextFieldPrezime().getText();
                 String username=rf.getjTextFieldUsername().getText().trim();
                 String email=rf.getjTextFieldEmail().getText().trim();
-                String password=String.valueOf(rf.getjPasswordField().getPassword());
+                String password=Hash.hesirajLozinku(String.valueOf(rf.getjPasswordField().getPassword()));
 
                 Recepcioner recepcioner=new Recepcioner(ime, prezime, username, password, email);
                 recepcioner=Komunikacija.getInstance().kreirajRecepcionera(recepcioner);
@@ -63,8 +59,7 @@ public class RegistracijaKontroler {
             catch(Exception ex)
             {
                 JOptionPane.showMessageDialog(rf, ex.getMessage(),"Register",JOptionPane.ERROR_MESSAGE);
-            }                 
-        }
+            }
         });
     }
 }

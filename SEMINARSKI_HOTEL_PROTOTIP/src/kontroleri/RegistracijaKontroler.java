@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import komunikacijaKlijent.Komunikacija;
 import model.Recepcioner;
+import model.Rola;
 import view.LoginForma;
 import view.RegistracijaForma;
 

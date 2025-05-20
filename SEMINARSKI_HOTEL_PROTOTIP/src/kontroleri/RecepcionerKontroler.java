@@ -18,6 +18,9 @@ import model.Recepcioner;
 import view.RecepcionerForma;
 import modelTabela.RecepcionerModelTabela;
 import glavniKontroler.GlavniKontroler;
+import java.util.HashMap;
+import java.util.Map;
+import model.Rola;
 import model.TerminDezurstva;
 
 
@@ -107,37 +110,121 @@ public class RecepcionerKontroler {
             }
         });
         
-        rf.ocistiAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                rf.getjTextFieldPretraga().setText("");
-                popuniTabelu();
-            }
+        rf.ocistiAddActionListener((ActionEvent e) -> {
+            rf.getjTextFieldPretraga().setText("");
+            popuniTabelu();
         });
         
-        rf.nazadAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                rf.dispose();
-                GlavniKontroler.getInstance().otvoriGlavnuFormu();
-            }
+        rf.nazadAddActionListener((ActionEvent e) -> {
+            rf.dispose();
+            GlavniKontroler.getInstance().otvoriGlavnuFormu();
         });
         
-        rf.detaljiAddActionListener(new ActionListener() {
+        rf.detaljiAddActionListener((ActionEvent e) -> {
+            if(rf.getjTableRecepcioneri().getSelectedRow()==-1)
+            {
+                JOptionPane.showMessageDialog(rf, "Odaberite recepcionera!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            RecepcionerModelTabela rmt=(RecepcionerModelTabela)rf.getjTableRecepcioneri().getModel();
+            Recepcioner recepcionerSelektovani=rmt.getLista().get(rf.getjTableRecepcioneri().getSelectedRow());
+            Recepcioner recepcionerUlogovani=GlavniKontroler.getInstance().getUlogovaniRecepcioner();
+            rf.dispose();
+            GlavniKontroler.getInstance().otvoriRecepcionerNalogFormu(recepcionerSelektovani,recepcionerUlogovani);
+        });
+        
+        rf.deaktivirajNalogAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(rf.getjTableRecepcioneri().getSelectedRow()==-1)
+                Recepcioner ulogovani=GlavniKontroler.getInstance().getUlogovaniRecepcioner();
+                Map<Boolean, Recepcioner> mapa = new HashMap<>();
+                
+                if(ulogovani.getRola()==Rola.ADMIN)
                 {
-                    JOptionPane.showMessageDialog(rf, "Odaberite recepcionera!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    if(rf.getjTableRecepcioneri().getSelectedRow()==-1)
+                    {
+                        JOptionPane.showMessageDialog(rf, "Odaberite recepcionera!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    RecepcionerModelTabela rmt=(RecepcionerModelTabela)rf.getjTableRecepcioneri().getModel();
+                    Recepcioner recepcionerSelektovani=rmt.getLista().get(rf.getjTableRecepcioneri().getSelectedRow());
+                    if(recepcionerSelektovani.isAktivan())
+                    {
+                        try 
+                        {
+                            mapa.put(Boolean.TRUE,recepcionerSelektovani);
+                            boolean deaktivacija=Komunikacija.getInstance().deaktivirajNalog(mapa);
+                            if(deaktivacija==true)
+                            {
+                                JOptionPane.showMessageDialog(rf, "Nalog je deaktiviran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                                return;
+                            }
+                        } 
+                        catch (Exception ex) 
+                        {
+                            JOptionPane.showMessageDialog(rf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rf, "Nalog je već deaktiviran!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rf, "Nemate dozvolu za ovu operaciju!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
-                RecepcionerModelTabela rmt=(RecepcionerModelTabela)rf.getjTableRecepcioneri().getModel();
-                Recepcioner recepcionerSelektovani=rmt.getLista().get(rf.getjTableRecepcioneri().getSelectedRow());
-                Recepcioner recepcionerUlogovani=GlavniKontroler.getInstance().getUlogovaniRecepcioner();
-                rf.dispose();
-                GlavniKontroler.getInstance().otvoriRecepcionerNalogFormu(recepcionerSelektovani,recepcionerUlogovani);
             }
         });
+        
+        rf.aktivirajNalogAddActionListener((ActionEvent e) -> {
+                Recepcioner ulogovani=GlavniKontroler.getInstance().getUlogovaniRecepcioner();
+                Map<Boolean, Recepcioner> mapa = new HashMap<>();
+                
+                if(ulogovani.getRola()==Rola.ADMIN)
+                {
+                    if(rf.getjTableRecepcioneri().getSelectedRow()==-1)
+                    {
+                        JOptionPane.showMessageDialog(rf, "Odaberite recepcionera!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    RecepcionerModelTabela rmt=(RecepcionerModelTabela)rf.getjTableRecepcioneri().getModel();
+                    Recepcioner recepcionerSelektovani=rmt.getLista().get(rf.getjTableRecepcioneri().getSelectedRow());
+                    if(!recepcionerSelektovani.isAktivan())
+                    {
+                        try 
+                        {
+                            mapa.put(Boolean.FALSE,recepcionerSelektovani);
+                            boolean aktivacija=Komunikacija.getInstance().deaktivirajNalog(mapa);
+                            if(aktivacija==true)
+                            {
+                                JOptionPane.showMessageDialog(rf, "Nalog je aktiviran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                                return;
+                            }
+                        } 
+                        catch (Exception ex) 
+                        {
+                            JOptionPane.showMessageDialog(rf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rf, "Nalog je već aktiviran!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rf, "Nemate dozvolu za ovu operaciju!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            });            
     }
 
     private void popuniComboBox() {

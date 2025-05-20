@@ -39,12 +39,12 @@ public class LoginKontroler {
                 try {
                     String username=lf.getjTextFieldUsername().getText().trim();
                     String sifra=String.valueOf(lf.getjPasswordFieldSifra().getPassword());
-//                    if(username.isEmpty() || sifra.isEmpty())
-//                    {
-//                        JOptionPane.showMessageDialog(lf, "Niste popunili polje/a!","Login", JOptionPane.ERROR_MESSAGE);
-//                        return;
-//                    }
-//                    System.out.println(username+" "+sifra);
+                    if(username.isEmpty() || sifra.isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(lf, "Niste popunili polje/a!","Login", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    System.out.println(username+" "+sifra);
                     Recepcioner recepcioner=Komunikacija.getInstance().login(username,sifra);
                     
                     if(recepcioner==null)
@@ -54,6 +54,11 @@ public class LoginKontroler {
                     else
                     {
                         GlavniKontroler.getInstance().setUlogovaniRecepcioner(recepcioner);
+                        if(!recepcioner.isAktivan())
+                        {
+                            JOptionPane.showMessageDialog(lf, "Nalog je deaktiviran!","Login", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                         JOptionPane.showMessageDialog(lf, "Sistem je prijavio korisnika "+recepcioner.getIme(),"Login", JOptionPane.INFORMATION_MESSAGE);
                         GlavniKontroler.getInstance().otvoriGlavnuFormu();
                         lf.dispose();

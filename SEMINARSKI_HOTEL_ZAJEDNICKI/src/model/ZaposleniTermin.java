@@ -98,7 +98,9 @@ public class ZaposleniTermin implements OpstiDomenskiObjekat{
             String username=rs.getString("recepcioner.username");
             String password=rs.getString("recepcioner.password");
             String email=rs.getString("recepcioner.email");
-            Recepcioner r=new Recepcioner(idRecepcioner, ime, prezime, username, password, email);
+            Rola rola=Rola.izBazeString(rs.getString("recepcioner.rola"));
+            boolean aktivan=rs.getBoolean("recepcioner.aktivan");
+            Recepcioner r=new Recepcioner(idRecepcioner, ime, prezime, username, password, email,rola,aktivan);
             
             int idTerminDezurstva=rs.getInt("termindezurstva.idTerminDezurstva");
             String smena=rs.getString("termindezurstva.smena");

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import komunikacijaZajednicki.Odgovor;
@@ -366,7 +367,7 @@ public class Komunikacija {
     }
 
     public List<StavkaIznajmljivanja> vratiStavke(int idIznajmljivanje) throws Exception {
-         List<StavkaIznajmljivanja> lista = new ArrayList<>();
+        List<StavkaIznajmljivanja> lista = new ArrayList<>();
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE_IZNAJMLJIVANJA,idIznajmljivanje);
         posiljalac.salje(zahtev);
         Odgovor odgovor = (Odgovor) primalac.prima();
@@ -375,6 +376,18 @@ public class Komunikacija {
             return lista;
         }
         throw odgovor.getException();        
+    }
+
+    public boolean deaktivirajNalog(Map<Boolean, Recepcioner> mapa) throws Exception {
+        boolean deaktivacija;
+        Zahtev zahtev = new Zahtev(Operacija.DEAKTIVIRAJ_NALOG,mapa);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            deaktivacija = (boolean) odgovor.getRezultat();
+            return deaktivacija;
+        }
+        throw odgovor.getException();  
     }
        
 

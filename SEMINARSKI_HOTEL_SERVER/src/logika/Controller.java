@@ -6,6 +6,7 @@ package logika;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import model.Iznajmljivanje;
 import model.Mesto;
 import model.OpstiDomenskiObjekat;
@@ -25,6 +26,7 @@ import operacija.osoba.ObrisiOsoba;
 import operacija.osoba.PromeniOsoba;
 import operacija.osoba.VratiListuOsoba;
 import operacija.osoba.VratiListuSviOsoba;
+import operacija.recepcioner.DeaktivirajRecepcioner;
 import operacija.recepcioner.KreirajRecepcioner;
 import operacija.recepcioner.PrijaviRecepcioner;
 import operacija.recepcioner.PromeniRecepcioner;
@@ -228,5 +230,11 @@ public class Controller {
         VratiListuStavkiIznajmljivanja operacija=new VratiListuStavkiIznajmljivanja();
         operacija.izvrsi(idIzn);
         return operacija.getLista();
+    }
+
+    public boolean deaktivirajNalog(Map<Boolean, Recepcioner> mapa) throws Exception {
+        DeaktivirajRecepcioner operacija=new DeaktivirajRecepcioner();
+        operacija.izvrsi(mapa);
+        return operacija.isAktivacija();
     }
 }

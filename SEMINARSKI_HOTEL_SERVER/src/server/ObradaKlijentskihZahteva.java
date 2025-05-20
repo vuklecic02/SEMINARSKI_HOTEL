@@ -7,6 +7,7 @@ package server;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import komunikacijaZajednicki.Posiljalac;
@@ -49,6 +50,7 @@ public class ObradaKlijentskihZahteva extends Thread{
             Osoba o;
             List<ZaposleniTermin> ztLista;
             ZaposleniTermin zt;
+            Map<Boolean, Recepcioner> mapa;
             int idIzn;
             try{
             switch(zahtev.getOperacija()){
@@ -285,6 +287,18 @@ public class ObradaKlijentskihZahteva extends Thread{
                     System.out.println("Operacija učitaj stavke iznajmljivanja");
                     idIzn=(int) zahtev.getArgument();
                     odgovor.setRezultat(Controller.getInstance().vratiListuStavkiIznajmljivanja(idIzn));
+                    break;
+                case DEAKTIVIRAJ_NALOG:
+                    try
+                    {
+                        System.out.println("Operacija deaktiviraj nalog");
+                        mapa=(Map<Boolean, Recepcioner>) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().deaktivirajNalog(mapa));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
                     break;
             }
             }catch(Exception ex){

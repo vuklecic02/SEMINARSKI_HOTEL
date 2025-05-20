@@ -160,5 +160,26 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
         }
         
     }
+
+    @Override
+    public boolean izmeniAktivaciju(OpstiDomenskiObjekat param, String uslov) throws Exception {
+        try
+        {
+            String upit = "UPDATE "+param.vratiNazivTabele()+ " SET "+uslov+ " WHERE "+param.vratiPrimarniKljuc();
+            System.out.println(upit);
+            Statement st=DBKonekcija.getInstance().getConnection().createStatement();
+            int result=st.executeUpdate(upit);
+            st.close();
+            if(result>0)
+                return true;
+            else
+                return false;            
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }        
+    }
     
 }

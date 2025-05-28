@@ -95,7 +95,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldUsername">
       <Properties>
-        <Property name="text" type="java.lang.String" value="vuklecic"/>
+        <Property name="text" type="java.lang.String" value="vukadmin"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonOdustani">
@@ -129,7 +129,7 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordFieldSifra">
       <Properties>
-        <Property name="text" type="java.lang.String" value="vule2002"/>
+        <Property name="text" type="java.lang.String" value="Vule2002"/>
       </Properties>
     </Component>
   </SubComponents>

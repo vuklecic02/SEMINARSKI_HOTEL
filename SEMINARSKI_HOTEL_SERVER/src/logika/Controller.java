@@ -16,6 +16,7 @@ import model.Soba;
 import model.StavkaIznajmljivanja;
 import model.TerminDezurstva;
 import model.ZaposleniTermin;
+import operacija.iznajmljivanje.KreirajIznajmljivanje;
 import operacija.iznajmljivanje.VratiListuSviIznajmljivanje;
 import operacija.mesto.KreirajMesto;
 import operacija.mesto.ObrisiMesto;
@@ -36,6 +37,7 @@ import operacija.soba.KreirajSoba;
 import operacija.soba.ObrisiSoba;
 import operacija.soba.VratiListuSoba;
 import operacija.soba.VratiListuSviSoba;
+import operacija.stavka_iznajmljivanja.KreirajStavkeIznajmljivanja;
 import operacija.stavka_iznajmljivanja.VratiListuStavkiIznajmljivanja;
 import operacija.termin_dezurstva.ObrisiTerminDezurstva;
 import operacija.termin_dezurstva.PromeniTerminDezurstva;
@@ -59,6 +61,8 @@ public class Controller {
     private Soba kreiranaSoba;
     private Osoba kreiranaOsoba;
     private List<ZaposleniTermin> kreiraniZapTermini;
+    private Iznajmljivanje kreiranoIznajmljivanje;
+    private List<StavkaIznajmljivanja> kreiraneStavke;
     
     private Controller(){
     }
@@ -236,5 +240,19 @@ public class Controller {
         DeaktivirajRecepcioner operacija=new DeaktivirajRecepcioner();
         operacija.izvrsi(mapa);
         return operacija.isAktivacija();
+    }
+
+    public Iznajmljivanje kreirajIznajmljivanje(Iznajmljivanje i) throws Exception {
+         KreirajIznajmljivanje operacija=new KreirajIznajmljivanje();
+         operacija.izvrsi(i);
+         kreiranoIznajmljivanje=operacija.getIznajmljvanje();
+         return kreiranoIznajmljivanje;
+    }
+
+    public List<StavkaIznajmljivanja> kreirajStavkeIznajmljivanja(List<StavkaIznajmljivanja> stavke) throws Exception {
+        KreirajStavkeIznajmljivanja operacija=new KreirajStavkeIznajmljivanja();
+        operacija.izvrsi(stavke);
+        kreiraneStavke=operacija.getStavke();
+        return kreiraneStavke;
     }
 }

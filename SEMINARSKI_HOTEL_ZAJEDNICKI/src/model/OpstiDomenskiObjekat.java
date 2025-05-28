@@ -34,4 +34,6 @@ public interface OpstiDomenskiObjekat extends Serializable {
     
     public void postaviVrednosti(PreparedStatement ps) throws Exception;
 
+    public void postaviID(long generatedId);
+
 }

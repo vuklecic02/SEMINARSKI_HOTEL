@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -99,6 +100,35 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final StavkaIznajmljivanja other = (StavkaIznajmljivanja) obj;
+        if (!Objects.equals(this.datumOd, other.datumOd)) {
+            return false;
+        }
+        if (!Objects.equals(this.datumDo, other.datumDo)) {
+            return false;
+        }
+        return Objects.equals(this.soba, other.soba);
+    }
+    
+    
+
+    @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<OpstiDomenskiObjekat> lista=new ArrayList<>();
         while(rs.next())
@@ -163,6 +193,16 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
 
     @Override
     public void postaviVrednosti(PreparedStatement ps) throws Exception {
+        ps.setLong(1, iznajmljivanje.getIdIznajmljivanje());
+        ps.setDate(2, java.sql.Date.valueOf(datumOd));
+        ps.setDate(3, java.sql.Date.valueOf(datumDo));
+        ps.setDouble(4, iznos);
+        ps.setLong(5, brojDana);
+        ps.setLong(6, soba.getIdSoba());
+    }
+
+    @Override
+    public void postaviID(long generatedId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

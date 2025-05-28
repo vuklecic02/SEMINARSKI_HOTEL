@@ -214,5 +214,10 @@ public class Recepcioner implements OpstiDomenskiObjekat, Serializable{
     public void postaviVrednosti(PreparedStatement ps) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void postaviID(long generatedId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

@@ -53,7 +53,7 @@ public class Soba implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return cenaDan + " " + tipSobe;
+        return tipSobe + " - " +cenaDan+" rsd";
     }
 
     @Override
@@ -112,6 +112,11 @@ public class Soba implements OpstiDomenskiObjekat{
 
     @Override
     public void postaviVrednosti(PreparedStatement ps) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postaviID(long generatedId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

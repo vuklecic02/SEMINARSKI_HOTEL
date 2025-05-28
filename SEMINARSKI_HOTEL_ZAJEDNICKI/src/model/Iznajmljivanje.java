@@ -30,6 +30,12 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
         
     }
 
+    public Iznajmljivanje( double ukupnaCena, Recepcioner recepcioner, Osoba osoba){
+        this.ukupnaCena = ukupnaCena;
+        this.recepcioner = recepcioner;
+        this.osoba = osoba;
+        
+    }    
 
 
     public int getIdIznajmljivanje() {
@@ -137,7 +143,7 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiUslovPostoji() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return null;
     }
 
     @Override
@@ -148,6 +154,11 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
     @Override
     public void postaviVrednosti(PreparedStatement ps) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void postaviID(long generatedId) {
+        this.idIznajmljivanje=(int) generatedId;
     }
     
     

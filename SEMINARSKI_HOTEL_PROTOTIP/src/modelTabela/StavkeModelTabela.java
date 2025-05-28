@@ -16,7 +16,7 @@ import model.StavkaIznajmljivanja;
 public class StavkeModelTabela extends AbstractTableModel {
 
     List<StavkaIznajmljivanja> lista=new ArrayList<>();
-    String kolone[]={"rb","datum od","datum do","iznos","soba"};
+    String kolone[]={"datum od","datum do","broj dana","iznos","soba"};
     
     public StavkeModelTabela(List<StavkaIznajmljivanja> lista)
     {
@@ -43,11 +43,11 @@ public class StavkeModelTabela extends AbstractTableModel {
         StavkaIznajmljivanja si=lista.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return si.getRb();
-            case 1:
                 return si.getDatumOd();
-            case 2:
+            case 1:
                 return si.getDatumDo();
+            case 2:
+                return si.getBrojDana();
             case 3:
                 return si.getIznos();
             case 4:
@@ -66,6 +66,11 @@ public class StavkeModelTabela extends AbstractTableModel {
     {
         lista.add(si);
         fireTableDataChanged();
-    }     
+    }
     
+    public void ukloniElement(int selektovaniRed)
+    {
+        lista.remove(selektovaniRed);
+        fireTableDataChanged();
+    }
 }

@@ -153,4 +153,9 @@ public class ZaposleniTermin implements OpstiDomenskiObjekat{
         ps.setLong(2, terminDezurstva.getIdTerminDezurstva());
         ps.setDate(3, java.sql.Date.valueOf(datum));
     }
+
+    @Override
+    public void postaviID(long generatedId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

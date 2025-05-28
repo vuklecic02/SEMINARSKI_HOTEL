@@ -389,6 +389,28 @@ public class Komunikacija {
         }
         throw odgovor.getException();  
     }
+
+    public Iznajmljivanje kreirajIznajmljivanje(Iznajmljivanje i) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.KREIRAJ_IZNAJMLJIVANJE,i);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            return (Iznajmljivanje) odgovor.getRezultat();
+
+        }
+        throw odgovor.getException();          
+    }
+
+    public List<StavkaIznajmljivanja> kreirajStavkeIznajmljivanja(List<StavkaIznajmljivanja> listaStavki) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.KREIRAJ_STAVKE_IZNAJMLJIVANJA,listaStavki);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            return (List<StavkaIznajmljivanja>) odgovor.getRezultat();
+
+        }
+        throw odgovor.getException();            
+    }
        
 
     

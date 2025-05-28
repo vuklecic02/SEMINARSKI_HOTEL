@@ -15,10 +15,12 @@ import komunikacijaZajednicki.Primalac;
 import komunikacijaZajednicki.Zahtev;
 import komunikacijaZajednicki.Odgovor;
 import logika.Controller;
+import model.Iznajmljivanje;
 import model.Mesto;
 import model.Osoba;
 import model.Recepcioner;
 import model.Soba;
+import model.StavkaIznajmljivanja;
 import model.TerminDezurstva;
 import model.ZaposleniTermin;
 /**
@@ -51,6 +53,8 @@ public class ObradaKlijentskihZahteva extends Thread{
             List<ZaposleniTermin> ztLista;
             ZaposleniTermin zt;
             Map<Boolean, Recepcioner> mapa;
+            Iznajmljivanje i;
+            List<StavkaIznajmljivanja> stavke;
             int idIzn;
             try{
             switch(zahtev.getOperacija()){
@@ -300,6 +304,30 @@ public class ObradaKlijentskihZahteva extends Thread{
                         odgovor.setException(ex);
                     }
                     break;
+                case KREIRAJ_IZNAJMLJIVANJE:
+                    try
+                    {
+                        System.out.println("Operacija kreiraj iznajmljivanje");
+                        i= (Iznajmljivanje) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajIznajmljivanje(i));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                    break;
+                case KREIRAJ_STAVKE_IZNAJMLJIVANJA:
+                    try
+                    {
+                        System.out.println("Operacija kreiraj stavke iznajmljivanja");
+                        stavke= (List<StavkaIznajmljivanja>) zahtev.getArgument();
+                        odgovor.setRezultat(Controller.getInstance().kreirajStavkeIznajmljivanja(stavke));
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    }
+                    break;                    
             }
             }catch(Exception ex){
                 odgovor.setException(ex);

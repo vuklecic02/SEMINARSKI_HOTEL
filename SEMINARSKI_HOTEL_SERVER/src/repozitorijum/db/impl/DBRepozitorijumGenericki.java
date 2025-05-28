@@ -43,9 +43,15 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
         {
             String upit="INSERT INTO "+param.vratiNazivTabele()+"("+param.vratiKoloneZaUbacivanje()+")"+" VALUES"+"("+param.vratiVrednostiZaUbacivanje()+")";
             System.out.println(upit);
-            PreparedStatement ps=DBKonekcija.getInstance().getConnection().prepareStatement(upit);
-            ps.executeUpdate();
-            ps.close();            
+            Statement st=DBKonekcija.getInstance().getConnection().createStatement();
+            st.executeUpdate(upit, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next()) {
+                long id = rs.getLong(1);
+                param.postaviID(id);
+            }
+            st.close();            
         }
         catch(SQLException ex)
         {
@@ -144,7 +150,8 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
         try
         {
             OpstiDomenskiObjekat param=paramLista.get(0);
-            String upit="INSERT INTO "+param.vratiNazivTabele()+"("+param.vratiKoloneZaUbacivanje()+")"+" VALUES"+"("+param.vratiVrednostiZaUbacivanje()+")";
+            String upit="INSERT INTO "+param.vratiNazivTabele()+
+                    "("+param.vratiKoloneZaUbacivanje()+")"+" VALUES(?, ?, ?, ?, ?, ?)";
             System.out.println(upit);
             PreparedStatement ps=DBKonekcija.getInstance().getConnection().prepareStatement(upit);
             for(OpstiDomenskiObjekat odo:paramLista)

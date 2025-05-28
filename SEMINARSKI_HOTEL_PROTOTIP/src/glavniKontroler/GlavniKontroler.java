@@ -6,6 +6,7 @@ package glavniKontroler;
 
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.IznajmljivanjeKontroler;
+import kontroleri.IznajmljivanjeKreirajKontroler;
 import kontroleri.LoginKontroler;
 import kontroleri.MestoKontroler;
 import kontroleri.MestoKreirajKontroler;
@@ -26,6 +27,7 @@ import model.Soba;
 import model.TerminDezurstva;
 import view.GlavnaForma;
 import view.IznajmljivanjeForma;
+import view.IznajmljivanjeKreirajForma;
 import view.LoginForma;
 import view.MestoForma;
 import view.MestoKreirajForma;
@@ -60,6 +62,7 @@ public class GlavniKontroler {
     private OsobaKontroler ok;
     private OsobaKreirajKontroler okk;
     private IznajmljivanjeKontroler ik;
+    private IznajmljivanjeKreirajKontroler ikk;
 
     public void setUlogovaniRecepcioner(Recepcioner ulogovaniRecepcioner) {
         this.ulogovaniRecepcioner = ulogovaniRecepcioner;
@@ -154,6 +157,11 @@ public class GlavniKontroler {
     public void otvoriIznajmljivanjaFormu() {
         ik=new IznajmljivanjeKontroler(new IznajmljivanjeForma());
         ik.otvoriFormu();
+    }
+
+    public void otvoriIznajmljivanjeKreirajFormu() {
+        ikk=new IznajmljivanjeKreirajKontroler(new IznajmljivanjeKreirajForma(ulogovaniRecepcioner));
+        ikk.otvoriFormu();
     }
     
 }

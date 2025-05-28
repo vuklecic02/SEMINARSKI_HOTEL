@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -207,4 +208,8 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
     private javax.swing.JTable jTableIznajmljivanje;
     private javax.swing.JTable jTableStavke;
     // End of variables declaration//GEN-END:variables
+
+    public void kreirajAddActionListener(ActionListener actionListener) {
+        jButtonKreiraj.addActionListener(actionListener);
+    }
 }

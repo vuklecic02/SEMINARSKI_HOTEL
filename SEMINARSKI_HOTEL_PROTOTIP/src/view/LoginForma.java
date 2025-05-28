@@ -92,7 +92,7 @@ public class LoginForma extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
-        jTextFieldUsername.setText("vuklecic");
+        jTextFieldUsername.setText("vukadmin");
 
         jButtonOdustani.setText("Odustani");
         jButtonOdustani.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class LoginForma extends javax.swing.JFrame {
             }
         });
 
-        jPasswordFieldSifra.setText("vule2002");
+        jPasswordFieldSifra.setText("Vule2002");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

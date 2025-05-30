@@ -411,6 +411,20 @@ public class Komunikacija {
         }
         throw odgovor.getException();            
     }
+
+    public void obrisiIznajmljivanje(Iznajmljivanje selektovano) throws Exception {
+        Zahtev zahtev=new Zahtev(Operacija.OBRISI_IZNAJMLJIVANJE, selektovano);
+        posiljalac.salje(zahtev);
+        Odgovor odgovor=(Odgovor) primalac.prima();
+        if (odgovor.getException() == null) {
+            if(odgovor.getRezultat()==null)
+            {
+                System.out.println("USPESNO BRISANJE");
+                return;
+            }
+        }
+        throw odgovor.getException(); 
+    }
        
 
     

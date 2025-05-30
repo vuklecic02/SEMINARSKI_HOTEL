@@ -38,6 +38,7 @@ import operacija.soba.ObrisiSoba;
 import operacija.soba.VratiListuSoba;
 import operacija.soba.VratiListuSviSoba;
 import operacija.stavka_iznajmljivanja.KreirajStavkeIznajmljivanja;
+import operacija.stavka_iznajmljivanja.ObrisiIznajmljivanje;
 import operacija.stavka_iznajmljivanja.VratiListuStavkiIznajmljivanja;
 import operacija.termin_dezurstva.ObrisiTerminDezurstva;
 import operacija.termin_dezurstva.PromeniTerminDezurstva;
@@ -254,5 +255,11 @@ public class Controller {
         operacija.izvrsi(stavke);
         kreiraneStavke=operacija.getStavke();
         return kreiraneStavke;
+    }
+
+    public void obrisiIznajmljivanje(Iznajmljivanje i) throws Exception {
+        ObrisiIznajmljivanje operacija=new ObrisiIznajmljivanje();
+        operacija.izvrsi(i);
+        
     }
 }

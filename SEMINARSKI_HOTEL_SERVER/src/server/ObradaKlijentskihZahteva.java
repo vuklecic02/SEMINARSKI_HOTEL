@@ -327,7 +327,20 @@ public class ObradaKlijentskihZahteva extends Thread{
                     {
                         odgovor.setException(ex);
                     }
-                    break;                    
+                    break;  
+                case OBRISI_IZNAJMLJIVANJE:
+                    try
+                    {
+                        System.out.println("Operacija obriši iznajmljivanje");
+                        i=(Iznajmljivanje) zahtev.getArgument();
+                        Controller.getInstance().obrisiIznajmljivanje(i);
+                        odgovor.setRezultat(null);
+                    }
+                    catch(Exception ex)
+                    {
+                        odgovor.setException(ex);
+                    } 
+                    break;
             }
             }catch(Exception ex){
                 odgovor.setException(ex);

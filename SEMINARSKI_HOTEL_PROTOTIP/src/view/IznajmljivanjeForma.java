@@ -26,10 +26,6 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
         this.setTitle("Iznajmljivanja");
     }
 
-    public JButton getjButtonDetalji() {
-        return jButtonDetalji;
-    }
-
     public JButton getjButtonKreiraj() {
         return jButtonKreiraj;
     }
@@ -48,6 +44,10 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
 
     public JTable getjTableStavke() {
         return jTableStavke;
+    }
+
+    public JButton getjButtonObrisi() {
+        return jButtonObrisi;
     }
     
     
@@ -70,9 +70,9 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButtonKreiraj = new javax.swing.JButton();
         jButtonNazad = new javax.swing.JButton();
-        jButtonDetalji = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableStavke = new javax.swing.JTable();
+        jButtonObrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,8 +130,6 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
 
         jButtonNazad.setText("Nazad");
 
-        jButtonDetalji.setText("Detalji");
-
         jTableStavke.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -145,6 +143,8 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableStavke);
 
+        jButtonObrisi.setText("Obriši");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,9 +156,9 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonDetalji)
                             .addComponent(jButtonKreiraj)
-                            .addComponent(jButtonNazad))
+                            .addComponent(jButtonNazad)
+                            .addComponent(jButtonObrisi))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,10 +174,10 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jButtonDetalji)
-                        .addGap(29, 29, 29)
+                        .addGap(63, 63, 63)
                         .addComponent(jButtonKreiraj)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonObrisi)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonNazad)))
                 .addGap(18, 18, 18)
@@ -197,9 +197,9 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButtonDetalji;
     private javax.swing.JButton jButtonKreiraj;
     private javax.swing.JButton jButtonNazad;
+    private javax.swing.JButton jButtonObrisi;
     private javax.swing.JComboBox<TipSobe> jComboBoxSobe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -211,5 +211,13 @@ public class IznajmljivanjeForma extends javax.swing.JFrame {
 
     public void kreirajAddActionListener(ActionListener actionListener) {
         jButtonKreiraj.addActionListener(actionListener);
+    }
+
+    public void obrisiAddActionListener(ActionListener actionListener) {
+        jButtonObrisi.addActionListener(actionListener);
+    }
+
+    public void nazadAddActionListener(ActionListener actionListener) {
+        jButtonNazad.addActionListener(actionListener);
     }
 }

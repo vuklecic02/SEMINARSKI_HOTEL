@@ -88,6 +88,32 @@ public class IznajmljivanjeKontroler {
             GlavniKontroler.getInstance().otvoriIznajmljivanjeKreirajFormu();
         });
         
+        izf.obrisiAddActionListener((ActionEvent e) -> {
+            try
+            {
+                if(izf.getjTableIznajmljivanje().getSelectedRow()==-1)
+                {
+                    JOptionPane.showMessageDialog(izf, "Odaberite iznajmljivanje!", "Greška", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                IznajmljivanjeModelTabela imt=(IznajmljivanjeModelTabela) izf.getjTableIznajmljivanje().getModel();
+                Iznajmljivanje selektovano=imt.getLista().get(izf.getjTableIznajmljivanje().getSelectedRow());
+                Komunikacija.getInstance().obrisiIznajmljivanje(selektovano);
+                JOptionPane.showMessageDialog(izf, "Sistem je obrisao iznajmljivanje", "Brisanje iznajmljivanja", JOptionPane.INFORMATION_MESSAGE);
+                popuniTabelu();                
+            }
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(izf, ex.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
+        izf.nazadAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        
     }
 
     private void addMouseListener() {
@@ -110,6 +136,7 @@ public class IznajmljivanjeKontroler {
                }
            }
         });
+       
     }
     
     

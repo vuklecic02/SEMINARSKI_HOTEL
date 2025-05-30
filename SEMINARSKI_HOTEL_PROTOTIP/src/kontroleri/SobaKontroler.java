@@ -95,7 +95,7 @@ public class SobaKontroler {
                     SobaModelTabela mmt=(SobaModelTabela) sf.getjTableSobe().getModel();
                     Soba selektovana=mmt.getLista().get(sf.getjTableSobe().getSelectedRow());
                     Komunikacija.getInstance().obrisiSobu(selektovana);
-                    JOptionPane.showMessageDialog(sf, "Sistem je obrisao sobu", "Greška", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(sf, "Sistem je obrisao sobu", "Brisanje sobe", JOptionPane.INFORMATION_MESSAGE);
                     popuniTabelu();
                     
                 } catch (Exception ex) {

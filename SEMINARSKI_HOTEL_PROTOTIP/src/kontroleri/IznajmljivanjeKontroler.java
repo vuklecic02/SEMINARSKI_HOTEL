@@ -111,6 +111,8 @@ public class IznajmljivanjeKontroler {
         izf.nazadAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                izf.dispose();
+                GlavniKontroler.getInstance().otvoriGlavnuFormu();
             }
         });
         

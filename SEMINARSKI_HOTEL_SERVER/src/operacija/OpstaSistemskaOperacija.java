@@ -7,7 +7,7 @@ package operacija;
 import java.util.List;
 import repozitorijum.Repozitorijum;
 import repozitorijum.db.DBRepozitorijum;
-import repozitorijum.db.impl.DBRepozitorijumGenericki;
+import repozitorijum.db.impl.DBRepozitorijumImplementacija;
 
 /**
  *
@@ -17,7 +17,7 @@ public abstract class OpstaSistemskaOperacija {
     protected final Repozitorijum dbbroker;
 
     public OpstaSistemskaOperacija() {
-        this.dbbroker = new DBRepozitorijumGenericki();
+        this.dbbroker = new DBRepozitorijumImplementacija();
     }
     
     protected abstract void preduslovi(Object param) throws Exception;

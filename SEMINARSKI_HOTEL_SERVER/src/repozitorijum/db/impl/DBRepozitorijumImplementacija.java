@@ -11,12 +11,13 @@ import model.OpstiDomenskiObjekat;
 import repozitorijum.db.DBRepozitorijum;
 import java.sql.*;
 import model.Recepcioner;
+import model.Soba;
 
 /**
  *
  * @author vuk
  */
-public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiObjekat> {
+public class DBRepozitorijumImplementacija implements DBRepozitorijum<OpstiDomenskiObjekat> {
 
     @Override
     public List<OpstiDomenskiObjekat> vratiSve(OpstiDomenskiObjekat param,String uslov) throws Exception {
@@ -90,6 +91,19 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
         catch(SQLException ex)
         {
             ex.printStackTrace();
+            
+            if (ex instanceof java.sql.SQLIntegrityConstraintViolationException)
+            {
+                if(param instanceof Soba)
+                {
+                    throw new Exception("Nije moguće obrisati sobu jer postoje aktivne rezervacije/iznajmljivanja vezane za nju. "
+                            + "Prvo obrišite sve stavke iznajmljivanja za ovu sobu.", ex);
+                }
+            }
+            else
+            {
+                throw new Exception("Greška prilikom brisanja sobe: " + ex.getMessage(), ex);
+            }
         }
 
     }
@@ -151,7 +165,7 @@ public class DBRepozitorijumGenericki implements DBRepozitorijum<OpstiDomenskiOb
         {
             OpstiDomenskiObjekat param=paramLista.get(0);
             String upit="INSERT INTO "+param.vratiNazivTabele()+
-                    "("+param.vratiKoloneZaUbacivanje()+")"+" VALUES(?, ?, ?, ?, ?, ?)";
+                    "("+param.vratiKoloneZaUbacivanje()+")"+" VALUES" + param.vratiUpitZaUbacivanjeVrednosti();
             System.out.println(upit);
             PreparedStatement ps=DBKonekcija.getInstance().getConnection().prepareStatement(upit);
             for(OpstiDomenskiObjekat odo:paramLista)

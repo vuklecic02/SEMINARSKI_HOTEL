@@ -9,11 +9,6 @@
             <Property name="text" type="java.lang.String" value="Nalog"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMojNalog">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Moj nalog"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemOdjaviSe">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Odjavi se"/>

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Recepcioner;
 import operacija.OpstaSistemskaOperacija;
-import repozitorijum.db.impl.DBRepozitorijumGenericki;
+import repozitorijum.db.impl.DBRepozitorijumImplementacija;
 
 /**
  *

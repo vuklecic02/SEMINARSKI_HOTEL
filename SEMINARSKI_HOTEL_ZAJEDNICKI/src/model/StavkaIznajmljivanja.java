@@ -205,6 +205,11 @@ public class StavkaIznajmljivanja implements OpstiDomenskiObjekat{
     public void postaviID(long generatedId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public String vratiUpitZaUbacivanjeVrednosti() {
+        return "(?, ?, ?, ?, ?, ?)"; 
+    }
     
     
 }

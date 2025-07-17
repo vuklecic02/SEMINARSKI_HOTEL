@@ -34,7 +34,6 @@ public class RecepcionerKontroler {
     public RecepcionerKontroler(RecepcionerForma rf) {
         this.rf = rf;
         popuniTabelu();
-        popuniComboBox();
         addActionListener();
     }
 
@@ -227,17 +226,5 @@ public class RecepcionerKontroler {
             });            
     }
 
-    private void popuniComboBox() {
-        try {
-            List<TerminDezurstva> termini=Komunikacija.getInstance().vratiListuTerminaDezurstava();
-            for(TerminDezurstva td:termini)
-            {
-                rf.getjComboBoxTerminDezurstva().addItem(td);
-            }
-            rf.getjComboBoxTerminDezurstva().setSelectedItem(null);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 
 }

@@ -22,6 +22,10 @@ public class StavkeModelTabela extends AbstractTableModel {
     {
         this.lista=lista;
     }
+    
+    public StavkeModelTabela()
+    {
+    }
 
     public List<StavkaIznajmljivanja> getLista() {
         return lista;

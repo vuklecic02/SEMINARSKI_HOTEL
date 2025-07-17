@@ -47,7 +47,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         jButtonGosti = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuNalog = new javax.swing.JMenu();
-        jMenuItemMojNalog = new javax.swing.JMenuItem();
         jMenuItemOdjaviSe = new javax.swing.JMenuItem();
         jMenuPodesavanja = new javax.swing.JMenu();
         jMenuItemMesto = new javax.swing.JMenuItem();
@@ -139,9 +138,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenuNalog.setText("Nalog");
 
-        jMenuItemMojNalog.setText("Moj nalog");
-        jMenuNalog.add(jMenuItemMojNalog);
-
         jMenuItemOdjaviSe.setText("Odjavi se");
         jMenuItemOdjaviSe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +226,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelIme;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemMesto;
-    private javax.swing.JMenuItem jMenuItemMojNalog;
     private javax.swing.JMenuItem jMenuItemOdjaviSe;
     private javax.swing.JMenuItem jMenuItemSmena;
     private javax.swing.JMenuItem jMenuItemSobe;

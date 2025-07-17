@@ -36,7 +36,6 @@ public class IznajmljivanjeKontroler {
     {
         this.izf=izf;
         popuniTabelu();
-        popuniComboBox();
         addActionListener();
         addMouseListener();
     }
@@ -60,23 +59,10 @@ public class IznajmljivanjeKontroler {
             izf.getjTableStavke().setFillsViewportHeight(true);
             
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(izf, ex.getMessage(), "Tabela mesta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(izf, ex.getMessage(), "Tabela stavki", JOptionPane.ERROR_MESSAGE);
         }     
     }
 
-    private void popuniComboBox() {
-        try {
-            List<TipSobe> sobe = new ArrayList<>(List.of(TipSobe.values()));
-            sobe.sort(Comparator.comparing(TipSobe::toString));
-            for(TipSobe ts:sobe)
-            {
-                izf.getjComboBoxSobe().addItem(ts);
-            }
-             izf.getjComboBoxSobe().setSelectedItem(null);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(izf, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-        }    
-    }
 
     public void otvoriFormu() {
         izf.setVisible(true);

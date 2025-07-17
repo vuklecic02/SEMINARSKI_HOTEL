@@ -26,9 +26,6 @@ public class MestoForma extends javax.swing.JFrame {
         this.setTitle("Mesta");
     }
 
-    public JButton getjButtonDetalji() {
-        return jButtonDetalji;
-    }
 
     public JButton getjButtonKreiraj() {
         return jButtonKreiraj;
@@ -75,7 +72,6 @@ public class MestoForma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMesto = new javax.swing.JTable();
         jButtonNazad = new javax.swing.JButton();
-        jButtonDetalji = new javax.swing.JButton();
         jButtonKreiraj = new javax.swing.JButton();
         jButtonObrisi = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -103,8 +99,6 @@ public class MestoForma extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableMesto);
 
         jButtonNazad.setText("Nazad");
-
-        jButtonDetalji.setText("Detalji");
 
         jButtonKreiraj.setText("Kreiraj");
 
@@ -166,8 +160,7 @@ public class MestoForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonNazad)
                     .addComponent(jButtonObrisi)
-                    .addComponent(jButtonKreiraj)
-                    .addComponent(jButtonDetalji))
+                    .addComponent(jButtonKreiraj))
                 .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
@@ -175,10 +168,7 @@ public class MestoForma extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonDetalji)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButtonNazad))
+                    .addComponent(jButtonNazad, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -200,7 +190,6 @@ public class MestoForma extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDetalji;
     private javax.swing.JButton jButtonKreiraj;
     private javax.swing.JButton jButtonNazad;
     private javax.swing.JButton jButtonObrisi;
@@ -231,9 +220,6 @@ public class MestoForma extends javax.swing.JFrame {
         jButtonOcisti.addActionListener(actionListener);
     }
 
-    public void promeniAddActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public void pretraziAddActionListener(ActionListener actionListener) {
         jButtonPretrazi.addActionListener(actionListener);

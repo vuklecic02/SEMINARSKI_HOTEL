@@ -106,6 +106,11 @@ public class TerminDezurstva implements OpstiDomenskiObjekat{
 
     @Override
     public void postaviID(long generatedId) {
+        this.idTerminDezurstva=(int) generatedId;
+    }
+
+    @Override
+    public String vratiUpitZaUbacivanjeVrednosti() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

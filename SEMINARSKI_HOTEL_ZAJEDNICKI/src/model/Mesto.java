@@ -143,6 +143,11 @@ public class Mesto implements OpstiDomenskiObjekat{
 
     @Override
     public void postaviID(long generatedId) {
+        this.idMesta=(int) generatedId;
+    }
+
+    @Override
+    public String vratiUpitZaUbacivanjeVrednosti() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

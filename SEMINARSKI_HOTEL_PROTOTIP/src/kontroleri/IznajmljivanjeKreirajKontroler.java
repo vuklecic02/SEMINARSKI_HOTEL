@@ -46,6 +46,8 @@ public class IznajmljivanjeKreirajKontroler {
         addActionListeners();
         ulogovani=ikf.getUlogovani();
         ukupnaCena=0;
+        StavkeModelTabela smt=new StavkeModelTabela();
+        ikf.getjTableStavke().setModel(smt);
         ikf.getjTextFieldUkupnaCena().setText(String.valueOf(ukupnaCena));
         ikf.getjLabelImePrezime().setText(ulogovani.getIme()+" "+ulogovani.getPrezime());
     }

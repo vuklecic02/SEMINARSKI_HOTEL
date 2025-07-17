@@ -34,7 +34,6 @@
                   <Component id="jButtonNazad" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonObrisi" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonKreiraj" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonDetalji" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
@@ -45,11 +44,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="31" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButtonDetalji" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jButtonNazad" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jButtonNazad" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel1" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -96,11 +91,6 @@
     <Component class="javax.swing.JButton" name="jButtonNazad">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nazad"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonDetalji">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Detalji"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonKreiraj">

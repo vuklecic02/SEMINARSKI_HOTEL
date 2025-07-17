@@ -34,8 +34,7 @@ public class PromeniRecepcioner extends OpstaSistemskaOperacija {
         {
             throw new Exception("Sistem ne može da kreira korisnika");
         }  
-        if(recepcioner.getPassword().length()<8 || recepcioner.getPassword().contains(" ") || 
-                !recepcioner.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.com$") || recepcioner.getUsername().length()>15)
+        if (!recepcioner.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.com$") || recepcioner.getUsername().length()>15)
         {
             throw new Exception("Sistem ne može da kreira korisnika");
         }        

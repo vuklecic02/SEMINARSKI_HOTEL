@@ -160,6 +160,11 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
     public void postaviID(long generatedId) {
         this.idIznajmljivanje=(int) generatedId;
     }
+
+    @Override
+    public String vratiUpitZaUbacivanjeVrednosti() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

@@ -53,7 +53,7 @@ public class MestoKontroler {
                 try {
                     if(mf.getjTableMesto().getSelectedRow()==-1)
                     {
-                        JOptionPane.showMessageDialog(mf, "Odaberite mesto!", "Greska", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(mf, "Odaberite mesto!", "Greska", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
                     MestoModelTabela mmt=(MestoModelTabela) mf.getjTableMesto().getModel();

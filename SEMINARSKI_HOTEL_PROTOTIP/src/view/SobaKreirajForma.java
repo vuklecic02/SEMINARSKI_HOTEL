@@ -28,6 +28,7 @@ public class SobaKreirajForma extends javax.swing.JDialog {
     public SobaKreirajForma(java.awt.Frame parent, boolean modal, SobaKontroler roditelj, Soba selektovana, FormaMod mod) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         this.roditelj=roditelj;
         this.selektovana=selektovana;
         this.mod=mod;

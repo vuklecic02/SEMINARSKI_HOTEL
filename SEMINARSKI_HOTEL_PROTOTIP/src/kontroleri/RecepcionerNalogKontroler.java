@@ -67,7 +67,7 @@ public class RecepcionerNalogKontroler {
         rnf.getjTextFieldPrezime().setText(selektovani.getPrezime());
         rnf.getjTextFieldUsername().setText(selektovani.getUsername());
         rnf.getjTextFieldMail().setText(selektovani.getEmail());
-        rnf.getjPasswordField1().setText(selektovani.getPassword());
+        rnf.getjPasswordField1().setText("");
 
         if(selektovani.getUsername().equals(ulogovani.getUsername()))
         {
@@ -140,12 +140,31 @@ public class RecepcionerNalogKontroler {
                 String prezime=rnf.getjTextFieldPrezime().getText();
                 String username=rnf.getjTextFieldUsername().getText();
                 String email=rnf.getjTextFieldMail().getText();
-                String password=Hash.hesirajLozinku(String.valueOf(rnf.getjPasswordField1().getPassword()));
+                char[] passwordChars = rnf.getjPasswordField1().getPassword();
+                String password;
+                
+                if (passwordChars == null || passwordChars.length == 0)
+                {
+                    password=selektovani.getPassword();
+                }
+                else
+                {
+                    String nehesiranNovPassword = String.valueOf(passwordChars);
+                    
+                    if (nehesiranNovPassword.length() < 8 || nehesiranNovPassword.contains(" ")) {
+                        JOptionPane.showMessageDialog(rnf, "Lozinka mora imati najmanje 8 karaktera i ne sme sadržati razmake.", 
+                                "Greška lozinke", JOptionPane.ERROR_MESSAGE);
+                        return; 
+                    }
+                    password = Hash.hesirajLozinku(String.valueOf(nehesiranNovPassword));
+                }
+                
                 selektovani.setIme(ime);
                 selektovani.setPrezime(prezime);
                 selektovani.setUsername(username);
                 selektovani.setEmail(email);
                 selektovani.setPassword(password);
+                
                 try
                 {
                     
@@ -191,6 +210,7 @@ public class RecepcionerNalogKontroler {
                 }
                 ZaposleniTermin smena=new ZaposleniTermin();
                 smena.setDatum(datum);
+                System.out.println(ulogovani.getIdRecepcioner()+"");
                 smena.setRecepcioner(ulogovani);
                 smena.setTerminDezurstva((TerminDezurstva) rnf.getjComboBoxSmena().getSelectedItem());
                 if(listaSmena.contains(smena))

@@ -39,6 +39,8 @@ public class ServerForma extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItemBaza = new javax.swing.JMenuItem();
+        jMenuItemPort = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +63,23 @@ public class ServerForma extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         jMenu1.setText("Konfiguracija");
+
+        jMenuItemBaza.setText("Baza");
+        jMenuItemBaza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBazaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemBaza);
+
+        jMenuItemPort.setText("Port");
+        jMenuItemPort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPortActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemPort);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -118,6 +137,16 @@ public class ServerForma extends javax.swing.JFrame {
         jButtonZaustavi.setEnabled(false);
     }//GEN-LAST:event_jButtonZaustaviActionPerformed
 
+    private void jMenuItemBazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBazaActionPerformed
+        KonfigBazaForma kbf=new KonfigBazaForma(this, false);
+        kbf.setVisible(true);
+    }//GEN-LAST:event_jMenuItemBazaActionPerformed
+
+    private void jMenuItemPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPortActionPerformed
+        KonfigPortForma kpf = new KonfigPortForma(this, false);
+        kpf.setVisible(true);
+    }//GEN-LAST:event_jMenuItemPortActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -161,5 +190,7 @@ public class ServerForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemBaza;
+    private javax.swing.JMenuItem jMenuItemPort;
     // End of variables declaration//GEN-END:variables
 }

@@ -366,17 +366,17 @@ public class Komunikacija {
         throw odgovor.getException();          
     }
 
-    public List<StavkaIznajmljivanja> vratiStavke(int idIznajmljivanje) throws Exception {
-        List<StavkaIznajmljivanja> lista = new ArrayList<>();
-        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE_IZNAJMLJIVANJA,idIznajmljivanje);
-        posiljalac.salje(zahtev);
-        Odgovor odgovor = (Odgovor) primalac.prima();
-        if (odgovor.getException() == null) {
-            lista = (List<StavkaIznajmljivanja>) odgovor.getRezultat();
-            return lista;
-        }
-        throw odgovor.getException();        
-    }
+//    public List<StavkaIznajmljivanja> vratiStavke(int idIznajmljivanje) throws Exception {
+//        List<StavkaIznajmljivanja> lista = new ArrayList<>();
+//        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE_IZNAJMLJIVANJA,idIznajmljivanje);
+//        posiljalac.salje(zahtev);
+//        Odgovor odgovor = (Odgovor) primalac.prima();
+//        if (odgovor.getException() == null) {
+//            lista = (List<StavkaIznajmljivanja>) odgovor.getRezultat();
+//            return lista;
+//        }
+//        throw odgovor.getException();        
+//    }
 
     public boolean deaktivirajNalog(Map<Boolean, Recepcioner> mapa) throws Exception {
         boolean deaktivacija;
@@ -401,16 +401,16 @@ public class Komunikacija {
         throw odgovor.getException();          
     }
 
-    public List<StavkaIznajmljivanja> kreirajStavkeIznajmljivanja(List<StavkaIznajmljivanja> listaStavki) throws Exception {
-        Zahtev zahtev = new Zahtev(Operacija.KREIRAJ_STAVKE_IZNAJMLJIVANJA,listaStavki);
-        posiljalac.salje(zahtev);
-        Odgovor odgovor = (Odgovor) primalac.prima();
-        if (odgovor.getException() == null) {
-            return (List<StavkaIznajmljivanja>) odgovor.getRezultat();
-
-        }
-        throw odgovor.getException();            
-    }
+//    public List<StavkaIznajmljivanja> kreirajStavkeIznajmljivanja(List<StavkaIznajmljivanja> listaStavki) throws Exception {
+//        Zahtev zahtev = new Zahtev(Operacija.KREIRAJ_STAVKE_IZNAJMLJIVANJA,listaStavki);
+//        posiljalac.salje(zahtev);
+//        Odgovor odgovor = (Odgovor) primalac.prima();
+//        if (odgovor.getException() == null) {
+//            return (List<StavkaIznajmljivanja>) odgovor.getRezultat();
+//
+//        }
+//        throw odgovor.getException();            
+//    }
 
     public void obrisiIznajmljivanje(Iznajmljivanje selektovano) throws Exception {
         Zahtev zahtev=new Zahtev(Operacija.OBRISI_IZNAJMLJIVANJE, selektovano);

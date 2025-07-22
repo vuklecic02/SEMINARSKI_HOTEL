@@ -179,22 +179,23 @@ public class IznajmljivanjeKreirajKontroler {
                     return;
                 }
                 Iznajmljivanje i=new Iznajmljivanje(ukupnaCena, ulogovani, gost);
+                i.setStavke(listaStavki);
                 i=Komunikacija.getInstance().kreirajIznajmljivanje(i);
                
                 if(i!=null)
                 {
-                    System.out.println("Iznajmljivanje ID: " + i.getIdIznajmljivanje());
-                    for(StavkaIznajmljivanja stavka:listaStavki)
-                    {
-                        stavka.setIznajmljivanje(i);
-                        System.out.println("ID iznajmljivanja:"+" "+stavka.getIznajmljivanje().getIdIznajmljivanje());
-                    }
-                    listaStavki=Komunikacija.getInstance().kreirajStavkeIznajmljivanja(listaStavki);
-                    if(listaStavki!=null)
-                    {
+//                    System.out.println("Iznajmljivanje ID: " + i.getIdIznajmljivanje());
+//                    for(StavkaIznajmljivanja stavka:listaStavki)
+//                    {
+//                        stavka.setIznajmljivanje(i);
+//                        System.out.println("ID iznajmljivanja:"+" "+stavka.getIznajmljivanje().getIdIznajmljivanje());
+//                    }
+//                    listaStavki=Komunikacija.getInstance().kreirajStavkeIznajmljivanja(listaStavki);
+                    //if(listaStavki!=null)
+                    //{
                         JOptionPane.showMessageDialog(ikf, "Kreirano je iznajmljivanje i stavke iznajmljivanja!","Kreiranje iznajmljivanja",JOptionPane.INFORMATION_MESSAGE);
                         return;
-                    }
+                    //}
                 }
                 
             } catch (Exception ex) {

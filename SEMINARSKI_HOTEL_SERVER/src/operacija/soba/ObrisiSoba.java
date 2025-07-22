@@ -6,6 +6,7 @@ package operacija.soba;
 
 import model.Soba;
 import operacija.OpstaSistemskaOperacija;
+import java.sql.SQLException;
 
 /**
  *
@@ -23,7 +24,23 @@ public class ObrisiSoba extends OpstaSistemskaOperacija {
 
     @Override
     protected void izvrsiOperaciju(Object param) throws Exception {
-        dbbroker.obrisi(param);
+        try
+        {
+            dbbroker.obrisi(param);
+        }
+        catch (SQLException ex) 
+        {
+            if (ex instanceof java.sql.SQLIntegrityConstraintViolationException) 
+            {
+                throw new Exception("Nije moguće obrisati sobu jer postoje aktivne rezervacije/iznajmljivanja vezane za nju. "
+                        + "Prvo obrišite sve stavke iznajmljivanja za ovu sobu.", ex);
+            } 
+            else 
+            {
+                throw new Exception("Greška prilikom brisanja sobe: " + ex.getMessage(), ex);
+            }
+        }
+        
     }
     
 }

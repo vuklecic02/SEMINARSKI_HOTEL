@@ -287,11 +287,11 @@ public class ObradaKlijentskihZahteva extends Thread{
                     System.out.println("Operacija učitaj iznajmljivanja");
                     odgovor.setRezultat(Controller.getInstance().vratiListuIznajmljivanja());
                     break;
-                case UCITAJ_STAVKE_IZNAJMLJIVANJA:
-                    System.out.println("Operacija učitaj stavke iznajmljivanja");
-                    idIzn=(int) zahtev.getArgument();
-                    odgovor.setRezultat(Controller.getInstance().vratiListuStavkiIznajmljivanja(idIzn));
-                    break;
+//                case UCITAJ_STAVKE_IZNAJMLJIVANJA:
+//                    System.out.println("Operacija učitaj stavke iznajmljivanja");
+//                    idIzn=(int) zahtev.getArgument();
+//                    odgovor.setRezultat(Controller.getInstance().vratiListuStavkiIznajmljivanja(idIzn));
+//                    break;
                 case DEAKTIVIRAJ_NALOG:
                     try
                     {
@@ -316,18 +316,18 @@ public class ObradaKlijentskihZahteva extends Thread{
                         odgovor.setException(ex);
                     }
                     break;
-                case KREIRAJ_STAVKE_IZNAJMLJIVANJA:
-                    try
-                    {
-                        System.out.println("Operacija kreiraj stavke iznajmljivanja");
-                        stavke= (List<StavkaIznajmljivanja>) zahtev.getArgument();
-                        odgovor.setRezultat(Controller.getInstance().kreirajStavkeIznajmljivanja(stavke));
-                    }
-                    catch(Exception ex)
-                    {
-                        odgovor.setException(ex);
-                    }
-                    break;  
+//                case KREIRAJ_STAVKE_IZNAJMLJIVANJA:
+//                    try
+//                    {
+//                        System.out.println("Operacija kreiraj stavke iznajmljivanja");
+//                        stavke= (List<StavkaIznajmljivanja>) zahtev.getArgument();
+//                        odgovor.setRezultat(Controller.getInstance().kreirajStavkeIznajmljivanja(stavke));
+//                    }
+//                    catch(Exception ex)
+//                    {
+//                        odgovor.setException(ex);
+//                    }
+//                    break;  
                 case OBRISI_IZNAJMLJIVANJE:
                     try
                     {

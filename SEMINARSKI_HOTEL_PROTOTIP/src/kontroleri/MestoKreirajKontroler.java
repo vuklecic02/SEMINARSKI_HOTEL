@@ -67,7 +67,7 @@ public class MestoKreirajKontroler {
             }
             catch(Exception ex)
             {
-                JOptionPane.showMessageDialog(mkf, ex.getMessage(), "Kreiraj mesto", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mkf, "Sistem ne može da kreira mesto", "Kreiraj mesto", JOptionPane.ERROR_MESSAGE);
             }
         });
         

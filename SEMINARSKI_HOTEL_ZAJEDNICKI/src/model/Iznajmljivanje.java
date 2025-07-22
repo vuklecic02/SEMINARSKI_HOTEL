@@ -6,6 +6,7 @@ package model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
     private double ukupnaCena;
     private Recepcioner recepcioner;
     private Osoba osoba;
+    private List<StavkaIznajmljivanja> stavke;
 
     public Iznajmljivanje() {
     }
@@ -36,6 +38,15 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
         this.osoba = osoba;
         
     }    
+
+    public List<StavkaIznajmljivanja> getStavke() {
+        return stavke;
+    }
+
+    public void setStavke(List<StavkaIznajmljivanja> stavke) {
+        this.stavke = stavke;
+    }
+    
 
 
     public int getIdIznajmljivanje() {
@@ -109,6 +120,7 @@ public class Iznajmljivanje implements OpstiDomenskiObjekat{
             Drzava drzava=Drzava.izBazeString(rs.getString("mesto.drzava"));
             Mesto mesto=new Mesto(idMesta, naziv, drzava);
             Osoba o=new Osoba(idOsoba, imeOsoba, prezimeOsoba, telefon, brLicneIsprave, mesto);
+                    
             
             Iznajmljivanje i=new Iznajmljivanje(idIznajmljivanje, ukupnaCena, r, o);
             lista.add(i);

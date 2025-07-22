@@ -115,7 +115,8 @@ public class IznajmljivanjeKontroler {
                    try {
                        IznajmljivanjeModelTabela imt=(IznajmljivanjeModelTabela) izf.getjTableIznajmljivanje().getModel();
                        Iznajmljivanje i=imt.getLista().get(red);
-                       List<StavkaIznajmljivanja> stavke=Komunikacija.getInstance().vratiStavke(i.getIdIznajmljivanje());
+                       //List<StavkaIznajmljivanja> stavke=Komunikacija.getInstance().vratiStavke(i.getIdIznajmljivanje());
+                       List<StavkaIznajmljivanja> stavke=i.getStavke();
                        StavkeModelTabela smt=new StavkeModelTabela(stavke);
                        izf.getjTableStavke().setModel(smt);
                    } catch (Exception ex) {

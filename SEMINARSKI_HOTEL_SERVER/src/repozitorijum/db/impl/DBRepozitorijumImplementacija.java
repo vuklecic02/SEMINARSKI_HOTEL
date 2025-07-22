@@ -10,8 +10,6 @@ import java.util.List;
 import model.OpstiDomenskiObjekat;
 import repozitorijum.db.DBRepozitorijum;
 import java.sql.*;
-import model.Recepcioner;
-import model.Soba;
 
 /**
  *
@@ -91,19 +89,7 @@ public class DBRepozitorijumImplementacija implements DBRepozitorijum<OpstiDomen
         catch(SQLException ex)
         {
             ex.printStackTrace();
-            
-            if (ex instanceof java.sql.SQLIntegrityConstraintViolationException)
-            {
-                if(param instanceof Soba)
-                {
-                    throw new Exception("Nije moguće obrisati sobu jer postoje aktivne rezervacije/iznajmljivanja vezane za nju. "
-                            + "Prvo obrišite sve stavke iznajmljivanja za ovu sobu.", ex);
-                }
-            }
-            else
-            {
-                throw new Exception("Greška prilikom brisanja sobe: " + ex.getMessage(), ex);
-            }
+            throw ex;
         }
 
     }

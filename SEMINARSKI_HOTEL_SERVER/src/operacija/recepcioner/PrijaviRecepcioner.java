@@ -25,7 +25,7 @@ public class PrijaviRecepcioner extends OpstaSistemskaOperacija {
         recepcioner=(Recepcioner)param;
         if(recepcioner.getUsername().isEmpty() || recepcioner.getPassword().isEmpty())
         {
-            throw new Exception("Sistem ne može da prijavi korisnika");
+            throw new Exception("Korisničko ime i šifra nisu ispravni");
         }
     }
 

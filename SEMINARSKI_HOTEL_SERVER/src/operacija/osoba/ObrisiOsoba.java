@@ -17,7 +17,7 @@ public class ObrisiOsoba extends OpstaSistemskaOperacija {
     protected void preduslovi(Object param) throws Exception {
         if(param==null || !(param instanceof Osoba))
         {
-            throw new Exception("Sistem ne može da obriše termin dežurstva");
+            throw new Exception("Sistem ne može da obriše osobu");
         }        
     }
 

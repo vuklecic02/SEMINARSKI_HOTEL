@@ -99,6 +99,7 @@ public class SobaKontroler {
                     popuniTabelu();
                     
                 } catch (Exception ex) {
+                    
                     JOptionPane.showMessageDialog(sf, ex.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
                 }             
         });

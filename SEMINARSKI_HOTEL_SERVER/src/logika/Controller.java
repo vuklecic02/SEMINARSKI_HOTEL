@@ -17,6 +17,7 @@ import model.StavkaIznajmljivanja;
 import model.TerminDezurstva;
 import model.ZaposleniTermin;
 import operacija.iznajmljivanje.KreirajIznajmljivanje;
+import operacija.iznajmljivanje.ObrisiIznajmljivanje;
 import operacija.iznajmljivanje.VratiListuSviIznajmljivanje;
 import operacija.mesto.KreirajMesto;
 import operacija.mesto.ObrisiMesto;
@@ -37,9 +38,6 @@ import operacija.soba.KreirajSoba;
 import operacija.soba.ObrisiSoba;
 import operacija.soba.VratiListuSoba;
 import operacija.soba.VratiListuSviSoba;
-import operacija.stavka_iznajmljivanja.KreirajStavkeIznajmljivanja;
-import operacija.stavka_iznajmljivanja.ObrisiIznajmljivanje;
-import operacija.stavka_iznajmljivanja.VratiListuStavkiIznajmljivanja;
 import operacija.termin_dezurstva.ObrisiTerminDezurstva;
 import operacija.termin_dezurstva.PromeniTerminDezurstva;
 import operacija.termin_dezurstva.UbaciTerminDezurstva;
@@ -231,11 +229,11 @@ public class Controller {
         return operacija.getLista();
     }
 
-    public List<StavkaIznajmljivanja> vratiListuStavkiIznajmljivanja(int idIzn) throws Exception {
-        VratiListuStavkiIznajmljivanja operacija=new VratiListuStavkiIznajmljivanja();
-        operacija.izvrsi(idIzn);
-        return operacija.getLista();
-    }
+//    public List<StavkaIznajmljivanja> vratiListuStavkiIznajmljivanja(int idIzn) throws Exception {
+//        VratiListuStavkiIznajmljivanja operacija=new VratiListuStavkiIznajmljivanja();
+//        operacija.izvrsi(idIzn);
+//        return operacija.getLista();
+//    }
 
     public boolean deaktivirajNalog(Map<Boolean, Recepcioner> mapa) throws Exception {
         DeaktivirajRecepcioner operacija=new DeaktivirajRecepcioner();
@@ -250,12 +248,12 @@ public class Controller {
          return kreiranoIznajmljivanje;
     }
 
-    public List<StavkaIznajmljivanja> kreirajStavkeIznajmljivanja(List<StavkaIznajmljivanja> stavke) throws Exception {
-        KreirajStavkeIznajmljivanja operacija=new KreirajStavkeIznajmljivanja();
-        operacija.izvrsi(stavke);
-        kreiraneStavke=operacija.getStavke();
-        return kreiraneStavke;
-    }
+//    public List<StavkaIznajmljivanja> kreirajStavkeIznajmljivanja(List<StavkaIznajmljivanja> stavke) throws Exception {
+//        KreirajStavkeIznajmljivanja operacija=new KreirajStavkeIznajmljivanja();
+//        operacija.izvrsi(stavke);
+//        kreiraneStavke=operacija.getStavke();
+//        return kreiraneStavke;
+//    }
 
     public void obrisiIznajmljivanje(Iznajmljivanje i) throws Exception {
         ObrisiIznajmljivanje operacija=new ObrisiIznajmljivanje();

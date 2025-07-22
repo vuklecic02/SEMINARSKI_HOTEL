@@ -5,7 +5,7 @@
 package operacija.iznajmljivanje;
 
 import model.Iznajmljivanje;
-import model.OpstiDomenskiObjekat;
+import model.StavkaIznajmljivanja;
 import operacija.OpstaSistemskaOperacija;
 
 /**
@@ -26,17 +26,20 @@ public class KreirajIznajmljivanje extends OpstaSistemskaOperacija {
         if(param==null || !(param instanceof Iznajmljivanje))
         {
             throw new Exception("Sistem ne može da kreira iznajmljivanje");
-        }
-        /*if(dbbroker.daLiPostoji((OpstiDomenskiObjekat) param))
-        {
-            throw new Exception("Sistem ne može da kreira iznajmljivanje");
-        }*/        
+        }       
     }
 
     @Override
     protected void izvrsiOperaciju(Object param) throws Exception {
         iznajmljivanje=(Iznajmljivanje)param;
         dbbroker.kreiraj(iznajmljivanje);
+        
+        for(StavkaIznajmljivanja stavka : iznajmljivanje.getStavke())
+        {
+            stavka.setIznajmljivanje(iznajmljivanje);
+        }
+        
+        dbbroker.kreirajVise(iznajmljivanje.getStavke());
     }
     
     

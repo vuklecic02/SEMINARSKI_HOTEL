@@ -148,7 +148,7 @@ public class OsobaKontroler {
                 popuniTabelu();
                 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(of, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);                
+                JOptionPane.showMessageDialog(of, "Sistem ne može da prikaže detalje o osobi", "Greska", JOptionPane.ERROR_MESSAGE);                
             }                
             }
         });
